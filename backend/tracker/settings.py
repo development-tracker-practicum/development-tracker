@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'djoser',
     'api.apps.ApiConfig',
     'users.apps.UsersConfig',
+    'course.apps.CourseConfig'
 ]
 
 MIDDLEWARE = [
