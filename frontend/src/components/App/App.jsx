@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Authorization from '../../pages/Authorization/Authorization';
+import Diary from '../../pages/Diary/Diary';
 
 import './App.css';
 
 function App() {
     return (
         <div className="App">
-            <Routes>
+            <Diary />
+            {/* <Routes>
                 <Route
                     path="/signup"
                     element={<Authorization submitText="Регистрация" />}
@@ -18,7 +20,7 @@ function App() {
                         <Authorization path="/signin" submitText="Войти" />
                     }
                 />
-            </Routes>
+            </Routes> */}
         </div>
     );
 }
