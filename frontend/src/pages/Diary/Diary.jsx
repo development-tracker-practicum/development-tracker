@@ -1,18 +1,14 @@
-import { Header } from '../../components/Header/Header';
-import { SidePanel } from '../../components/SidePanel/SidePanel';
 import './Diary.sass';
-import { PromoNotification } from '../../components/PromoNotification/PromoNotification';
-
-function Diary(properties) {
-  return (
-    <>
-      <Header />
-      <SidePanel />
-      <main className="content">
-        <PromoNotification />
-      </main>
-    </>
-  );
+import { Header } from '../../components/Header/Header.jsx';
+import { SidePanel } from '../../components/SidePanel/SidePanel.jsx';
+import { Desk } from '../../components/Desk/Desk.jsx';
+function Diary(props) {
+    return (
+        <>
+            <Header />
+            <SidePanel />
+            <Desk />
+        </>
+    );
 }
-
-export { Diary };
+export default Diary;

@@ -1,15 +1,31 @@
 @font-face {
-  font-family: 'YS Display';
-  src: url('https://db.onlinewebfonts.com/t/3bfdd997225544a44a2f92e51975856e.eot');
-  src:
-    url('https://db.onlinewebfonts.com/t/3bfdd997225544a44a2f92e51975856e.eot?#iefix')
-      format('embedded-opentype'),
-    url('https://db.onlinewebfonts.com/t/3bfdd997225544a44a2f92e51975856e.woff2')
-      format('woff2'),
-    url('https://db.onlinewebfonts.com/t/3bfdd997225544a44a2f92e51975856e.woff')
-      format('woff'),
-    url('https://db.onlinewebfonts.com/t/3bfdd997225544a44a2f92e51975856e.ttf')
-      format('truetype'),
-    url('https://db.onlinewebfonts.com/t/3bfdd997225544a44a2f92e51975856e.svg#YS Display Bold Regular')
-      format('svg');
+    font-family: 'YS Display';
+    src: url('https://db.onlinewebfonts.com/t/3bfdd997225544a44a2f92e51975856e.eot');
+    src:
+        url('https://db.onlinewebfonts.com/t/3bfdd997225544a44a2f92e51975856e.eot?#iefix')
+            format('embedded-opentype'),
+        url('https://db.onlinewebfonts.com/t/3bfdd997225544a44a2f92e51975856e.woff2')
+            format('woff2'),
+        url('https://db.onlinewebfonts.com/t/3bfdd997225544a44a2f92e51975856e.woff')
+            format('woff'),
+        url('https://db.onlinewebfonts.com/t/3bfdd997225544a44a2f92e51975856e.ttf')
+            format('truetype'),
+        url('https://db.onlinewebfonts.com/t/3bfdd997225544a44a2f92e51975856e.svg#YS Display Bold Regular')
+            format('svg');
+}
+
+@font-face {
+    font-family: 'YS Text';
+    src: url('https://db.onlinewebfonts.com/t/23a02e8af5ef33a9b496dd524401550f.eot');
+    src:
+        url('https://db.onlinewebfonts.com/t/23a02e8af5ef33a9b496dd524401550f.eot?#iefix')
+            format('embedded-opentype'),
+        url('https://db.onlinewebfonts.com/t/23a02e8af5ef33a9b496dd524401550f.woff2')
+            format('woff2'),
+        url('https://db.onlinewebfonts.com/t/23a02e8af5ef33a9b496dd524401550f.woff')
+            format('woff'),
+        url('https://db.onlinewebfonts.com/t/23a02e8af5ef33a9b496dd524401550f.ttf')
+            format('truetype'),
+        url('https://db.onlinewebfonts.com/t/23a02e8af5ef33a9b496dd524401550f.svg#YS Text Regular Regular')
+            format('svg');
 }
