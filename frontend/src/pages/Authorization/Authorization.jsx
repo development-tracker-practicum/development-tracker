@@ -5,7 +5,7 @@ import './Authorization.sass';
 
 function Authorization({ submitText }) {
   return (
-    <main className="content">
+    <main className="content content_authorization">
       <section className="authorization">
         <div
           style={{

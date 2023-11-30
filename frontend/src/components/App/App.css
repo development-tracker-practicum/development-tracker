@@ -1,28 +1,33 @@
 body,
 html {
-  padding: 0;
-  margin: 0;
-  font-family: 'YS Display', Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+    font-family: 'YS Display', Arial, Helvetica, sans-serif;
 }
 
 #root {
-  display: flex;
-  max-width: 1440px;
-  min-height: 100vh;
-  margin: 0 auto;
+    display: flex;
+    max-width: 1440px;
+    min-height: 100vh;
+    margin: 0 auto;
 }
 
 .app {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .content {
-  display: flex;
-  width: calc(100% - 160px);
-  flex-direction: column;
-  flex-grow: 1;
-  margin-left: 160px;
+    display: flex;
+    width: calc(100% - 160px);
+    flex-direction: column;
+    flex-grow: 1;
+    margin-left: 160px;
+}
+
+.content_authorization {
+    margin: 0;
+    width: 100%;
 }

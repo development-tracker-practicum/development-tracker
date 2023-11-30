@@ -1,15 +1,16 @@
-import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Authorization } from '../../pages/Authorization/Authorization';
-import { Diary } from '../../pages/Diary/Diary';
+// import Desk from '../../pages/Desk/Desk.jsx';
 
 import './App.css';
+import Desk from '../../pages/Diary/Diary';
+import Metrika from '../../pages/Metrika/Metrika';
 
 function App() {
-  return (
-    <div className="app">
-      <Diary />
-      {/* <Routes>
+    return (
+        <div className="app">
+            <Routes>
+                <Route path="/diary/desk" element={<Desk />} />
                 <Route
                     path="/signup"
                     element={<Authorization submitText="Регистрация" />}
@@ -20,9 +21,10 @@ function App() {
                         <Authorization path="/signin" submitText="Войти" />
                     }
                 />
-            </Routes> */}
-    </div>
-  );
+                <Route path="/diary/metrika" element={<Metrika />} />
+            </Routes>
+        </div>
+    );
 }
 
 export { App };
