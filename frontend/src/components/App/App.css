@@ -1,28 +1,28 @@
 body,
 html {
-    padding: 0;
-    margin: 0;
-    font-family: 'YS Display', Arial, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+  font-family: 'YS Display', Arial, Helvetica, sans-serif;
 }
 
 #root {
-    max-width: 1440px;
-    margin: 0 auto;
-    min-height: 100vh;
-    display: flex;
+  display: flex;
+  max-width: 1440px;
+  min-height: 100vh;
+  margin: 0 auto;
 }
 
-.App {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    position: relative;
+.app {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
+
 .content {
-    flex-grow: 1;
-    display: flex;
-    margin-left: 160px;
-    width: calc(100% - 160px);
-    flex-direction: column;
-    background-color: rgb(173, 205, 247);
+  display: flex;
+  width: calc(100% - 160px);
+  flex-direction: column;
+  flex-grow: 1;
+  margin-left: 160px;
 }
