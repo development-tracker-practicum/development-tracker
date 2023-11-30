@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Authorization from '../../pages/Authorization/Authorization';
-import Diary from '../../pages/Diary/Diary';
+import { Authorization } from '../../pages/Authorization/Authorization';
+import { Diary } from '../../pages/Diary/Diary';
 
 import './App.css';
 
 function App() {
-    return (
-        <div className="App">
-            <Diary />
-            {/* <Routes>
+  return (
+    <div className="app">
+      <Diary />
+      {/* <Routes>
                 <Route
                     path="/signup"
                     element={<Authorization submitText="Регистрация" />}
@@ -21,8 +21,8 @@ function App() {
                     }
                 />
             </Routes> */}
-        </div>
-    );
+    </div>
+  );
 }
 
 export { App };

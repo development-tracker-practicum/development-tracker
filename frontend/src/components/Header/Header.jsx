@@ -1,12 +1,14 @@
-import HeaderMenu from '../HeaderMenu/HeaderMenu.jsx';
+import { HeaderMenu } from '../HeaderMenu/HeaderMenu';
+import icon from '../../images/icon.svg';
 import './Header.sass';
-import icon from './../../Images/icon.svg';
-function Header(props) {
-    return (
-        <header className="header">
-            <HeaderMenu />
-            <img src={icon} alt="иконка серого колокольчика" />
-        </header>
-    );
+
+function Header(properties) {
+  return (
+    <header className="header">
+      <HeaderMenu />
+      <img src={icon} alt="иконка серого колокольчика" />
+    </header>
+  );
 }
-export default Header;
+
+export { Header };
