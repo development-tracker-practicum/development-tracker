@@ -38,12 +38,12 @@ class Course(models.Model):
         related_name="curse",
         verbose_name=_("Тэги курса"),
     )
-    # images = models.ImageField(
-    #     verbose_name=_("Превью курса"),
-    #     upload_to="img/",
-    #     null=True,
-    #     blank=False
-    # ) # NOTE: если нужно раскоментировать
+    images = models.ImageField(
+        verbose_name=_("Превью курса"),
+        upload_to="img/",
+        null=True,
+        blank=False
+    ) 
     price = models.DecimalField(
         verbose_name=_("Стоимость курса"),
         decimal_places = 2,
