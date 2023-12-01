@@ -20,7 +20,7 @@ function SideMenu(properties) {
                 <li className="side-menu__item">
                     <SideMenuLink
                         textContent="Трек развития"
-                        path="/tracking"
+                        path="/track/profile"
                         icon={arrowIcon}
                     />
                 </li>
