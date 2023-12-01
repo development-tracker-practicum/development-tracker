@@ -4,35 +4,56 @@ import './HeaderMenu.sass';
 
 function HeaderMenu(properties) {
     const location = useLocation();
+    const isItDiaryLocation = location.pathname.includes('diary');
     return (
         <ul className="header__menu">
-            <li className="header__menu__item">
-                <HeaderLink
-                    text="Доска"
-                    path="/diary/desk"
-                    isActive={location.pathname === '/diary/desk'}
-                />
-            </li>
-            <li>
-                <HeaderLink
-                    text="Метрика"
-                    path="/diary/metrika"
-                    isActive={location.pathname === '/diary/metrika'}
-                />
-            </li>
-
-            {/* <Link
-                className="nav-menu__link nav-menu__link_name_desk nav-menu__link_active"
-                to="/desk"
-            >
-                Доска
-            </Link>
-            <Link
-                className="nav-menu__link nav-menu__link_name_metric"
-                to="/metric"
-            >
-                Метрики
-            </Link> */}
+            {isItDiaryLocation && (
+                <>
+                    {' '}
+                    <li className="header__menu__item">
+                        <HeaderLink
+                            text="Доска"
+                            path="/diary/desk"
+                            isActive={location.pathname === '/diary/desk'}
+                        />
+                    </li>
+                    <li>
+                        <HeaderLink
+                            text="Метрика"
+                            path="/diary/metrika"
+                            isActive={location.pathname === '/diary/metrika'}
+                        />
+                    </li>
+                </>
+            )}
+            {!isItDiaryLocation && (
+                <>
+                    {' '}
+                    <li className="header__menu__item">
+                        <HeaderLink
+                            text="Профиль"
+                            path="/track/profile"
+                            isActive={location.pathname === '/track/profile'}
+                        />
+                    </li>
+                    <li>
+                        <HeaderLink
+                            text="Рекомендации"
+                            path="/track/recomendation"
+                            isActive={
+                                location.pathname === '/track/recomendation'
+                            }
+                        />
+                    </li>
+                    <li>
+                        <HeaderLink
+                            text="Аналитики"
+                            path="/track/analyzings"
+                            isActive={location.pathname === '/track/analyzings'}
+                        />
+                    </li>
+                </>
+            )}
         </ul>
     );
 }

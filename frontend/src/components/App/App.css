@@ -26,7 +26,8 @@ html {
     flex-grow: 1;
     margin-left: 160px;
 }
-
+.content_profile {
+}
 .content_authorization {
     margin: 0;
     width: 100%;
