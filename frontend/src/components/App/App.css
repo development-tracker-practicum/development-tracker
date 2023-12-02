@@ -1,34 +1,37 @@
 body,
 html {
-    padding: 0;
-    margin: 0;
-    font-family: 'YS Display', Arial, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+  font-family: 'YS Display', Arial, Helvetica, sans-serif;
 }
 
 #root {
-    display: flex;
-    max-width: 1440px;
-    min-height: 100vh;
-    margin: 0 auto;
+  display: flex;
+  max-width: 1440px;
+  /*min-height: 100vh;*/
+  height: 100vh;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 .app {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .content {
-    display: flex;
-    width: calc(100% - 160px);
-    flex-direction: column;
-    flex-grow: 1;
-    margin-left: 160px;
+  display: flex;
+  max-width: 1280px;
+  width: calc(100vw - 160px);
+  flex-direction: column;
+  flex-grow: 1;
+  margin-left: 160px;
+  overflow-y: auto;
 }
-.content_profile {
-}
+
 .content_authorization {
-    margin: 0;
-    width: 100%;
+  margin: 0;
+  width: 100%;
 }

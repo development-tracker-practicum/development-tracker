@@ -42,7 +42,7 @@ export default [
       'react/jsx-no-bind': 'off',
       'react/jsx-boolean-value': 'off',
       'unicorn/filename-case': 'off',
-      'prettier/prettier': 'error',
+      'prettier/prettier': 'warn',
       'no-unused-vars': 'warn',
     },
   },

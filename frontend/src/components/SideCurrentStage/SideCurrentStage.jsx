@@ -17,7 +17,7 @@ function SideCurrentStage({ currentUser }) {
       <div className="side-current-stage__bottom-zone">
         <div className="side-current-stage__column">
           <p className="side-current-stage__subtitle">Текущий этап</p>
-          <Link to="#" className="side-current-stage__link">
+          <Link to="/profile" className="side-current-stage__link">
             {currentUser.stage}
           </Link>
         </div>

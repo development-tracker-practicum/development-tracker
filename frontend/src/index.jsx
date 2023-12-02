@@ -4,7 +4,7 @@ import { App } from './components/App/App';
 import './index.css';
 
 ReactDOM.createRoot(document.querySelector('#root')).render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>,
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
 );

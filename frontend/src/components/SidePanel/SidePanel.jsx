@@ -2,7 +2,7 @@ import { SideCurrentStage } from '../SideCurrentStage/SideCurrentStage';
 import { SideMenu } from '../SideMenu/SideMenu';
 import './SidePanel.sass';
 
-function SidePanel(properties) {
+function SidePanel() {
   return (
     <aside className="side-panel">
       <SideCurrentStage
