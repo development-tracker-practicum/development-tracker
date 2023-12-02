@@ -174,7 +174,7 @@ class Course(BaseProduct):
         verbose_name=_("Уровень"),
     )
     modul_id = models.ManyToManyField(
-        Tag,
+        "Modul",
         related_name="curse",
         verbose_name=_("Модули"),
     )
