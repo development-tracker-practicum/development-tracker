@@ -1,11 +1,14 @@
 from django.contrib import admin
 
-from .models import Course, Skill, SkillsTrack, Tag, Track, UserTrack
+from .models import Course, Skill, Theme, Level, Tag, Modul, Special, Grade, UserLevel
 
 
 admin.site.register(Course)
 admin.site.register(Skill)
-admin.site.register(SkillsTrack)
+admin.site.register(Theme)
 admin.site.register(Tag)
-admin.site.register(Track)
-admin.site.register(UserTrack)
+admin.site.register(Modul)
+admin.site.register(Special)
+admin.site.register(Grade)
+admin.site.register(UserLevel)
+admin.site.register(Level)
