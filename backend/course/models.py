@@ -122,6 +122,10 @@ class UserLevel(models.Model):
         related_name="user_level",
         verbose_name=_("Уровень"),
     )
+    terget = models.BooleanField(
+        verbose_name=_("Цель"),
+        default=False
+    )
 
     class Meta:
         ordering = ["user_id"]
