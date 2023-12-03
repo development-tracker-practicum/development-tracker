@@ -1,19 +1,17 @@
-import Circle from './Circle/Circle.jsx';
-import Gray from './Peace/Gray.jsx';
-import Red from './Peace/Red.jsx';
-import Pink from './Peace/Pink.jsx';
-import LightBlue from './Peace/LightBlue.jsx';
-import Yellow from './Peace/Yellow.jsx';
-import Green from './Peace/Green.jsx';
-import Blue from './Peace/Blue.jsx';
-import Purple from './Peace/Purple.jsx';
+import Circle from './Circle/Circle';
+import Gray from './Peace/Gray';
+import Red from './Peace/Red';
+import Pink from './Peace/Pink';
+import LightBlue from './Peace/LightBlue';
+import Yellow from './Peace/Yellow';
+import Green from './Peace/Green';
+import Blue from './Peace/Blue';
+import Purple from './Peace/Purple';
 import './Peace/Peace.sass';
-import { useContext } from 'react';
-import { activePeaceContext } from '../App/App.jsx';
-function DiagrammImage(props) {
-    function handlePeace() {
-        console.log('yo');
-    }
+function DiagrammIllustarion({ onHandlePeace }) {
+    const handlePeace = activePeace => {
+        onHandlePeace(activePeace);
+    };
     return (
         <Circle radius="first">
             <Pink onClick={handlePeace} radius="first" />
@@ -67,4 +65,4 @@ function DiagrammImage(props) {
         </Circle>
     );
 }
-export default DiagrammImage;
+export default DiagrammIllustarion;

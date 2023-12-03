@@ -7,7 +7,7 @@ function LearningTrack(props) {
         <>
             <Header />
             <SidePanel />
-            <Profile />
+            <Profile level="middle" />
         </>
     );
 }

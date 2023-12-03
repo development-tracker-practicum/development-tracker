@@ -1,3 +1,6 @@
+import { Children } from 'react';
+import DiagrammIllustarion from '../DiagrammIllustarion/DiagrammIllustarion';
+import DiagrammIllustarionForJunior from '../DiagrammIllustarion/DiagrammIllustarionForJunior';
 import './Diagramm.sass';
 
 function Diagramm({ children }) {

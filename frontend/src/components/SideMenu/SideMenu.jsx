@@ -14,6 +14,7 @@ import { useLocation } from 'react-router-dom';
 function SideMenu(properties) {
     const location = useLocation();
     const isDiaryLocation = location.pathname.includes('/diary');
+    const isTrackLocation = location.pathname.includes('/track');
     return (
         <nav className="side-menu">
             <ul className="side-menu__list">
@@ -22,6 +23,7 @@ function SideMenu(properties) {
                         textContent="Трек развития"
                         path="/track/profile"
                         icon={arrowIcon}
+                        isActive={isTrackLocation}
                     />
                 </li>
                 <li className="side-menu__item">

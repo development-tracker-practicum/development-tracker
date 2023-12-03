@@ -1,14 +1,14 @@
 import React from 'react';
-import './DiagrammJunior.sass';
+import './DiagrammMiddle.sass';
 import { DiagrammList } from '../DiagrammList/DiagrammList';
 import { DiagrammItem } from '../DiagrammItem/DiagrammItem';
 import { Diagramm } from '../Diagramm/Diagramm';
-import DiagrammIllustarionForJunior from '../DiagrammIllustarion/DiagrammIllustarionForJunior';
+import DiagrammIllustarion from '../DiagrammIllustarion/DiagrammIllustarion';
 
-function DiagrammJunior(props) {
+function DiagrammMiddle(props) {
     return (
         <Diagramm>
-            <DiagrammIllustarionForJunior />
+            <DiagrammIllustarion />
             <DiagrammList>
                 <DiagrammItem
                     value="60%"
@@ -34,4 +34,4 @@ function DiagrammJunior(props) {
         </Diagramm>
     );
 }
-export default DiagrammJunior;
+export default DiagrammMiddle;
