@@ -122,7 +122,7 @@ class UserLevel(models.Model):
         related_name="user_level",
         verbose_name=_("Уровень"),
     )
-    terget = models.BooleanField(
+    target = models.BooleanField(
         verbose_name=_("Цель"),
         default=False
     )
