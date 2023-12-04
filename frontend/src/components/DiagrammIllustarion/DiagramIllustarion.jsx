@@ -8,7 +8,7 @@ import Green from './Peace/Green';
 import Blue from './Peace/Blue';
 import Purple from './Peace/Purple';
 import './Peace/Peace.sass';
-function DiagrammIllustarion({ onHandlePeace }) {
+function DiagramIllustarion({ onHandlePeace }) {
     const handlePeace = activePeace => {
         onHandlePeace(activePeace);
     };
@@ -65,4 +65,4 @@ function DiagrammIllustarion({ onHandlePeace }) {
         </Circle>
     );
 }
-export default DiagrammIllustarion;
+export { DiagramIllustarion };

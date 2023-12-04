@@ -1,18 +1,19 @@
-import CurrentStatus from '../../components/CurrentStatus/CurrentStatus';
-import DiagrammMiddle from '../../components/DiagrammMiddle/DiagrammMiddle';
-import DiagrammJunior from '../../components/DiagrammJunior/DiagrammJunior';
+import { CurrentStatus } from '../../components/CurrentStatus/CurrentStatus';
+import { DiagramJunior } from '../../components/DiagramJunior/DiagramJunior';
+import { DiagramMiddle } from '../../components/DiagramMiddle/DiagramMiddle';
 import { PromoNotification } from '../../components/PromoNotification/PromoNotification';
+
 import './Profile.sass';
 
-function Profile({ level = 'middle' }) {
+function Profile({ level = 'junior' }) {
     console.log(level);
     return (
         <main className="content profile content_profile">
             <PromoNotification />
             <div className="profile__two-columns">
                 <CurrentStatus />
-                {level === 'middle' && <DiagrammMiddle />}
-                {level === 'junior' && <DiagrammJunior />}
+                {level === 'middle' && <DiagramMiddle />}
+                {level === 'middle' && <DiagramJunior />}
             </div>
         </main>
     );

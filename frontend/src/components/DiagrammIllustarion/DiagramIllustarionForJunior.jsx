@@ -6,7 +6,7 @@ import Yellow from './Peace/Yellow';
 import Green from './Peace/Green';
 import Purple from './Peace/Purple';
 import './Peace/Peace.sass';
-function DiagrammIllustarionForJunior({ onHandlePeace }) {
+function DiagramIllustarionForJunior({ onHandlePeace }) {
     const handlePeace = activePeace => {
         onHandlePeace(activePeace);
     };
@@ -133,4 +133,4 @@ function DiagrammIllustarionForJunior({ onHandlePeace }) {
         </Circle>
     );
 }
-export default DiagrammIllustarionForJunior;
+export { DiagramIllustarionForJunior };
