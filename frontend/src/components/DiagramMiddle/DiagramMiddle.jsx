@@ -1,13 +1,12 @@
-import './DiagramJunior.sass';
 import { DiagramList } from '../DiagramList/DiagramList';
 import { DiagramItem } from '../DiagramItem/DiagramItem';
 import { Diagram } from '../Diagram/Diagram';
-import { DiagramIllustarionForJunior } from '../DiagrammIllustarion/DiagramIllustarionForJunior';
+import { DiagramIllustarion } from '../DiagrammIllustarion/DiagramIllustarion';
 
-function DiagramJunior() {
+function DiagramMiddle() {
     return (
         <Diagram>
-            <DiagramIllustarionForJunior />
+            <DiagramIllustarion />
             <DiagramList>
                 <DiagramItem
                     value="60%"
@@ -34,4 +33,4 @@ function DiagramJunior() {
     );
 }
 
-export { DiagramJunior };
+export { DiagramMiddle };
