@@ -17,4 +17,5 @@ function Profile({ level = 'middle' }) {
         </main>
     );
 }
+
 export { Profile };

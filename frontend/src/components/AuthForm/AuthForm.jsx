@@ -20,7 +20,7 @@ function AuthForm({ submitText, onSubmit }) {
           className="auth-form__input"
         />
       </fieldset>
-      <Link to="#" className="auth-form__forget-password">
+      <Link to="/forget-password" className="auth-form__forget-password">
         Не помню пароль
       </Link>
       <Button textButton={submitText} type="submit" place="content" />

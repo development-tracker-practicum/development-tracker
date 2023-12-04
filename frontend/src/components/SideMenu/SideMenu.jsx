@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import { SideMenuLink } from '../SideMenuLink/SideMenuLink';
 import { Button } from '../Button/Button';
 import arrowIcon from '../../images/arrow-icon.svg';
@@ -9,7 +10,6 @@ import lentaIcon from '../../images/lenta-icon.svg';
 import infoIcon from '../../images/info-icon.svg';
 import exitIcon from '../../images/exit-icon.svg';
 import './SideMenu.sass';
-import { useLocation } from 'react-router-dom';
 
 function SideMenu(properties) {
     const location = useLocation();

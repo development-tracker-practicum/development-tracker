@@ -1,14 +1,13 @@
-import React from 'react';
-import './Desk.sass';
-import CurrentStatus from '../CurrentStatus/CurrentStatus';
 import { PromoNotification } from '../PromoNotification/PromoNotification';
+import { Board } from '../Board/Board';
+import './Desk.sass';
 
-function Desk(props) {
-    return (
-        <main className="content content_desk">
-            <PromoNotification />
-            <CurrentStatus />
-        </main>
-    );
+function Desk() {
+  return (
+    <main className="content content_desk">
+      <PromoNotification />
+      <Board />
+    </main>
+  );
 }
 export { Desk };

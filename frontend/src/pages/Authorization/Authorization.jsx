@@ -1,9 +1,19 @@
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Context } from '../../context/context';
 import { AuthForm } from '../../components/AuthForm/AuthForm';
 import backgroundImage from '../../images/authorizationBackground.jpg';
 import './Authorization.sass';
 
 function Authorization({ submitText }) {
+  const navigate = useNavigate();
+  const { setIsAuthenticated } = useContext(Context);
+
+  function handleSubmit() {
+    navigate('/diary/desk');
+    setIsAuthenticated(true);
+  }
+
   return (
     <main className="content content_authorization">
       <section className="authorization">
@@ -13,7 +23,7 @@ function Authorization({ submitText }) {
           }}
           className="backgroundBlock"
         />
-        <AuthForm submitText={submitText} />
+        <AuthForm submitText={submitText} onSubmit={handleSubmit} />
         {submitText === 'Регистрация' ? (
           <p className="authorization__footer">
             Уже зарегистрированы?
