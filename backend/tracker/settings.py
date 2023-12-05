@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -6,10 +7,8 @@ SECRET_KEY = 'django-insecure-ng)p(#8i9^&45u8=2c-ah!$=2e$fp@%)so*kv7l5_-)c!skxgq
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -23,7 +22,8 @@ INSTALLED_APPS = [
     'djoser',
     'api.apps.ApiConfig',
     'users.apps.UsersConfig',
-    'course.apps.CourseConfig'
+    'course.apps.CourseConfig',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -57,9 +57,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'tracker.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -85,19 +82,19 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/4.1/topics/i18n/
+LANGUAGE_CODE = 'ru'
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
+
+USE_L10N = True
 
 USE_TZ = True
 
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -119,3 +116,7 @@ DJOSER = {
         'user_list': ('rest_framework.permissions.AllowAny',)
     },
 }
+
+# SWAGGER_SETTINGS = {
+#     'VALIDATOR_URL': 'http://localhost:8000',
+# }
