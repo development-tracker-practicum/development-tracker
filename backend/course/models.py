@@ -8,7 +8,7 @@ User = get_user_model()
 
 class BaseProduct(models.Model):
 
-    name = models.CharField(
+    title = models.CharField(
         verbose_name=_("Назване"),
         unique=True,
         blank=False,
@@ -17,44 +17,17 @@ class BaseProduct(models.Model):
     description = models.TextField(
         verbose_name=_("Описание"),
     )
-    images = models.ImageField(
-        verbose_name=_("Превью"),
-        upload_to="img/",
-        null=True,
-        blank=False
-    ) 
     price = models.DecimalField(
         verbose_name=_("Стоимость"),
         decimal_places = 2,
         max_digits=13,
-    )
-    studying_time = models.DurationField(
-        verbose_name=_("Время обучения"),
-        blank=False,
     )
 
     class Meta:
         abstract = True
 
     def __str__(self):
-        return self.name
-
-
-class Tag(models.Model):
-    name = models.CharField(
-        verbose_name=_("Тэг"),
-        unique=True,
-        blank=False,
-        max_length=200
-    )
-
-    class Meta:
-        ordering = ["name"]
-        verbose_name = _("Тэг")
-        verbose_name_plural = _("Теги")
-
-    def __str__(self):
-        return self.name
+        return self.title
 
 
 class Grade(models.Model):
@@ -109,33 +82,6 @@ class Skill(models.Model):
         return self.name
 
 
-class UserLevel(models.Model):
-    user_id = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name="user_level",
-        verbose_name=_("Пользователь"),
-    )
-    level_id = models.ForeignKey(
-        "Level",
-        on_delete=models.CASCADE,
-        related_name="user_level",
-        verbose_name=_("Уровень"),
-    )
-    target = models.BooleanField(
-        verbose_name=_("Цель"),
-        default=False
-    )
-
-    class Meta:
-        ordering = ["user_id"]
-        verbose_name = _("Направление пользователя")
-        verbose_name_plural = _("Направления пользователя")
-
-    def __str__(self):
-        return f"{self.user_id} {self.level_id}"
-
-
 class Level(models.Model):
 
     special_id = models.ForeignKey(
@@ -150,13 +96,8 @@ class Level(models.Model):
         related_name="level",
         verbose_name=_("Грейт"),
     )
-    skill_id = models.ManyToManyField(
-        Skill,
-        related_name="level",
-        verbose_name=_("Навыки"),
-    )
     class Meta:
-        ordering = ["grade_id"]
+        ordering = ["special_id"]
         verbose_name = _("Уровень професии")
         verbose_name_plural = _("Уровни профессии")
 
@@ -165,106 +106,162 @@ class Level(models.Model):
 
 
 class Course(BaseProduct):
-
-    tags = models.ManyToManyField(
-        Tag,
-        related_name="curse",
-        verbose_name=_("Тэги"),
+    length = models.IntegerField(
+        verbose_name=_("Время обучения в часах"),
     )
     level_id = models.ForeignKey(
         Level,
         on_delete=models.CASCADE,
-        related_name="curse",
+        related_name="course",
         verbose_name=_("Уровень"),
-    )
-    modul_id = models.ManyToManyField(
-        "Modul",
-        related_name="curse",
-        verbose_name=_("Модули"),
     )
 
     class Meta:
-        ordering = ["name"]
+        ordering = ["title"]
         verbose_name = _("Курс")
         verbose_name_plural = _("Курсы")
     
 
 class Modul(BaseProduct):
 
-    tags = models.ManyToManyField(
-        Tag,
-        related_name="modul",
-        verbose_name=_("Тэги"),
-    )
-    level_id = models.ForeignKey(
-        Level,
+    course_id = models.ForeignKey(
+        Course,
         on_delete=models.CASCADE,
         related_name="modul",
-        verbose_name=_("Уровень"),
-    )
-    theme = models.ManyToManyField(
-        "Theme",
-        related_name="modul",
-        verbose_name=_("Темы"),
+        verbose_name=_("Курс"),
     )
 
     class Meta:
-        ordering = ["name"]
+        ordering = ["title"]
         verbose_name = _("Модуль")
         verbose_name_plural = _("Модули")
 
 
 class Theme(BaseProduct):
 
-    tags = models.ManyToManyField(
-        Tag,
-        related_name="them",
-        verbose_name=_("Тэги"),
-    )
-    level_id = models.ForeignKey(
-        Level,
+    modul = models.ForeignKey(
+        Modul,
         on_delete=models.CASCADE,
-        related_name="them",
-        verbose_name=_("Уровень"),
+        related_name="theme",
+        verbose_name=_("модуль"),
     )
 
     class Meta:
-        ordering = ["name"]
+        ordering = ["title"]
         verbose_name = _("Темы")
         verbose_name_plural = _("Темы")
 
 
-class UserSkill(models.Model):
-
-    user_id =  models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name="user_skill",
-        verbose_name=_("Пользователь"),
+class Pract(models.Model):
+    title = models.CharField(
+        verbose_name=_("Назване"),
+        unique=True,
+        blank=False,
+        max_length=200
     )
-    skill_id =  models.ForeignKey(
+    url = models.URLField(
+        verbose_name=_("Ссылка"),
+        max_length=200
+    )
+    level_id = models.ForeignKey(
+        Level,
+        on_delete=models.CASCADE,
+        related_name="pract",
+        verbose_name=_("Уровень"),
+    )
+    class Meta:
+        ordering = ["title"]
+        verbose_name = _("Практика")
+        verbose_name_plural = _("Практики")
+
+    def __str__(self):
+        return self.title
+
+
+class Pub(models.Model):
+    title = models.CharField(
+        verbose_name=_("Назване"),
+        unique=True,
+        blank=False,
+        max_length=200
+    )
+    url = models.URLField(
+        verbose_name=_("Ссылка"),
+        max_length=200
+    )
+    level_id = models.ForeignKey(
+        Level,
+        on_delete=models.CASCADE,
+        related_name="pub",
+        verbose_name=_("Уровень"),
+    )
+
+    class Meta:
+        ordering = ["title"]
+        verbose_name = _("Статья")
+        verbose_name_plural = _("Статьи")
+
+    def __str__(self):
+        return self.title
+
+
+class LevelSkill(models.Model):
+
+    level_id = models.ForeignKey(
+        Level,
+        on_delete=models.CASCADE,
+        related_name="level_skill",
+        verbose_name=_("Уровень"),
+    )
+    skill_id = models.ForeignKey(
         Skill,
         on_delete=models.CASCADE,
-        related_name="user_skill",
-        verbose_name=_("Навык"),
+        related_name="level_skill",
+        verbose_name=_("Уровень"),
     )
 
-    accordance = models.PositiveIntegerField(
+    class Meta:
+        ordering = ["level_id"]
+        verbose_name = _("Навык профессии")
+        verbose_name_plural = _("Навыки профессии")
+
+    def __str__(self):
+        return f"{self.level_id} {self.skill_id}"
+
+
+class UserLevel(models.Model):
+    user_id = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="user_level",
+        verbose_name=_("Пользователь"),
+    )
+    level_skill_id = models.ForeignKey(
+        LevelSkill,
+        on_delete=models.CASCADE,
+        related_name="user_level",
+        verbose_name=_("Уровень профессии"),
+    )
+    goal = models.BooleanField(
+        verbose_name=_("Цель"),
+        default=False
+    )
+    value = models.PositiveIntegerField(
         verbose_name=_("Процент соответствия"),
         validators=[
             MinValueValidator(
-                limit_value=1, message=_("Минимальный процент навыка")
+                limit_value=0, message=_("Минимальный процент навыка 0")
             ),
             MaxValueValidator(
-                limit_value=100, message=_("Максимальный процент навыка")
+                limit_value=100, message=_("Максимальный процент навыка 100")
             )
         ],
     )
 
     class Meta:
-        ordering = ["accordance"]
-        verbose_name = _("Навык пользователя")
-        verbose_name_plural = _("Навыки пользователя")
+        ordering = ["user_id"]
+        verbose_name = _("Направление пользователя")
+        verbose_name_plural = _("Направления пользователя")
 
     def __str__(self):
-        return f"{self.user_id} {self.skill_id} {self.accordance}%"
+        return f"{self.user_id} {self.level_skill_id} {self.value}%"
