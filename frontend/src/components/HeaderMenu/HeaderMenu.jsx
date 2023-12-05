@@ -39,8 +39,8 @@ function HeaderMenu() {
           <li>
             <HeaderLink
               text="Рекомендации"
-              path="/track/recomendation"
-              isActive={location.pathname === '/track/recomendation'}
+              path="/track/recommendation"
+              isActive={location.pathname === '/track/recommendation'}
             />
           </li>
           <li>

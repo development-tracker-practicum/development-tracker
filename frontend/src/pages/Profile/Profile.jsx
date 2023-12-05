@@ -6,17 +6,17 @@ import { PromoNotification } from '../../components/PromoNotification/PromoNotif
 import './Profile.sass';
 
 function Profile({ level = 'junior' }) {
-    console.log(level);
-    return (
-        <main className="content profile content_profile">
-            <PromoNotification />
-            <div className="profile__two-columns">
-                <CurrentStatus />
-                {level === 'middle' && <DiagramMiddle />}
-                {level === 'middle' && <DiagramJunior />}
-            </div>
-        </main>
-    );
+  // console.log(level);
+  return (
+    <main className="content profile content_profile">
+      <PromoNotification />
+      <div className="profile__two-columns">
+        <CurrentStatus />
+        {level === 'middle' && <DiagramMiddle />}
+        {level === 'middle' && <DiagramJunior />}
+      </div>
+    </main>
+  );
 }
 
 export { Profile };

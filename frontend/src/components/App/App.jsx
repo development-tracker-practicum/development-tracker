@@ -6,6 +6,7 @@ import { Authorization } from '../../pages/Authorization/Authorization';
 import { Diary } from '../../pages/Diary/Diary';
 import { Metrika } from '../../pages/Metrika/Metrika';
 import { LearningTrack } from '../../pages/LearningTrack/LearningTrack';
+import { Recommendation } from '../../pages/Recommendation/Recommendation';
 import './App.css';
 
 export const activePeaceContext = createContext(undefined);
@@ -47,6 +48,10 @@ function App() {
             <Route
               path="/track/profile"
               element={<ProtectedRoute element={LearningTrack} />}
+            />
+            <Route
+              path="/track/recommendation"
+              element={<ProtectedRoute element={Recommendation} />}
             />
           </Routes>
         </activePeaceContext.Provider>
