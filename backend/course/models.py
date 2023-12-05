@@ -14,13 +14,30 @@ class BaseProduct(models.Model):
         blank=False,
         max_length=200
     )
-    description = models.TextField(
-        verbose_name=_("Описание"),
-    )
+
     price = models.DecimalField(
         verbose_name=_("Стоимость"),
         decimal_places = 2,
         max_digits=13,
+    )
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.title
+
+
+class SecondProduct(models.Model):
+    title = models.CharField(
+        verbose_name=_("Назване"),
+        unique=True,
+        blank=False,
+        max_length=200
+    )
+    url = models.URLField(
+        verbose_name=_("Ссылка"),
+        max_length=200
     )
 
     class Meta:
@@ -106,8 +123,9 @@ class Level(models.Model):
 
 
 class Course(BaseProduct):
-    length = models.IntegerField(
-        verbose_name=_("Время обучения в часах"),
+
+    description = models.TextField(
+        verbose_name=_("Описание"),
     )
     level_id = models.ForeignKey(
         Level,
@@ -123,7 +141,9 @@ class Course(BaseProduct):
     
 
 class Modul(BaseProduct):
-
+    length = models.IntegerField(
+        verbose_name=_("Время обучения в часах"),
+    )
     course_id = models.ForeignKey(
         Course,
         on_delete=models.CASCADE,
@@ -145,6 +165,12 @@ class Theme(BaseProduct):
         related_name="theme",
         verbose_name=_("модуль"),
     )
+    level_skill_id = models.ForeignKey(
+        "LevelSkill",
+        on_delete=models.CASCADE,
+        related_name="theme",
+        verbose_name=_("Навык для темы"),
+    )
 
     class Meta:
         ordering = ["title"]
@@ -152,17 +178,8 @@ class Theme(BaseProduct):
         verbose_name_plural = _("Темы")
 
 
-class Pract(models.Model):
-    title = models.CharField(
-        verbose_name=_("Назване"),
-        unique=True,
-        blank=False,
-        max_length=200
-    )
-    url = models.URLField(
-        verbose_name=_("Ссылка"),
-        max_length=200
-    )
+class Pract(SecondProduct):
+
     level_id = models.ForeignKey(
         Level,
         on_delete=models.CASCADE,
@@ -174,11 +191,8 @@ class Pract(models.Model):
         verbose_name = _("Практика")
         verbose_name_plural = _("Практики")
 
-    def __str__(self):
-        return self.title
 
-
-class Pub(models.Model):
+class Pub(SecondProduct):
     title = models.CharField(
         verbose_name=_("Назване"),
         unique=True,
@@ -200,9 +214,6 @@ class Pub(models.Model):
         ordering = ["title"]
         verbose_name = _("Статья")
         verbose_name_plural = _("Статьи")
-
-    def __str__(self):
-        return self.title
 
 
 class LevelSkill(models.Model):
@@ -265,3 +276,27 @@ class UserLevel(models.Model):
 
     def __str__(self):
         return f"{self.user_id} {self.level_skill_id} {self.value}%"
+    
+
+class UserCourse(models.Model):
+
+    user_id = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="user_course",
+        verbose_name=_("Пользователь"),
+    )
+    course_id = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE,
+        related_name="user_course",
+        verbose_name=_("Курс"),
+    )
+
+    class Meta:
+        ordering = ["course_id"]
+        verbose_name = _("Оконченный курс")
+        verbose_name_plural = _("Оконченный курс")
+
+    def __str__(self):
+        return f"{self.user_id} closed {self.course_id}"
