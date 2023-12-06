@@ -1,11 +1,21 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthForm } from '../../components/AuthForm/AuthForm';
 import backgroundImage from '../../images/authorizationBackground.jpg';
 import './Authorization.sass';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser, logout } from '../../store/userSlice';
 
 function Authorization({ submitText }) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
+  function handleSubmit() {
+    dispatch(loginUser());
+    navigate('/diary/desk');
+  }
+
   return (
-    <main className="content">
+    <main className="content content_authorization">
       <section className="authorization">
         <div
           style={{
@@ -13,7 +23,7 @@ function Authorization({ submitText }) {
           }}
           className="backgroundBlock"
         />
-        <AuthForm submitText={submitText} />
+        <AuthForm submitText={submitText} onSubmit={handleSubmit} />
         {submitText === 'Регистрация' ? (
           <p className="authorization__footer">
             Уже зарегистрированы?

@@ -1,20 +1,18 @@
-import './PromoNotification.sass';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Button } from '../Button/Button';
+import './PromoNotification.sass';
 
 function PromoNotification() {
   const [isExpanded, setIsExpanded] = useState(false);
   const navigate = useNavigate();
+
   const startButton = (
-    <button
-      className={`promo-notification__start-button${
-        isExpanded ? ' promo-notification__start-button_place_bottom' : ''
-      }`}
-      type="button"
-      onClick={() => navigate('/tracker')}
-    >
-      Начать
-    </button>
+    <Button
+      place="notification"
+      textButton="Начать"
+      onClick={() => navigate('/track/profile')}
+    />
   );
 
   return (
@@ -30,7 +28,11 @@ function PromoNotification() {
             Мы добавили новую возможность - Трек развития
           </h2>
         </div>
-        <p className="promo-notification__description">
+        <p
+          className={`promo-notification__description${
+            isExpanded ? ' promo-notification__description_opened' : ''
+          }`}
+        >
           Попробуй сейчас и получи индивидуальные рекомендации по развитию
           карьеры
           {isExpanded && (

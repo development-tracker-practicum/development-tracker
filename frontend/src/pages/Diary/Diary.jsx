@@ -1,16 +1,14 @@
 import { Header } from '../../components/Header/Header';
 import { SidePanel } from '../../components/SidePanel/SidePanel';
+import { Desk } from '../../components/Desk/Desk';
 import './Diary.sass';
-import { PromoNotification } from '../../components/PromoNotification/PromoNotification';
 
-function Diary(properties) {
+function Diary() {
   return (
     <>
       <Header />
       <SidePanel />
-      <main className="content">
-        <PromoNotification />
-      </main>
+      <Desk />
     </>
   );
 }

@@ -1,28 +1,56 @@
+import { useLocation } from 'react-router-dom';
 import { HeaderLink } from '../HeaderLink/HeaderLink';
 import './HeaderMenu.sass';
 
-function HeaderMenu(properties) {
+function HeaderMenu() {
+  const location = useLocation();
+  const isItDiaryLocation = location.pathname.includes('diary');
   return (
     <ul className="header__menu">
-      <li className="header__menu__item">
-        <HeaderLink text="Доска" path="/desk" isActive={true} />
-      </li>
-      <li>
-        <HeaderLink text="Метрика" path="/desk" isActive={false} />
-      </li>
-
-      {/* <Link
-                className="nav-menu__link nav-menu__link_name_desk nav-menu__link_active"
-                to="/desk"
-            >
-                Доска
-            </Link>
-            <Link
-                className="nav-menu__link nav-menu__link_name_metric"
-                to="/metric"
-            >
-                Метрики
-            </Link> */}
+      {isItDiaryLocation && (
+        <>
+          {' '}
+          <li className="header__menu__item">
+            <HeaderLink
+              text="Доска"
+              path="/diary/desk"
+              isActive={location.pathname === '/diary/desk'}
+            />
+          </li>
+          <li>
+            <HeaderLink
+              text="Метрика"
+              path=""
+              isActive={location.pathname === '/diary/metrika'}
+            />
+          </li>
+        </>
+      )}
+      {!isItDiaryLocation && (
+        <>
+          <li className="header__menu__item">
+            <HeaderLink
+              text="Профиль"
+              path="/track/profile"
+              isActive={location.pathname === '/track/profile'}
+            />
+          </li>
+          <li>
+            <HeaderLink
+              text="Рекомендации"
+              path="/track/recommendations"
+              isActive={location.pathname === '/track/recommendations'}
+            />
+          </li>
+          <li>
+            <HeaderLink
+              text="Аналитики"
+              path=""
+              isActive={location.pathname === '/track/analyzings'}
+            />
+          </li>
+        </>
+      )}
     </ul>
   );
 }
