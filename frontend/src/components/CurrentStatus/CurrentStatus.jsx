@@ -3,10 +3,10 @@ import { Button } from '../Button/Button';
 import './CurrentStatus.sass';
 
 function CurrentStatus() {
-    const navigate = useNavigate();
-    function handleButton(e) {
-        navigate('./reccomendations');
-    }
+  const navigate = useNavigate();
+  function handleButton(e) {
+    navigate('/track/recommendations');
+  }
   return (
     <section className="current-status">
       <h2 className="current-status__title">Текущий статус</h2>
@@ -24,11 +24,7 @@ function CurrentStatus() {
           <h3 className="current-status__item-title">92%</h3>
         </li>
       </ul>
-      <Button
-                onClick={handleButton}
-                place="content"
-                textButton="Прокачаться"
-            />
+      <Button onClick={handleButton} place="content" textButton="Прокачаться" />
     </section>
   );
 }

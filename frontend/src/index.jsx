@@ -2,9 +2,12 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { App } from './components/App/App';
 import './index.css';
-
+import store from './store/index';
+import { Provider } from 'react-redux';
 ReactDOM.createRoot(document.querySelector('#root')).render(
   <BrowserRouter>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </BrowserRouter>,
 );

@@ -1,34 +1,68 @@
-import { useEffect, useState } from 'react';
 import './Reccomendations.sass';
-import arrowImg from '../../Images/arrow_down.svg';
-import { DropDownMenu } from '../../components/DropDownMenu/DropDownMenu';
 import { TabMenu } from '../../components/TabMenu/TabMenu';
-import { SideMenu } from '../../components/SideMenu/SideMenu';
 import { FilterCourses } from '../../components/FilterCourses/FilterCourses';
-import { DropDownMenuReccomendation } from '../../components/DropDownMenuReccomendation/DropDownMenuReccomendation';
+import { DropDownMenuDirection } from '../../components/DropDownMenuDirection/DropDownMenuDirection';
+import { ModuleCard } from '../../components/ModuleCard/ModuleCard';
+import { useState } from 'react';
+import { Button } from '../../components/Button/Button';
+// import { intialCards } from '../../constants/constants';
+import { useSelector } from 'react-redux';
 function Reccomendations(props) {
-  const [reccomendFilter, setReccomendFilter] = useState('Текущий');
+  const initialCards = useSelector(state => state.courses);
+  const [recommendFilter, setReccomendFilter] = useState({
+    direction: 'Направление',
+  });
+  const [isOpenFilter, setIsOpenFilter] = useState(false);
+  function handleOpenFilter() {
+    setIsOpenFilter(true);
+  }
+  function handleClose() {
+    setIsOpenFilter(false);
+  }
+  function handleFilter(e) {
+    setReccomendFilter(prev => ({
+      ...prev,
+      [e.currentTarget.type]: e.currentTarget.id,
+    }));
+  }
   return (
-    <main className="content content_reccomendations">
-      <section className="reccomendations">
-        <div className="reccomendations__title-zone">
-          <h2 className="reccomendations__title reccomendations__title_level">
+    <main className="content content_recommendations">
+      <section className="recommendations">
+        <div className="recommendations__title-zone">
+          <h2 className="recommendations__title recommendations__title_level">
             Middle
           </h2>
-          <h2 className="reccomendations__title reccomendations__title_profession">
+          <h2 className="recommendations__title recommendations__title_profession">
             Дизайнер
           </h2>
-          <h2 className="reccomendations__title reccomendations__title_percent">
+          <h2 className="recommendations__title recommendations__title_percent">
             55%
           </h2>
         </div>
         <TabMenu />
-        <DropDownMenuReccomendation
-          currentItem={reccomendFilter}
-          onClick={setReccomendFilter}
-        />
+        <div className="recommendations__filter-zone">
+          <DropDownMenuDirection
+            currentItem={recommendFilter.direction}
+            onClick={handleFilter}
+          />
+          <Button
+            onClick={handleOpenFilter}
+            place="notification"
+            textButton="Фильтры"
+          />
+        </div>
+
+        <ul className="courses-list">
+          {initialCards.map((card, index) => (
+            <li key={index} className="courses-list__item">
+              <ModuleCard data={card} />
+            </li>
+          ))}
+        </ul>
       </section>
-      <FilterCourses />
+      <div className={`filter-wrapper`}>
+        <FilterCourses onClose={handleClose} isOpen={isOpenFilter} />
+      </div>
     </main>
   );
 }

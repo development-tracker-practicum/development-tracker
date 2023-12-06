@@ -32,9 +32,13 @@
         padding: 0
         top: 40px
         list-style: none
-        display: none
+        visibility: hidden
+        opacity: 0
+        display: flex
+        transition: all .2s linear
         position: absolute
         width: 100%
+        background-color: #fff
         box-sizing: border-box
         flex-direction: column
         border: 1px solid #DDE0E4
@@ -53,8 +57,10 @@
         padding: 8px 12px
 
     &-list &__item:hover
-        background-color: #ddd
+        background-color: #F1F6FF
     &_active &-list
-        display: flex
+        visibility: visible
+        opacity: 1
+        transition: all .2s linear
     &_active .dropbtn
         background-color: #3e8e41

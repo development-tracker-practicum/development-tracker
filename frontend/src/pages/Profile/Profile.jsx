@@ -12,7 +12,7 @@ function Profile({ level = 'junior' }) {
       <PromoNotification />
       <div className="profile__two-columns">
         <CurrentStatus />
-        {level === 'middle' && <DiagramMiddle />}
+        {level === 'junior' && <DiagramMiddle />}
         {level === 'middle' && <DiagramJunior />}
       </div>
     </main>

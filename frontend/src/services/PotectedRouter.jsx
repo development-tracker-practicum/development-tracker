@@ -3,14 +3,14 @@ import { Navigate } from 'react-router-dom';
 import { Context } from '../context/context';
 
 function ProtectedRoute({ element: Component, ...properties }) {
-    const { isAuthenticated } = React.useContext(Context);
+  const { isLogged } = properties;
 
-    return isAuthenticated ? (
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        <Component {...properties} />
-    ) : (
-        <Navigate to="/signin" replace />
-    );
+  return isLogged ? (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <Component {...properties} />
+  ) : (
+    <Navigate to="/signin" replace />
+  );
 }
 
 export { ProtectedRoute };

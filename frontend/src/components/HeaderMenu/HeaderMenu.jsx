@@ -20,7 +20,7 @@ function HeaderMenu() {
           <li>
             <HeaderLink
               text="Метрика"
-              path="/diary/metrika"
+              path=""
               isActive={location.pathname === '/diary/metrika'}
             />
           </li>
@@ -38,14 +38,14 @@ function HeaderMenu() {
           <li>
             <HeaderLink
               text="Рекомендации"
-              path="/track/reccomendations"
+              path="/track/recommendations"
               isActive={location.pathname === '/track/recommendations'}
             />
           </li>
           <li>
             <HeaderLink
               text="Аналитики"
-              path="/track/analyzings"
+              path=""
               isActive={location.pathname === '/track/analyzings'}
             />
           </li>

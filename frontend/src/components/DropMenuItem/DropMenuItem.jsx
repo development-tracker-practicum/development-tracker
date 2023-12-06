@@ -1,15 +1,8 @@
-import './DropMenuItem.sass';
-
-function DropMenuItem({ onClick, text = 'Тип', percent }) {
-  const handleClick = e => {
-    onClick(e.currentTarget.id);
-  };
+function DropMenuItem({ onClick, text = 'Тип', type }) {
   return (
-    <li id={text} onClick={handleClick} className="dropdown__item">
+    <li type={type} id={text} onClick={onClick} className="dropdown__item">
       {' '}
-      <h5 className="dropdown__title">
-        {text} {percent && <span className="dropdown__percent">{percent}</span>}
-      </h5>
+      <h5 className="dropdown__title">{text}</h5>
     </li>
   );
 }
