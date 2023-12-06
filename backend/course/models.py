@@ -9,7 +9,7 @@ User = get_user_model()
 class BaseProduct(models.Model):
 
     title = models.CharField(
-        verbose_name=_("Назване"),
+        verbose_name=_("Название"),
         unique=True,
         blank=False,
         max_length=200
@@ -30,7 +30,7 @@ class BaseProduct(models.Model):
 
 class SecondProduct(models.Model):
     title = models.CharField(
-        verbose_name=_("Назване"),
+        verbose_name=_("Название"),
         unique=True,
         blank=False,
         max_length=200
@@ -47,40 +47,6 @@ class SecondProduct(models.Model):
         return self.title
 
 
-class Grade(models.Model):
-    name = models.CharField(
-        verbose_name=_("Грейт"),
-        unique=True,
-        blank=False,
-        max_length=200
-    )
-
-    class Meta:
-        ordering = ["name"]
-        verbose_name = _("Грейт")
-        verbose_name_plural = _("Грейты")
-
-    def __str__(self):
-        return self.name
-
-
-class Special(models.Model):
-    title = models.CharField(
-        verbose_name=_("Профессия"),
-        unique=True,
-        blank=False,
-        max_length=200
-    )
-
-    class Meta:
-        ordering = ["title"]
-        verbose_name = _("Профессия")
-        verbose_name_plural = _("Профессии")
-
-    def __str__(self):
-        return self.name
-
-
 class Skill(models.Model):
     name = models.CharField(
         verbose_name=_("Навык"),
@@ -88,6 +54,17 @@ class Skill(models.Model):
     )
     description = models.TextField(
         verbose_name=_("Описание навыка"),
+    )
+    skill_percent = models.PositiveIntegerField(
+        verbose_name=_("Процент навыка"),
+        validators=[
+            MinValueValidator(
+                limit_value=0, message=_("Минимальный процент навыка 0")
+            ),
+            MaxValueValidator(
+                limit_value=100, message=_("Максимальный процент навыка 100")
+            )
+        ],
     )
 
     class Meta:
@@ -100,26 +77,49 @@ class Skill(models.Model):
 
 
 class Level(models.Model):
-
-    special_id = models.ForeignKey(
-        Special,
-        on_delete=models.CASCADE,
-        related_name="level",
+    profession = models.CharField(
         verbose_name=_("Профессия"),
+        unique=True,
+        blank=False,
+        max_length=200
     )
-    grade_id = models.ForeignKey(
-        Grade,
-        on_delete=models.CASCADE,
-        related_name="level",
+    level = models.CharField(
         verbose_name=_("Грейт"),
+        unique=True,
+        blank=False,
+        max_length=200
     )
+
     class Meta:
-        ordering = ["special_id"]
+        ordering = ["profession"]
         verbose_name = _("Уровень професии")
         verbose_name_plural = _("Уровни профессии")
 
     def __str__(self):
-        return f"{self.special_id} {self.grade_id}"
+        return f"{self.profession} {self.level}"
+
+
+class LevelSkill(models.Model):
+
+    level_id = models.ForeignKey(
+        Level,
+        on_delete=models.CASCADE,
+        related_name="level_skill",
+        verbose_name=_("Уровень"),
+    )
+    skill_id = models.ManyToManyField(
+        Skill,
+        related_name="level_skill",
+        verbose_name=_("Уровень"),
+    )
+
+    class Meta:
+        ordering = ["level_id"]
+        verbose_name = _("Навык профессии")
+        verbose_name_plural = _("Навыки профессии")
+
+    def __str__(self):
+        return f"{self.level_id} {self.skill_id}"
 
 
 class Course(BaseProduct):
@@ -166,7 +166,7 @@ class Theme(BaseProduct):
         verbose_name=_("модуль"),
     )
     level_skill_id = models.ForeignKey(
-        "LevelSkill",
+        LevelSkill,
         on_delete=models.CASCADE,
         related_name="theme",
         verbose_name=_("Навык для темы"),
@@ -192,17 +192,8 @@ class Pract(SecondProduct):
         verbose_name_plural = _("Практики")
 
 
-class Pub(SecondProduct):
-    title = models.CharField(
-        verbose_name=_("Назване"),
-        unique=True,
-        blank=False,
-        max_length=200
-    )
-    url = models.URLField(
-        verbose_name=_("Ссылка"),
-        max_length=200
-    )
+class Links(SecondProduct):
+
     level_id = models.ForeignKey(
         Level,
         on_delete=models.CASCADE,
@@ -214,30 +205,6 @@ class Pub(SecondProduct):
         ordering = ["title"]
         verbose_name = _("Статья")
         verbose_name_plural = _("Статьи")
-
-
-class LevelSkill(models.Model):
-
-    level_id = models.ForeignKey(
-        Level,
-        on_delete=models.CASCADE,
-        related_name="level_skill",
-        verbose_name=_("Уровень"),
-    )
-    skill_id = models.ForeignKey(
-        Skill,
-        on_delete=models.CASCADE,
-        related_name="level_skill",
-        verbose_name=_("Уровень"),
-    )
-
-    class Meta:
-        ordering = ["level_id"]
-        verbose_name = _("Навык профессии")
-        verbose_name_plural = _("Навыки профессии")
-
-    def __str__(self):
-        return f"{self.level_id} {self.skill_id}"
 
 
 class UserLevel(models.Model):
@@ -257,17 +224,7 @@ class UserLevel(models.Model):
         verbose_name=_("Цель"),
         default=False
     )
-    value = models.PositiveIntegerField(
-        verbose_name=_("Процент соответствия"),
-        validators=[
-            MinValueValidator(
-                limit_value=0, message=_("Минимальный процент навыка 0")
-            ),
-            MaxValueValidator(
-                limit_value=100, message=_("Максимальный процент навыка 100")
-            )
-        ],
-    )
+
 
     class Meta:
         ordering = ["user_id"]
@@ -275,8 +232,8 @@ class UserLevel(models.Model):
         verbose_name_plural = _("Направления пользователя")
 
     def __str__(self):
-        return f"{self.user_id} {self.level_skill_id} {self.value}%"
-    
+        return f"{self.user_id} {self.level_skill_id}"
+   
 
 class UserCourse(models.Model):
 
@@ -286,17 +243,30 @@ class UserCourse(models.Model):
         related_name="user_course",
         verbose_name=_("Пользователь"),
     )
-    course_id = models.ForeignKey(
-        Course,
+    theme_id = models.ForeignKey(
+        Theme,
         on_delete=models.CASCADE,
         related_name="user_course",
-        verbose_name=_("Курс"),
+        verbose_name=_("Тема"),
+    )
+    pract_id = models.ForeignKey(
+        Pract,
+        on_delete=models.CASCADE,
+        related_name="user_course",
+        verbose_name=_("Практика"),
+    )
+    links_id = models.ForeignKey(
+        Links,
+        on_delete=models.CASCADE,
+        related_name="user_course",
+        verbose_name=_("Ссылки"),
     )
 
     class Meta:
-        ordering = ["course_id"]
-        verbose_name = _("Оконченный курс")
-        verbose_name_plural = _("Оконченный курс")
+        ordering = ["id"]
+        verbose_name = _("Рекомендация")
+        verbose_name_plural = _("Рекомендации")
 
     def __str__(self):
-        return f"{self.user_id} closed {self.course_id}"
+        return f"{self.user_id} рекомендуются {self.theme_id},\
+        {self.pract_id}, {self.links_id}"

@@ -2,18 +2,16 @@ from django.contrib import admin
 
 from .models import (
     Course, Skill, Theme, Level, LevelSkill,
-    Modul, Special, Grade, UserLevel, Pract, Pub
+    Modul, Links, UserLevel, Pract, UserCourse
 )
 
-
-admin.site.register(Course)
-admin.site.register(Skill)
-admin.site.register(Theme)
-admin.site.register(LevelSkill)
-admin.site.register(Modul)
-admin.site.register(Special)
-admin.site.register(Grade)
 admin.site.register(UserLevel)
+admin.site.register(LevelSkill)
 admin.site.register(Level)
+admin.site.register(Skill)
+admin.site.register(UserCourse)
+admin.site.register(Theme)
+admin.site.register(Modul)
+admin.site.register(Course)
 admin.site.register(Pract)
-admin.site.register(Pub)
+admin.site.register(Links)
