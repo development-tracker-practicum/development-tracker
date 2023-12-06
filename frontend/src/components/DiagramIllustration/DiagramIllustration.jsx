@@ -8,11 +8,11 @@ import { Green } from './Peace/Green';
 import { Blue } from './Peace/Blue';
 import { Purple } from './Peace/Purple';
 import './Peace/Peace.sass';
+import { useContext } from 'react';
+import { activePeaceContext } from '../App/App';
 
 function DiagramIllustration({ onHandlePeace }) {
-  const handlePeace = (activePeace) => {
-    onHandlePeace(activePeace);
-  };
+  const { handlePeace } = useContext(activePeaceContext);
 
   return (
     <Circle radius="first">

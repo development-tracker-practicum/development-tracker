@@ -8,54 +8,78 @@ import { Metrika } from '../../pages/Metrika/Metrika';
 import { LearningTrack } from '../../pages/LearningTrack/LearningTrack';
 import { Recommendation } from '../../pages/Recommendation/Recommendation';
 import './App.css';
+import Reccomendations from '../../pages/Reccomendations/Reccomendations';
+import { useSelector } from 'react-redux';
 
 export const activePeaceContext = createContext(undefined);
 
 function App() {
+  const user = useSelector(state => state.user);
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [activePeace, setActivePeace] = useState('');
 
   function handlePeace(color) {
-    setActivePeace(color);
+    setActivePeace(prev => (prev === color ? '' : color));
   }
 
   return (
     <div className="app">
-      <Context.Provider
-        value={{
-          isAuthenticated,
-          setIsAuthenticated,
-        }}
-      >
-        <activePeaceContext.Provider value={{ activePeace, handlePeace }}>
-          <Routes>
-            <Route
-              path="/signup"
-              element={<Authorization submitText="Регистрация" />}
-            />
-            <Route
-              path="/signin"
-              element={<Authorization path="/signin" submitText="Войти" />}
-            />
-            <Route
-              path="/diary/desk"
-              element={<ProtectedRoute element={Diary} />}
-            />
-            <Route
-              path="/diary/metrika"
-              element={<ProtectedRoute element={Metrika} />}
-            />
-            <Route
-              path="/track/profile"
-              element={<ProtectedRoute element={LearningTrack} />}
-            />
-            <Route
-              path="/track/recommendation"
-              element={<ProtectedRoute element={Recommendation} />}
-            />
-          </Routes>
-        </activePeaceContext.Provider>
-      </Context.Provider>
+      <activePeaceContext.Provider value={{ activePeace, handlePeace }}>
+        <Routes>
+          <Route
+            path="/signup"
+            element={
+              <ProtectedRoute
+                isLogged={!user.isLogged}
+                submitText="Регистрация"
+                path="/signup"
+                element={Authorization}
+              />
+            }
+          />
+          <Route
+            path="/signin"
+            element={
+              <ProtectedRoute
+                isLogged={!user.isLogged}
+                path="/signin"
+                submitText="Войти"
+                element={Authorization}
+              />
+            }
+          />
+          <Route
+            path="/diary/desk"
+            element={
+              <ProtectedRoute isLogged={user.isLogged} element={Diary} />
+            }
+          />
+          <Route
+            path="/diary/metrika"
+            element={
+              <ProtectedRoute isLogged={user.isLogged} element={Metrika} />
+            }
+          />
+          <Route
+            path="/track/profile"
+            element={
+              <ProtectedRoute
+                isLogged={user.isLogged}
+                element={LearningTrack}
+              />
+            }
+          />
+          <Route
+            path="/track/recommendations"
+            element={
+              <ProtectedRoute
+                isLogged={user.isLogged}
+                element={LearningTrack}
+              />
+            }
+          />
+        </Routes>
+      </activePeaceContext.Provider>
     </div>
   );
 }

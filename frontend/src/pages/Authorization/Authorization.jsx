@@ -1,17 +1,17 @@
-import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Context } from '../../context/context';
 import { AuthForm } from '../../components/AuthForm/AuthForm';
 import backgroundImage from '../../images/authorizationBackground.jpg';
 import './Authorization.sass';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser, logout } from '../../store/userSlice';
 
 function Authorization({ submitText }) {
   const navigate = useNavigate();
-  const { setIsAuthenticated } = useContext(Context);
-
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
   function handleSubmit() {
+    dispatch(loginUser());
     navigate('/diary/desk');
-    setIsAuthenticated(true);
   }
 
   return (
