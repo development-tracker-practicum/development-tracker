@@ -15,7 +15,6 @@ function DiagramJunior() {
                     color="yellow"
                 />
                 <DiagramItem value="40%" title="UI-дизайн" color="green" />
-                <DiagramItem value="80%" title="Инструменты" color="blue" />
                 <DiagramItem value="20%" title="Продукт" color="red" />
                 <DiagramItem value="20%" title="Коммуникация" color="gray" />
                 <DiagramItem value="20%" title="Про активность" color="pink" />
@@ -23,11 +22,6 @@ function DiagramJunior() {
                     value="20%"
                     title="Пипл менеджмент"
                     color="purple"
-                />
-                <DiagramItem
-                    value="20%"
-                    title="Автономность"
-                    color="light-blue"
                 />
             </DiagramList>
         </Diagram>

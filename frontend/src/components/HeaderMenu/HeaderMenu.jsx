@@ -28,7 +28,6 @@ function HeaderMenu() {
       )}
       {!isItDiaryLocation && (
         <>
-          {' '}
           <li className="header__menu__item">
             <HeaderLink
               text="Профиль"
@@ -39,8 +38,8 @@ function HeaderMenu() {
           <li>
             <HeaderLink
               text="Рекомендации"
-              path="/track/recomendation"
-              isActive={location.pathname === '/track/recomendation'}
+              path="/track/reccomendations"
+              isActive={location.pathname === '/track/reccomendations'}
             />
           </li>
           <li>

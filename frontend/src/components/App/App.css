@@ -30,7 +30,9 @@ html {
   margin-left: 160px;
   overflow-y: auto;
 }
-
+.content_reccomendations {
+  flex-direction: row;
+}
 .content_authorization {
   margin: 0;
   width: 100%;
