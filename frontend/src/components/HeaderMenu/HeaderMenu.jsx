@@ -39,7 +39,7 @@ function HeaderMenu() {
             <HeaderLink
               text="Рекомендации"
               path="/track/reccomendations"
-              isActive={location.pathname === '/track/reccomendations'}
+              isActive={location.pathname === '/track/recommendations'}
             />
           </li>
           <li>

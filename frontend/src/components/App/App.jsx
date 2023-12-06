@@ -6,64 +6,59 @@ import { Authorization } from '../../pages/Authorization/Authorization';
 import { Diary } from '../../pages/Diary/Diary';
 import { Metrika } from '../../pages/Metrika/Metrika';
 import { LearningTrack } from '../../pages/LearningTrack/LearningTrack';
+import { Recommendation } from '../../pages/Recommendation/Recommendation';
 import './App.css';
+import Reccomendations from '../../pages/Reccomendations/Reccomendations';
 
 export const activePeaceContext = createContext(undefined);
 
 function App() {
-    const [isAuthenticated, setIsAuthenticated] = useState(true);
-    const [activePeace, setActivePeace] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [activePeace, setActivePeace] = useState('');
 
-    function handlePeace(color) {
-        setActivePeace(color);
-    }
+  function handlePeace(color) {
+    setActivePeace(color);
+  }
 
-    return (
-        <div className="app">
-            <Context.Provider
-                value={{
-                    isAuthenticated,
-                    setIsAuthenticated,
-                }}
-            >
-                <activePeaceContext.Provider
-                    value={{ activePeace, handlePeace }}
-                >
-                    <Routes>
-                        <Route
-                            path="/signup"
-                            element={<Authorization submitText="Регистрация" />}
-                        />
-                        <Route
-                            path="/signin"
-                            element={
-                                <Authorization
-                                    path="/signin"
-                                    submitText="Войти"
-                                />
-                            }
-                        />
-                        <Route
-                            path="/diary/desk"
-                            element={<ProtectedRoute element={Diary} />}
-                        />
-                        <Route
-                            path="/diary/metrika"
-                            element={<ProtectedRoute element={Metrika} />}
-                        />
-                        <Route
-                            path="/track/profile"
-                            element={<ProtectedRoute element={LearningTrack} />}
-                        />
-                        <Route
-                            path="track/reccomendations"
-                            element={<ProtectedRoute element={LearningTrack} />}
-                        />
-                    </Routes>
-                </activePeaceContext.Provider>
-            </Context.Provider>
-        </div>
-    );
+  return (
+    <div className="app">
+      <Context.Provider
+        value={{
+          isAuthenticated,
+          setIsAuthenticated,
+        }}
+      >
+        <activePeaceContext.Provider value={{ activePeace, handlePeace }}>
+          <Routes>
+            <Route
+              path="/signup"
+              element={<Authorization submitText="Регистрация" />}
+            />
+            <Route
+              path="/signin"
+              element={<Authorization path="/signin" submitText="Войти" />}
+            />
+            <Route
+              path="/diary/desk"
+              element={<ProtectedRoute element={Diary} />}
+            />
+            <Route
+              path="/diary/metrika"
+              element={<ProtectedRoute element={Metrika} />}
+            />
+            <Route
+              path="/track/profile"
+              element={<ProtectedRoute element={LearningTrack} />}
+            />
+            <Route
+              path="/track/recommendations"
+              element={<ProtectedRoute element={LearningTrack} />}
+            />
+          </Routes>
+        </activePeaceContext.Provider>
+      </Context.Provider>
+    </div>
+  );
 }
 
 export { App };
