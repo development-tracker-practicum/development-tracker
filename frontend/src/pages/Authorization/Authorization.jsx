@@ -4,8 +4,6 @@ import { loginUser, logout } from '../../store/userSlice';
 import { AuthForm } from '../../components/AuthForm/AuthForm';
 import backgroundImage from '../../images/authorizationBackground.jpg';
 import './Authorization.sass';
-import { useDispatch, useSelector } from 'react-redux';
-import { loginUser, logout } from '../../store/userSlice';
 import { signup } from '../../store/userSlice';
 
 function Authorization({ submitText }) {

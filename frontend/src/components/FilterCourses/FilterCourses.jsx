@@ -10,18 +10,6 @@ import { DropDownMenuDifficult } from '../DropDownMenuDifficult/DropDownMenuDiff
 import { DropDownMenuDuration } from '../DropDownMenuDuration/DropDownMenuDuration';
 import { DropDownMenuType } from '../DropDownMenuType/DropDownMenuType';
 import { Button } from '../Button/Button';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  changeFilter,
-  getLenghtFilters,
-  openMenu,
-  resetFilters,
-} from '../../store/filterCoursesSlice';
-import { DropDownMenuPrice } from '../DropDownMenuPrice/DropDownMenuPrice';
-import { DropDownMenuDifficult } from '../DropDownMenuDifficult/DropDownMenuDifficult';
-import { DropDownMenuDuration } from '../DropDownMenuDuration/DropDownMenuDuration';
-import { DropDownMenuType } from '../DropDownMenuType/DropDownMenuType';
-import { Button } from '../Button/Button';
 import deleteIcon from '../../images/delete.svg';
 import closeIcon from '../../images/close_mini.svg';
 import './FilterCourses.sass';

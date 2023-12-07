@@ -77,5 +77,3 @@ export const intialCards = [
     monthly_price: 7201,
   },
 ];
-
-export { initialCards };

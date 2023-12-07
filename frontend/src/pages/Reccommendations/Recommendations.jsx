@@ -1,28 +1,15 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-// import { initialCards } from '../../constants/constants';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { TabMenu } from '../../components/TabMenu/TabMenu';
 import { FilterCourses } from '../../components/FilterCourses/FilterCourses';
 import { DropDownMenuDirection } from '../../components/DropDownMenuDirection/DropDownMenuDirection';
-import { ModuleCard } from '../../components/ModuleCard/ModuleCard';
-<<<<<<< HEAD:frontend/src/pages/Reccomendations/Reccomendations.jsx
-import { useEffect, useState } from 'react';
 import { Button } from '../../components/Button/Button';
-import { getLenghtFilters } from '../../store/filterCoursesSlice';
-import { useDispatch, useSelector } from 'react-redux';
 import { CoursesList } from '../../components/CoursesList/CoursesList';
-function Reccomendations(props) {
-  const initialCards = useSelector(state => state.courses.coursesList);
-  const filterCount = useSelector(state => state.filterCourses.countFilter);
-  const [recommendFilter, setReccomendFilter] = useState({
-=======
-import { Button } from '../../components/Button/Button';
 import './Reccommendations.sass';
-
-function Recommendations() {
-  const initialCards = useSelector((state) => state.courses);
-  const [recommendFilter, setRecommendFilter] = useState({
->>>>>>> develop/frontend:frontend/src/pages/Reccommendations/Recommendations.jsx
+function Recommendations(props) {
+  const initialCards = useSelector((state) => state.courses.coursesList);
+  const filterCount = useSelector((state) => state.filterCourses.countFilter);
+  const [recommendFilter, setReccomendFilter] = useState({
     direction: 'Направление',
   });
   const dispatch = useDispatch();
