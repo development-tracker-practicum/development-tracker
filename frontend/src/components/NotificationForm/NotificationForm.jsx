@@ -46,8 +46,8 @@ function NotificationForm({ onCancel, onSubmit }) {
             place="notification"
             onMenu={handleMenu}
             onClick={handleChangeValue}
-            isOpen={openedMenus.difficult}
-            currentItem={values.difficult}
+            isOpen={openedMenus.level}
+            currentItem={values.level}
           />
         </div>
       </div>

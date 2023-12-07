@@ -10,6 +10,7 @@ import { Button } from '../Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   changeFilter,
+  getLenghtFilters,
   openMenu,
   resetFilters,
 } from '../../store/filterCoursesSlice';
@@ -20,7 +21,8 @@ function FilterCourses({ onClose, isOpen = false }) {
   const dispatch = useDispatch();
 
   function handleClick() {
-    console.log(filtredProps);
+    dispatch(getLenghtFilters());
+    onClose();
   }
   function handleMenu(e) {
     const id = e.currentTarget.id;
@@ -45,10 +47,10 @@ function FilterCourses({ onClose, isOpen = false }) {
       <h3 className="filter-courses__title">Фильтры</h3>
       <ul className="filter-courses__form">
         <DropDownMenuDifficult
-          isOpen={openedMenus.difficult}
+          isOpen={openedMenus.level}
           onMenu={handleMenu}
           onClick={handleChangeFilter}
-          currentItem={filtredProps.difficult}
+          currentItem={filtredProps.level}
         />
         <DropDownMenuDuration
           isOpen={openedMenus.duration}

@@ -2,11 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   values: {
     profession: 'Профессия',
-    difficult: 'Сложность',
+    level: 'Сложность',
   },
   openedMenus: {
     profession: false,
-    difficult: false,
+    level: false,
   },
 };
 
@@ -35,7 +35,7 @@ const filterCoursesSlice = createSlice({
       state.values[type] = id;
       state.openedMenus = {
         profession: false,
-        difficult: false,
+        level: false,
       };
     },
   },

@@ -6,6 +6,7 @@ function Button({
   textButton,
   onClick,
   modification = undefined,
+  children,
 }) {
   return (
     <button
@@ -15,6 +16,7 @@ function Button({
       onClick={onClick}
     >
       {textButton}
+      {children}
     </button>
   );
 }

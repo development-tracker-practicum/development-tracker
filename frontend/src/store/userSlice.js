@@ -1,5 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { intialCards } from '../constants/constants';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import apiAuth from '../services/AuthApi';
+
+export const signup = createAsyncThunk(
+  'user/signup',
+  async ({ email, password, username }) => {
+    console.log(email, password, username);
+    const response = await apiAuth.registration({ email, password, username });
+    return response;
+  },
+);
+
 const initialState = {
   name: '',
   isLogged: false,
@@ -11,6 +21,17 @@ const initialState = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
+  extraReducers: {
+    [signup.pending]: (state, action) => {
+      console.log('start');
+    },
+    [signup.fulfilled]: (state, action) => {
+      console.log('end', action.payload);
+    },
+    [signup.rejected]: (state, action) => {
+      console.log('Что то пошло не так');
+    },
+  },
   reducers: {
     loginUser(state, action) {
       state.isLogged = true;
