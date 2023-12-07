@@ -552,11 +552,59 @@ definitions:
         title: Value
         type: string
         readOnly: true
+  Theme:
+    required:
+    - title
+    - price
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      title:
+        title: Название
+        type: string
+        maxLength: 200
+        minLength: 1
+      price:
+        title: Стоимость
+        type: string
+        format: decimal
+  Modul:
+    required:
+    - title
+    - price
+    - length
+    - theme_id
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      title:
+        title: Название
+        type: string
+        maxLength: 200
+        minLength: 1
+      price:
+        title: Стоимость
+        type: string
+        format: decimal
+      length:
+        title: Время обучения в часах
+        type: integer
+      theme_id:
+        type: array
+        items:
+          $ref: '#/definitions/Theme'
   Course:
     required:
     - title
     - description
     - price
+    - modul_id
     - level_id
     type: object
     properties:
@@ -577,37 +625,12 @@ definitions:
         title: Стоимость
         type: string
         format: decimal
+      modul_id:
+        type: array
+        items:
+          $ref: '#/definitions/Modul'
       level_id:
         $ref: '#/definitions/Level'
-  Modul:
-    required:
-    - course_id
-    - length
-    type: object
-    properties:
-      id:
-        title: ID
-        type: integer
-        readOnly: true
-      course_id:
-        $ref: '#/definitions/Course'
-      length:
-        title: Время обучения в часах
-        type: integer
-  Theme:
-    required:
-    - level_skill_id
-    - modul
-    type: object
-    properties:
-      id:
-        title: ID
-        type: integer
-        readOnly: true
-      level_skill_id:
-        $ref: '#/definitions/LevelSkill'
-      modul:
-        $ref: '#/definitions/Modul'
   Pract:
     required:
     - title
@@ -658,7 +681,7 @@ definitions:
         $ref: '#/definitions/Level'
   UserCourse:
     required:
-    - theme_id
+    - сourse_id
     - pract_id
     - links_id
     type: object
@@ -669,12 +692,18 @@ definitions:
         readOnly: true
       user_id:
         $ref: '#/definitions/CustomUser'
-      theme_id:
-        $ref: '#/definitions/Theme'
+      сourse_id:
+        type: array
+        items:
+          $ref: '#/definitions/Course'
       pract_id:
-        $ref: '#/definitions/Pract'
+        type: array
+        items:
+          $ref: '#/definitions/Pract'
       links_id:
-        $ref: '#/definitions/Links'
+        type: array
+        items:
+          $ref: '#/definitions/Links'
   User:
     required:
     - username
