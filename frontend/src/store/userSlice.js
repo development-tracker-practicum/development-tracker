@@ -12,7 +12,7 @@ export const signup = createAsyncThunk(
 
 const initialState = {
   name: '',
-  isLogged: false,
+  isLogged: true,
   currentProfession: 'UI/UX дизайнер',
   currentLevel: 'Junior',
   currentMatch: '92%',
@@ -48,5 +48,6 @@ const userSlice = createSlice({
     },
   },
 });
+
 export const { loginUser, logout, setUser } = userSlice.actions;
 export default userSlice.reducer;

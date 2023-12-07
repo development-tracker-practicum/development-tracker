@@ -6,8 +6,8 @@ function Yellow({ radius, onClick, level = 'middle' }) {
   const isActive = activePeace === 'yellow';
   const strokeColor = isActive ? '#FCA53E' : '#fff';
 
-  function handleClick(e) {
-    console.log(e.target);
+  function handleClick() {
+    // console.log(event.target);
     onClick('yellow');
   }
 

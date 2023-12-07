@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { activePeaceContext } from '../App/App';
 import { Circle } from './Circle/Circle';
 import { Gray } from './Peace/Gray';
 import { Red } from './Peace/Red';
@@ -6,8 +8,7 @@ import { Yellow } from './Peace/Yellow';
 import { Green } from './Peace/Green';
 import { Purple } from './Peace/Purple';
 import './Peace/Peace.sass';
-import { useContext } from 'react';
-import { activePeaceContext } from '../App/App';
+
 function DiagramIllustrationForJunior({ statistics }) {
   const { handlePeace, activePeace } = useContext(activePeaceContext);
   const redPercent = parseInt(statistics.red.percent);

@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Context } from '../../context/context';
 import { ProtectedRoute } from '../../services/PotectedRouter';
 import { Authorization } from '../../pages/Authorization/Authorization';
@@ -15,7 +16,7 @@ import { loginUser, logout, setUser } from '../../store/userSlice';
 export const activePeaceContext = createContext(undefined);
 
 function App() {
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [activePeace, setActivePeace] = useState('');
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ function App() {
 
   useEffect(() => checkLogin(), []);
   function handlePeace(color) {
-    setActivePeace(prev => (prev === color ? '' : color));
+    setActivePeace((previous) => (previous === color ? '' : color));
   }
 
   return (

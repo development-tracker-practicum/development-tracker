@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 const initialState = {
   values: {
     profession: 'Профессия',
@@ -15,7 +16,7 @@ const filterCoursesSlice = createSlice({
   initialState,
   reducers: {
     openTargetMenu(state, action) {
-        console.log('open')
+      // console.log('open');
       const id = action.payload;
       const menusStateArray = Object.entries(state.openedMenus);
       const menusStateArrayWithOpenedMenu = menusStateArray.map(
@@ -40,5 +41,6 @@ const filterCoursesSlice = createSlice({
     },
   },
 });
+
 export const { changeValue, openTargetMenu } = filterCoursesSlice.actions;
 export default filterCoursesSlice.reducer;

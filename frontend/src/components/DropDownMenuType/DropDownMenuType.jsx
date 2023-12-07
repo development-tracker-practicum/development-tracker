@@ -4,12 +4,12 @@ import { DropMenuItem } from '../DropMenuItem/DropMenuItem';
 
 function DropDownMenuType({ onClick, currentItem, onMenu, isOpen }) {
   const [isActiveMenu, setIsActiveMenu] = useState(false);
-  function handleMenu(e) {
-    onMenu(e);
-    setIsActiveMenu(prev => !prev);
+  function handleMenu(event) {
+    onMenu(event);
+    setIsActiveMenu((previous) => !previous);
   }
-  function handleItem(e) {
-    onClick(e);
+  function handleItem(event) {
+    onClick(event);
     setIsActiveMenu(false);
   }
   return (

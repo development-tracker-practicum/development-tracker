@@ -1,4 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser, logout } from '../../store/userSlice';
 import { AuthForm } from '../../components/AuthForm/AuthForm';
 import backgroundImage from '../../images/authorizationBackground.jpg';
 import './Authorization.sass';
@@ -9,7 +11,7 @@ import { signup } from '../../store/userSlice';
 function Authorization({ submitText }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
   function handleSubmit() {
     // dispatch(
     //   signup({

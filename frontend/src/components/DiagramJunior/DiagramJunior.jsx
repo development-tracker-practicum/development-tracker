@@ -1,10 +1,10 @@
-import './DiagramJunior.sass';
+import { useContext, useState } from 'react';
+import { activePeaceContext } from '../App/App';
 import { DiagramList } from '../DiagramList/DiagramList';
 import { DiagramItem } from '../DiagramItem/DiagramItem';
 import { Diagram } from '../Diagram/Diagram';
 import { DiagramIllustrationForJunior } from '../DiagramIllustration/DiagramIllustrationForJunior';
-import { useContext, useState } from 'react';
-import { activePeaceContext } from '../App/App';
+import './DiagramJunior.sass';
 
 function DiagramJunior() {
   const { activePeace } = useContext(activePeaceContext);
@@ -34,20 +34,20 @@ function DiagramJunior() {
       percent: '60%',
     },
   });
-  console.log(statistics);
+
+  // console.log(statistics);
+
   return (
     <Diagram>
       <DiagramIllustrationForJunior statistics={statistics} />
       <DiagramList>
         {activePeace ? (
-          <>
-            <DiagramItem
-              value={'20%'}
-              title={statistics[activePeace].name}
-              color={activePeace}
-              isActive={true}
-            />
-          </>
+          <DiagramItem
+            value="20%"
+            title={statistics[activePeace].name}
+            color={activePeace}
+            isActive={true}
+          />
         ) : (
           <>
             <DiagramItem

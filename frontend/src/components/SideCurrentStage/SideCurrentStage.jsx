@@ -24,7 +24,7 @@ function SideCurrentStage({ currentUser }) {
             {currentUser.stage}
           </Link>
         </div>
-    <button
+        <button
           style={{ backgroundImage: `url(${arrowDown})` }}
           className="side-current-stage__arrow"
           type="button"

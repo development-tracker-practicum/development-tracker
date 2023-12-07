@@ -1,14 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { DropDownMenu } from '../DropDownMenu/DropDownMenu';
 import { DropMenuItem } from '../DropMenuItem/DropMenuItem';
 
 function DropDownMenuDirection({ onClick, currentItem }) {
   const [isActiveMenu, setIsActiveMenu] = useState(false);
-  function handleMenu(e) {
-    setIsActiveMenu(prev => !prev);
+
+  function handleMenu() {
+    setIsActiveMenu((previous) => !previous);
   }
-  function handleItem(e) {
-    onClick(e);
+
+  function handleItem(event) {
+    onClick(event);
     setIsActiveMenu(false);
   }
 
@@ -48,4 +50,5 @@ function DropDownMenuDirection({ onClick, currentItem }) {
     </DropDownMenu>
   );
 }
+
 export { DropDownMenuDirection };

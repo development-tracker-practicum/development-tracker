@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { activePeaceContext } from '../App/App';
 import { Circle } from './Circle/Circle';
 import { Gray } from './Peace/Gray';
 import { Red } from './Peace/Red';
@@ -8,10 +10,8 @@ import { Green } from './Peace/Green';
 import { Blue } from './Peace/Blue';
 import { Purple } from './Peace/Purple';
 import './Peace/Peace.sass';
-import { useContext } from 'react';
-import { activePeaceContext } from '../App/App';
 
-function DiagramIllustration({ onHandlePeace }) {
+function DiagramIllustration() {
   const { handlePeace } = useContext(activePeaceContext);
 
   return (
