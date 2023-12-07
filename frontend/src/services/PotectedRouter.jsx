@@ -1,6 +1,4 @@
-import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { Context } from '../context/context';
 
 function ProtectedRoute({ element: Component, ...properties }) {
   const { isLogged } = properties;

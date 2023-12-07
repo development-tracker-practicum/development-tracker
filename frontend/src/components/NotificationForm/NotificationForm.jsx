@@ -1,31 +1,36 @@
-import React from 'react';
-import './NotificationForm.sass';
-import { DropDownMenuProfession } from '../DropDownMenuProfession/DropDownMenuProfession';
 import { useDispatch, useSelector } from 'react-redux';
-import { DropDownMenuDifficult } from '../DropDownMenuDifficult/DropDownMenuDifficult';
 import { openTargetMenu, changeValue } from '../../store/changeTargetSlice';
+import { DropDownMenuProfession } from '../DropDownMenuProfession/DropDownMenuProfession';
+import { DropDownMenuDifficult } from '../DropDownMenuDifficult/DropDownMenuDifficult';
 import { Button } from '../Button/Button';
+import './NotificationForm.sass';
 
 function NotificationForm({ onCancel, onSubmit }) {
-  const { values, openedMenus } = useSelector(state => state.changeTarget);
+  const { values, openedMenus } = useSelector((state) => state.changeTarget);
   const dispatch = useDispatch();
+
   function handleSubmit() {
     onSubmit(values);
   }
+
   function handleClick() {
-    console.log(values);
+    // console.log(values);
   }
-  function handleMenu(e) {
-    const id = e.currentTarget.id;
+
+  function handleMenu(event) {
+    const id = event.currentTarget.id;
     dispatch(openTargetMenu(id));
   }
+
   function handleReset() {
     dispatch(resetFilters());
   }
-  function handleChangeValue(e) {
-    const { id, type } = e.currentTarget;
+
+  function handleChangeValue(event) {
+    const { id, type } = event.currentTarget;
     dispatch(changeValue({ id, type }));
   }
+
   return (
     <form className="notification-form" action="#">
       <h3 className="">Выбор профессиональной цели</h3>
@@ -63,4 +68,5 @@ function NotificationForm({ onCancel, onSubmit }) {
     </form>
   );
 }
-export default NotificationForm;
+
+export { NotificationForm };

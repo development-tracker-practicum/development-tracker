@@ -6,9 +6,9 @@ function Purple({ radius, onClick, level = 'middle' }) {
   const isActive = activePeace === 'purple';
   const strokeColor = isActive ? '#AC40D2' : '#fff';
 
-  function handleClick(e) {
-    e.stopPropagation();
-    console.log(e.target);
+  function handleClick(event) {
+    event.stopPropagation();
+    // console.log(event.target);
     onClick('purple');
   }
 

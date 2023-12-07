@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import arrowImg from '../../images/arrow_down.svg';
 import './DropDownMenu.sass';
-import arrowImg from '../../Images/arrow_down.svg';
 
 function DropDownMenu({
   children,
@@ -30,8 +29,9 @@ function DropDownMenu({
           className="dropdown__arrow"
         />
       </button>
-      <ul className={`dropdown-list dropdown-list_active`}>{children}</ul>
+      <ul className="dropdown-list dropdown-list_active">{children}</ul>
     </div>
   );
 }
+
 export { DropDownMenu };

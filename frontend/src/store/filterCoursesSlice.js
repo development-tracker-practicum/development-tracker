@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 const initialState = {
   filtredProps: {
     type: 'Тип',
@@ -57,6 +58,7 @@ const filterCoursesSlice = createSlice({
     },
   },
 });
+
 export const { changeFilter, closeAllMenus, openMenu, resetFilters } =
   filterCoursesSlice.actions;
 export default filterCoursesSlice.reducer;

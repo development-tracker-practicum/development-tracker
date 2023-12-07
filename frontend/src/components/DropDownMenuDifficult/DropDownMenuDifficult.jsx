@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { DropMenuItem } from '../DropMenuItem/DropMenuItem';
 import { DropDownMenu } from '../DropDownMenu/DropDownMenu';
 
@@ -10,12 +10,15 @@ function DropDownMenuDifficult({
   place,
 }) {
   const [isActiveMenu, setIsActiveMenu] = useState(false);
-  function handleMenu(e) {
-    onMenu(e);
+
+  function handleMenu(event) {
+    onMenu(event);
   }
-  function handleItem(e) {
-    onClick(e);
+
+  function handleItem(event) {
+    onClick(event);
   }
+
   return (
     <DropDownMenu
       place={place}
@@ -45,4 +48,5 @@ function DropDownMenuDifficult({
     </DropDownMenu>
   );
 }
+
 export { DropDownMenuDifficult };

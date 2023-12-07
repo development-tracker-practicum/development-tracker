@@ -1,4 +1,6 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../store/userSlice';
 import { SideMenuLink } from '../SideMenuLink/SideMenuLink';
 import { Button } from '../Button/Button';
 import arrowIcon from '../../images/arrow-icon.svg';
@@ -10,16 +12,17 @@ import lentaIcon from '../../images/lenta-icon.svg';
 import infoIcon from '../../images/info-icon.svg';
 import exitIcon from '../../images/exit-icon.svg';
 import './SideMenu.sass';
-import { useDispatch } from 'react-redux';
-import { logout } from '../../store/userSlice';
+
 function SideMenu() {
   const dispatch = useDispatch();
   const location = useLocation();
   const isDiaryLocation = location.pathname.includes('/diary');
   const isTrackLocation = location.pathname.includes('/track');
+
   function handleLogout() {
     dispatch(logout());
   }
+
   return (
     <nav className="side-menu">
       <ul className="side-menu__list">

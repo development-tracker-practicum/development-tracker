@@ -1,12 +1,6 @@
 import './Button.sass';
 
-function Button({
-  type = 'button',
-  place,
-  textButton,
-  onClick,
-  modification = undefined,
-}) {
+function Button({ type = 'button', place, textButton, onClick, modification }) {
   return (
     <button
       // eslint-disable-next-line react/button-has-type

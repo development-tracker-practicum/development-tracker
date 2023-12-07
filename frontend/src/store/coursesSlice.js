@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { intialCards } from '../constants/constants';
-const initialState = intialCards;
+import { initialCards } from '../constants/constants';
+
+const initialState = initialCards;
 
 const filterCoursesSlice = createSlice({
   name: 'courses',

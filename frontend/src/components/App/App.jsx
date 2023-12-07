@@ -1,5 +1,6 @@
 import { createContext, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Context } from '../../context/context';
 import { ProtectedRoute } from '../../services/PotectedRouter';
 import { Authorization } from '../../pages/Authorization/Authorization';
@@ -8,18 +9,16 @@ import { Metrika } from '../../pages/Metrika/Metrika';
 import { LearningTrack } from '../../pages/LearningTrack/LearningTrack';
 import { Recommendation } from '../../pages/Recommendation/Recommendation';
 import './App.css';
-import Reccomendations from '../../pages/Reccomendations/Reccomendations';
-import { useSelector } from 'react-redux';
 
 export const activePeaceContext = createContext(undefined);
 
 function App() {
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [activePeace, setActivePeace] = useState('');
 
   function handlePeace(color) {
-    setActivePeace(prev => (prev === color ? '' : color));
+    setActivePeace((previous) => (previous === color ? '' : color));
   }
 
   return (

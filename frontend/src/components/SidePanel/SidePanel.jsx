@@ -6,7 +6,7 @@ function SidePanel() {
   return (
     <aside className="side-panel">
       <SideCurrentStage
-        currentUser={{ name: 'Sergey', stage: 'Аккселерация' }}
+        currentUser={{ name: 'Эльвира', stage: 'Акселерация' }}
       />
       <SideMenu />
     </aside>

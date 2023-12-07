@@ -1,38 +1,42 @@
-import './FilterCourses.sass';
-import closeIcon from '../../Images/close_mini.svg';
-import { DropDownMenuPrice } from '../DropDownMenuPrice/DropDownMenuPrice';
-import { DropDownMenuDifficult } from '../DropDownMenuDifficult/DropDownMenuDifficult';
-import { DropDownMenuDuration } from '../DropDownMenuDuration/DropDownMenuDuration';
-import { DropDownMenuType } from '../DropDownMenuType/DropDownMenuType';
-import { useState } from 'react';
-import deleteIcon from '../../Images/delete.svg';
-import { Button } from '../Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   changeFilter,
   openMenu,
   resetFilters,
 } from '../../store/filterCoursesSlice';
+import { DropDownMenuPrice } from '../DropDownMenuPrice/DropDownMenuPrice';
+import { DropDownMenuDifficult } from '../DropDownMenuDifficult/DropDownMenuDifficult';
+import { DropDownMenuDuration } from '../DropDownMenuDuration/DropDownMenuDuration';
+import { DropDownMenuType } from '../DropDownMenuType/DropDownMenuType';
+import { Button } from '../Button/Button';
+import deleteIcon from '../../images/delete.svg';
+import closeIcon from '../../images/close_mini.svg';
+import './FilterCourses.sass';
+
 function FilterCourses({ onClose, isOpen = false }) {
   const { filtredProps, openedMenus } = useSelector(
-    state => state.filterCourses,
+    (state) => state.filterCourses,
   );
   const dispatch = useDispatch();
 
   function handleClick() {
-    console.log(filtredProps);
+    // console.log(filtredProps);
   }
-  function handleMenu(e) {
-    const id = e.currentTarget.id;
+
+  function handleMenu(event) {
+    const id = event.currentTarget.id;
     dispatch(openMenu(id));
   }
+
   function handleReset() {
     dispatch(resetFilters());
   }
-  function handleChangeFilter(e) {
-    const { id, type } = e.currentTarget;
+
+  function handleChangeFilter(event) {
+    const { id, type } = event.currentTarget;
     dispatch(changeFilter({ id, type }));
   }
+
   return (
     <aside className={`filter-courses ${isOpen && 'filter-courses_open'}`}>
       <button
@@ -41,7 +45,7 @@ function FilterCourses({ onClose, isOpen = false }) {
           backgroundImage: `url(${closeIcon})`,
         }}
         className="filter-courses__close-btn"
-      ></button>
+      />
       <h3 className="filter-courses__title">Фильтры</h3>
       <ul className="filter-courses__form">
         <DropDownMenuDifficult
@@ -91,4 +95,5 @@ function FilterCourses({ onClose, isOpen = false }) {
     </aside>
   );
 }
+
 export { FilterCourses };
