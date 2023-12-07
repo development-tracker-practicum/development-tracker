@@ -2,9 +2,20 @@ import React, { useEffect, useRef, useState } from 'react';
 import './DropDownMenu.sass';
 import arrowImg from '../../Images/arrow_down.svg';
 
-function DropDownMenu({ children, isActiveMenu, activeItem, onClick, type }) {
+function DropDownMenu({
+  children,
+  isActiveMenu,
+  activeItem,
+  onClick,
+  type,
+  place = null,
+}) {
   return (
-    <div className={`dropdown ${isActiveMenu && 'dropdown_active'}`}>
+    <div
+      className={`dropdown ${
+        isActiveMenu && 'dropdown_active'
+      } dropdown_place_${place}`}
+    >
       <button
         id={type}
         onClick={onClick}

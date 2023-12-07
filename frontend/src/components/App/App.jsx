@@ -1,5 +1,5 @@
-import { createContext, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { createContext, useEffect, useState } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { Context } from '../../context/context';
 import { ProtectedRoute } from '../../services/PotectedRouter';
 import { Authorization } from '../../pages/Authorization/Authorization';
@@ -9,7 +9,8 @@ import { LearningTrack } from '../../pages/LearningTrack/LearningTrack';
 import { Recommendation } from '../../pages/Recommendation/Recommendation';
 import './App.css';
 import Reccomendations from '../../pages/Reccomendations/Reccomendations';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser, logout, setUser } from '../../store/userSlice';
 
 export const activePeaceContext = createContext(undefined);
 
@@ -17,7 +18,20 @@ function App() {
   const user = useSelector(state => state.user);
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [activePeace, setActivePeace] = useState('');
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  function checkLogin() {
+    const isLogged = localStorage.getItem('isLogged');
+    if (isLogged) {
+      dispatch(loginUser());
+      navigate('/track/profile', { replace: true });
+    } else {
+      dispatch(logout());
+      navigate('/signin');
+    }
+  }
 
+  useEffect(() => checkLogin(), []);
   function handlePeace(color) {
     setActivePeace(prev => (prev === color ? '' : color));
   }

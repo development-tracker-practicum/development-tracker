@@ -1,4 +1,11 @@
 import testImage1 from '../Images/svgexport-18.svg';
+
+export const apiOptions = {
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  server: 'http://localhost:8000',
+};
 export const intialCards = [
   {
     profession: 'Дизайн',

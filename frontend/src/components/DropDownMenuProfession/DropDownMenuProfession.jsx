@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { DropMenuItem } from '../DropMenuItem/DropMenuItem';
 import { DropDownMenu } from '../DropDownMenu/DropDownMenu';
 
-function DropDownMenuDifficult({
+function DropDownMenuProfession({
   onClick,
   currentItem,
   onMenu,
   isOpen,
-  place,
+  place = null,
 }) {
-  const [isActiveMenu, setIsActiveMenu] = useState(false);
   function handleMenu(e) {
+    console.log(e.target);
     onMenu(e);
   }
   function handleItem(e) {
@@ -19,30 +19,30 @@ function DropDownMenuDifficult({
   return (
     <DropDownMenu
       place={place}
-      type="level"
+      type="profession"
       activeItem={currentItem}
       onClick={handleMenu}
       isActiveMenu={isOpen}
     >
       <DropMenuItem
         place={place}
-        type="level"
-        text="Легкий"
+        type="profession"
+        text="UI/UX Дизайнер"
         onClick={handleItem}
       />
       <DropMenuItem
         place={place}
-        type="level"
-        text="Средний"
+        type="profession"
+        text="Frontend"
         onClick={handleItem}
       />
       <DropMenuItem
         place={place}
-        type="level"
-        text="Сложный"
+        type="profession"
+        text="Backend"
         onClick={handleItem}
       />
     </DropDownMenu>
   );
 }
-export { DropDownMenuDifficult };
+export { DropDownMenuProfession };

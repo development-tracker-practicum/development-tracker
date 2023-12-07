@@ -19,6 +19,7 @@ function SideMenu() {
   const isTrackLocation = location.pathname.includes('/track');
   function handleLogout() {
     dispatch(logout());
+    localStorage.removeItem('isLogged');
   }
   return (
     <nav className="side-menu">
