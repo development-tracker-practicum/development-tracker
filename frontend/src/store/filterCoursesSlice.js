@@ -3,16 +3,17 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   filtredProps: {
     type: 'Тип',
-    difficult: 'Сложность',
+    level: 'Сложность',
     duration: 'Длительность',
     price: 'Стоимость',
   },
   openedMenus: {
     type: false,
-    difficult: false,
+    level: false,
     duration: false,
     price: false,
   },
+  countFilter: 0,
 };
 
 const filterCoursesSlice = createSlice({
@@ -22,10 +23,18 @@ const filterCoursesSlice = createSlice({
     closeAllMenus() {
       state.openedMenus = {
         type: false,
-        difficult: false,
+        level: false,
         duration: false,
         price: false,
       };
+    },
+    getLenghtFilters(state) {
+      const defaultKeys = Object.values(initialState.filtredProps);
+      const currentFilters = Object.values(state.filtredProps);
+      const countFilter = currentFilters.filter(
+        key => !defaultKeys.includes(key),
+      );
+      state.countFilter = countFilter.length;
     },
     resetFilters(state) {
       state.openedMenus = initialState.openedMenus;
@@ -51,14 +60,18 @@ const filterCoursesSlice = createSlice({
       state.filtredProps[type] = id;
       state.openedMenus = {
         type: false,
-        difficult: false,
+        level: false,
         duration: false,
         price: false,
       };
     },
   },
 });
-
-export const { changeFilter, closeAllMenus, openMenu, resetFilters } =
-  filterCoursesSlice.actions;
+export const {
+  changeFilter,
+  closeAllMenus,
+  openMenu,
+  resetFilters,
+  getLenghtFilters,
+} = filterCoursesSlice.actions;
 export default filterCoursesSlice.reducer;

@@ -21,6 +21,7 @@ function SideMenu() {
 
   function handleLogout() {
     dispatch(logout());
+    localStorage.removeItem('isLogged');
   }
 
   return (

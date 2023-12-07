@@ -1,18 +1,19 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-// import { initialCards } from '../../constants/constants';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { TabMenu } from '../../components/TabMenu/TabMenu';
 import { FilterCourses } from '../../components/FilterCourses/FilterCourses';
 import { DropDownMenuDirection } from '../../components/DropDownMenuDirection/DropDownMenuDirection';
-import { ModuleCard } from '../../components/ModuleCard/ModuleCard';
 import { Button } from '../../components/Button/Button';
+import { CoursesList } from '../../components/CoursesList/CoursesList';
 import './Reccommendations.sass';
-
-function Recommendations() {
-  const initialCards = useSelector((state) => state.courses);
-  const [recommendFilter, setRecommendFilter] = useState({
+function Recommendations(props) {
+  const initialCards = useSelector((state) => state.courses.coursesList);
+  const filterCount = useSelector((state) => state.filterCourses.countFilter);
+  const [recommendFilter, setReccomendFilter] = useState({
     direction: 'Направление',
   });
+  const dispatch = useDispatch();
+  useEffect(() => console.log(filterCount), [filterCount]);
   const [isOpenFilter, setIsOpenFilter] = useState(false);
 
   function handleOpenFilter() {
@@ -53,17 +54,18 @@ function Recommendations() {
           <Button
             onClick={handleOpenFilter}
             place="notification"
-            textButton="Фильтры"
-          />
+            textButton="Фильтр"
+            modification="filter"
+          >
+            {filterCount !== 0 && (
+              <span className="recommendations__filter-count">
+                {filterCount}
+              </span>
+            )}
+          </Button>
         </div>
 
-        <ul className="courses-list">
-          {initialCards.map((card, index) => (
-            <li key={index} className="courses-list__item">
-              <ModuleCard data={card} />
-            </li>
-          ))}
-        </ul>
+        <CoursesList coursesList={initialCards} />
       </section>
       <div className="filter-wrapper">
         <FilterCourses onClose={handleClose} isOpen={isOpenFilter} />

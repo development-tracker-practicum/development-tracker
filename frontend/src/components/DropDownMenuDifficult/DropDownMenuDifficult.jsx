@@ -22,26 +22,26 @@ function DropDownMenuDifficult({
   return (
     <DropDownMenu
       place={place}
-      type="difficult"
+      type="level"
       activeItem={currentItem}
       onClick={handleMenu}
       isActiveMenu={isOpen}
     >
       <DropMenuItem
         place={place}
-        type="difficult"
+        type="level"
         text="Легкий"
         onClick={handleItem}
       />
       <DropMenuItem
         place={place}
-        type="difficult"
+        type="level"
         text="Средний"
         onClick={handleItem}
       />
       <DropMenuItem
         place={place}
-        type="difficult"
+        type="level"
         text="Сложный"
         onClick={handleItem}
       />

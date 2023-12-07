@@ -1,6 +1,12 @@
-import testImage1 from '../images/svgexport-18.svg';
+import testImage1 from '../Images/svgexport-18.svg';
 
-const initialCards = [
+export const apiOptions = {
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  server: 'http://localhost:8000',
+};
+export const intialCards = [
   {
     profession: 'Дизайн',
     type: 'Урок',
@@ -71,5 +77,3 @@ const initialCards = [
     monthly_price: 7201,
   },
 ];
-
-export { initialCards };
