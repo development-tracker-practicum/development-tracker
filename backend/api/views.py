@@ -1,12 +1,8 @@
-from rest_framework import viewsets
 from drf_yasg.utils import swagger_auto_schema
+from rest_framework import viewsets
 
-from course.models import UserLevel, UserCourse
-
-from .serializers import (
-    UserCourseSerializer,
-    UserLevelSerializer,
-)
+from .serializers import UserCourseSerializer, UserLevelSerializer
+from course.models import UserCourse, UserLevel
 
 
 class TrackerViewSet(viewsets.ModelViewSet):
@@ -14,7 +10,7 @@ class TrackerViewSet(viewsets.ModelViewSet):
     queryset = UserLevel.objects.all()
     serializer_class = UserLevelSerializer
     http_method_names = ['get', 'patch']
-    
+
     @swagger_auto_schema(
         responses={200: UserLevelSerializer(many=True)},
         operation_summary='Список навыков пользователя',
@@ -24,7 +20,7 @@ class TrackerViewSet(viewsets.ModelViewSet):
     )
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
-    
+
     @swagger_auto_schema(
         responses={200: UserLevelSerializer(many=True)},
         operation_summary='Редактирование парамеров пользователя',

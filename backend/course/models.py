@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -17,7 +17,7 @@ class BaseProduct(models.Model):
 
     price = models.DecimalField(
         verbose_name=_("Стоимость"),
-        decimal_places = 2,
+        decimal_places=2,
         max_digits=13,
     )
 
@@ -177,6 +177,7 @@ class Pract(SecondProduct):
         related_name="pract",
         verbose_name=_("Уровень"),
     )
+
     class Meta:
         ordering = ["title"]
         verbose_name = _("Практика")
@@ -216,7 +217,6 @@ class UserLevel(models.Model):
         default=False
     )
 
-
     class Meta:
         ordering = ["user_id"]
         verbose_name = _("Направление пользователя")
@@ -224,7 +224,7 @@ class UserLevel(models.Model):
 
     def __str__(self):
         return f"{self.user_id} {self.level_skill_id}"
-   
+
 
 class UserCourse(models.Model):
 
@@ -256,5 +256,7 @@ class UserCourse(models.Model):
         verbose_name_plural = _("Рекомендации")
 
     def __str__(self):
-        return f"{self.user_id} рекомендуются {self.theme_id},\
-        {self.pract_id}, {self.links_id}"
+        return (
+            f"{self.user_id} рекомендуются {self.сourse_id},"
+            f"{self.pract_id}, {self.links_id}"
+        )

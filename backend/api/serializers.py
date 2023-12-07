@@ -1,10 +1,9 @@
-from rest_framework import serializers
-from djoser.serializers import UserSerializer
 from django.db.models import Avg
+from djoser.serializers import UserSerializer
+from rest_framework import serializers
 
-from django.shortcuts import get_object_or_404
-
-from course.models import UserLevel, LevelSkill, Level, Skill, Pract, Links, UserCourse, Course, Modul, Theme
+from course.models import (Course, Level, LevelSkill, Links, Modul, Pract,
+                           Skill, Theme, UserCourse, UserLevel)
 from users.models import User
 
 
@@ -34,7 +33,7 @@ class LevelSerializer(serializers.ModelSerializer):
 
 class LevelSkillSerializer(serializers.ModelSerializer):
     """Сериализатор навыка профессии в трекере."""
-    
+
     level_id = LevelSerializer()
     skill_id = SkillSerializer(many=True)
 
@@ -121,5 +120,3 @@ class UserCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserCourse
         fields = ('id', 'user_id', 'сourse_id', 'pract_id', 'links_id')
-
-    

@@ -116,7 +116,3 @@ DJOSER = {
         'user_list': ('rest_framework.permissions.AllowAny',)
     },
 }
-
-# SWAGGER_SETTINGS = {
-#     'VALIDATOR_URL': 'http://localhost:8000',
-# }

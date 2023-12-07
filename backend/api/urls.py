@@ -1,18 +1,17 @@
-from django.urls import include, path, re_path
+from django.urls import include, path
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 from rest_framework.routers import DefaultRouter
 
-from .views import TrackerViewSet, RecommendationsViewSet
-
+from .views import RecommendationsViewSet, TrackerViewSet
 
 app_name = 'api'
 
 router = DefaultRouter()
 
 router.register(
-    'tracker', 
+    'tracker',
     TrackerViewSet
 )
 router.register(
