@@ -122,10 +122,39 @@ class LevelSkill(models.Model):
         return f"{self.level_id} {self.skill_id}"
 
 
+class Theme(BaseProduct):
+
+    class Meta:
+        ordering = ["title"]
+        verbose_name = _("Темы")
+        verbose_name_plural = _("Темы")
+
+
+class Modul(BaseProduct):
+    length = models.IntegerField(
+        verbose_name=_("Время обучения в часах"),
+    )
+    theme_id = models.ManyToManyField(
+        Theme,
+        related_name="modul",
+        verbose_name=_("Темы"),
+    )
+
+    class Meta:
+        ordering = ["title"]
+        verbose_name = _("Модуль")
+        verbose_name_plural = _("Модули")
+
+
 class Course(BaseProduct):
 
     description = models.TextField(
         verbose_name=_("Описание"),
+    )
+    modul_id = models.ManyToManyField(
+        Modul,
+        related_name="course",
+        verbose_name=_("Модуль"),
     )
     level_id = models.ForeignKey(
         Level,
@@ -138,44 +167,6 @@ class Course(BaseProduct):
         ordering = ["title"]
         verbose_name = _("Курс")
         verbose_name_plural = _("Курсы")
-    
-
-class Modul(BaseProduct):
-    length = models.IntegerField(
-        verbose_name=_("Время обучения в часах"),
-    )
-    course_id = models.ForeignKey(
-        Course,
-        on_delete=models.CASCADE,
-        related_name="modul",
-        verbose_name=_("Курс"),
-    )
-
-    class Meta:
-        ordering = ["title"]
-        verbose_name = _("Модуль")
-        verbose_name_plural = _("Модули")
-
-
-class Theme(BaseProduct):
-
-    modul = models.ForeignKey(
-        Modul,
-        on_delete=models.CASCADE,
-        related_name="theme",
-        verbose_name=_("модуль"),
-    )
-    level_skill_id = models.ForeignKey(
-        LevelSkill,
-        on_delete=models.CASCADE,
-        related_name="theme",
-        verbose_name=_("Навык для темы"),
-    )
-
-    class Meta:
-        ordering = ["title"]
-        verbose_name = _("Темы")
-        verbose_name_plural = _("Темы")
 
 
 class Pract(SecondProduct):
@@ -243,21 +234,18 @@ class UserCourse(models.Model):
         related_name="user_course",
         verbose_name=_("Пользователь"),
     )
-    theme_id = models.ForeignKey(
-        Theme,
-        on_delete=models.CASCADE,
+    сourse_id = models.ManyToManyField(
+        Course,
         related_name="user_course",
-        verbose_name=_("Тема"),
+        verbose_name=_("Курсы"),
     )
-    pract_id = models.ForeignKey(
+    pract_id = models.ManyToManyField(
         Pract,
-        on_delete=models.CASCADE,
         related_name="user_course",
         verbose_name=_("Практика"),
     )
-    links_id = models.ForeignKey(
+    links_id = models.ManyToManyField(
         Links,
-        on_delete=models.CASCADE,
         related_name="user_course",
         verbose_name=_("Ссылки"),
     )

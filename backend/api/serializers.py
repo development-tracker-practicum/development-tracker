@@ -59,35 +59,35 @@ class UserLevelSerializer(serializers.ModelSerializer):
         return format(percent['skill_percent__avg'], '.1f')
 
 
-class CourseSerializer(serializers.ModelSerializer):
-    """Сериализатор курсов в рекомендациях."""
-
-    level_id = LevelSerializer()
+class ThemeSerializer(serializers.ModelSerializer):
+    """Сериализатор тем в рекомендациях."""
 
     class Meta:
-        model = Course
-        fields = ('id', 'title', 'description', 'price', 'level_id')
+        model = Theme
+        fields = ('id', 'title', 'price',)
 
 
 class ModulSerializer(serializers.ModelSerializer):
     """Сериализатор модулей в рекомендациях."""
 
-    course_id = CourseSerializer()
+    theme_id = ThemeSerializer(many=True)
 
     class Meta:
         model = Modul
-        fields = ('id', 'course_id', 'length')
+        fields = ('id', 'title', 'price', 'length', 'theme_id')
 
 
-class ThemeSerializer(serializers.ModelSerializer):
-    """Сериализатор тем в рекомендациях."""
+class CourseSerializer(serializers.ModelSerializer):
+    """Сериализатор курсов в рекомендациях."""
 
-    level_skill_id = LevelSkillSerializer()
-    modul = ModulSerializer()
+    modul_id = ModulSerializer(many=True)
+    level_id = LevelSerializer()
 
     class Meta:
-        model = Theme
-        fields = ('id', 'level_skill_id', 'modul')
+        model = Course
+        fields = (
+            'id', 'title', 'description', 'price', 'modul_id', 'level_id'
+        )
 
 
 class PractSerializer(serializers.ModelSerializer):
@@ -114,12 +114,12 @@ class UserCourseSerializer(serializers.ModelSerializer):
     """Сериализатор вкладки рекомендации для пользователя."""
 
     user_id = CustomUserSerializer(read_only=True)
-    theme_id = ThemeSerializer()
-    pract_id = PractSerializer()
-    links_id = LinksSerializer()
+    сourse_id = CourseSerializer(many=True)
+    pract_id = PractSerializer(many=True)
+    links_id = LinksSerializer(many=True)
 
     class Meta:
         model = UserCourse
-        fields = ('id', 'user_id', 'theme_id', 'pract_id', 'links_id')
+        fields = ('id', 'user_id', 'сourse_id', 'pract_id', 'links_id')
 
     
