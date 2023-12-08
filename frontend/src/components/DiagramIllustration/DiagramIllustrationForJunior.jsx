@@ -23,13 +23,13 @@ function DiagramIllustrationForJunior({ statistics }) {
   }, []);
   return (
     <Circle radius="first">
-      {lightbluePercent === 100 && (
+      {bluePercent === 100 && (
         <Blue onClick={handlePeace} radius="first" level="junior" />
       )}
       {grayPercent === 100 && (
         <Gray onClick={handlePeace} radius="first" level="junior" />
       )}
-      {bluePercent === 100 && (
+      {redPercent === 100 && (
         <Red onClick={handlePeace} radius="first" level="junior" />
       )}
       {yellowPercent === 100 && (
@@ -38,17 +38,17 @@ function DiagramIllustrationForJunior({ statistics }) {
       {greenPercent === 100 && (
         <Green onClick={handlePeace} radius="first" level="junior" />
       )}
-      {redPercent === 100 && (
+      {lightbluePercent === 100 && (
         <LightBlue onClick={handlePeace} radius="first" level="junior" />
       )}
       <Circle radius="second">
-        {lightbluePercent >= 80 && (
+        {bluePercent >= 80 && (
           <Blue onClick={handlePeace} radius="second" level="junior" />
         )}
         {grayPercent >= 80 && (
           <Gray onClick={handlePeace} radius="second" level="junior" />
         )}
-        {bluePercent >= 80 && (
+        {redPercent >= 80 && (
           <Red onClick={handlePeace} radius="second" level="junior" />
         )}
         {yellowPercent >= 80 && (
@@ -57,17 +57,17 @@ function DiagramIllustrationForJunior({ statistics }) {
         {greenPercent >= 80 && (
           <Green onClick={handlePeace} radius="second" level="junior" />
         )}
-        {redPercent >= 80 && (
+        {lightbluePercent >= 80 && (
           <LightBlue onClick={handlePeace} radius="second" level="junior" />
         )}
         <Circle radius="third">
-          {lightbluePercent >= 60 && (
+          {bluePercent >= 60 && (
             <Blue onClick={handlePeace} radius="third" level="junior" />
           )}
           {grayPercent >= 60 && (
             <Gray onClick={handlePeace} radius="third" level="junior" />
           )}
-          {bluePercent >= 60 && (
+          {redPercent >= 60 && (
             <Red onClick={handlePeace} radius="third" level="junior" />
           )}
           {yellowPercent >= 60 && (
@@ -76,17 +76,17 @@ function DiagramIllustrationForJunior({ statistics }) {
           {greenPercent >= 60 && (
             <Green onClick={handlePeace} radius="third" level="junior" />
           )}
-          {redPercent >= 60 && (
+          {lightbluePercent >= 60 && (
             <LightBlue onClick={handlePeace} radius="third" level="junior" />
           )}
           <Circle radius="fourth">
-            {lightbluePercent >= 40 && (
+            {bluePercent >= 40 && (
               <Blue onClick={handlePeace} radius="fourth" level="junior" />
             )}
             {grayPercent >= 40 && (
               <Gray onClick={handlePeace} radius="fourth" level="junior" />
             )}
-            {bluePercent >= 40 && (
+            {redPercent >= 40 && (
               <Red onClick={handlePeace} radius="fourth" level="junior" />
             )}
             {yellowPercent >= 40 && (
@@ -95,17 +95,17 @@ function DiagramIllustrationForJunior({ statistics }) {
             {greenPercent >= 40 && (
               <Green onClick={handlePeace} radius="fourth" level="junior" />
             )}
-            {redPercent >= 40 && (
+            {lightbluePercent >= 40 && (
               <LightBlue onClick={handlePeace} radius="fourth" level="junior" />
             )}
             <Circle onClick={handlePeace} radius="fifth">
-              {lightbluePercent >= 20 && (
+              {bluePercent >= 20 && (
                 <Blue onClick={handlePeace} radius="fifth" level="junior" />
               )}
               {grayPercent >= 20 && (
                 <Gray onClick={handlePeace} radius="fifth" level="junior" />
               )}
-              {bluePercent >= 20 && (
+              {redPercent >= 20 && (
                 <Red onClick={handlePeace} radius="fifth" level="junior" />
               )}
               {yellowPercent >= 20 && (
@@ -114,7 +114,7 @@ function DiagramIllustrationForJunior({ statistics }) {
               {greenPercent >= 20 && (
                 <Green onClick={handlePeace} radius="fifth" level="junior" />
               )}
-              {redPercent >= 20 && (
+              {lightbluePercent >= 20 && (
                 <LightBlue
                   onClick={handlePeace}
                   radius="fifth"

@@ -45,6 +45,18 @@ function DropDownMenuDifficult({
         text="Сложный"
         onClick={handleItem}
       />
+      <DropMenuItem
+        place={place}
+        type="level"
+        text="Сеньор"
+        onClick={handleItem}
+      />
+      <DropMenuItem
+        place={place}
+        type="level"
+        text="Тим-лид"
+        onClick={handleItem}
+      />
     </DropDownMenu>
   );
 }

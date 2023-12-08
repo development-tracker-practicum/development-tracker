@@ -14,7 +14,7 @@ const initialState = {
   name: '',
   isLogged: false,
   currentProfession: 'UI/UX дизайнер',
-  currentLevel: 'Средний',
+  currentLevel: 'Легкий',
   currentMatch: '92%',
 };
 
