@@ -159,3 +159,14 @@ poetry.toml
 
 # LSP config files
 pyrightconfig.json
+
+# Environments
+infra/.env
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.vscode/
