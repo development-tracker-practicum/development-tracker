@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import filterCoursesSlice from './filterCoursesSlice';
+import filterCoursesSlice from './FilterSlice';
 import coursesSlice from './coursesSlice';
 import userSlice from './userSlice';
 import changeTargetSlice from './changeTargetSlice';

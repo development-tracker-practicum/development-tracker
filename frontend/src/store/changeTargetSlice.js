@@ -11,12 +11,11 @@ const initialState = {
   },
 };
 
-const filterCoursesSlice = createSlice({
+const changeTarget = createSlice({
   name: 'courses',
   initialState,
   reducers: {
     openTargetMenu(state, action) {
-      // console.log('open');
       const id = action.payload;
       const menusStateArray = Object.entries(state.openedMenus);
       const menusStateArrayWithOpenedMenu = menusStateArray.map(
@@ -42,5 +41,5 @@ const filterCoursesSlice = createSlice({
   },
 });
 
-export const { changeValue, openTargetMenu } = filterCoursesSlice.actions;
-export default filterCoursesSlice.reducer;
+export const { changeValue, openTargetMenu } = changeTarget.actions;
+export default changeTarget.reducer;

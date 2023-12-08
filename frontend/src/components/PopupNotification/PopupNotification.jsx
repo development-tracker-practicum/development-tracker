@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import './PopupNotification.sass';
 
 function PopupNotification({ onPopupCloseClick }) {
+    
   function handleCloseClick() {
     onPopupCloseClick();
   }

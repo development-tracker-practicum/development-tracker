@@ -21,7 +21,16 @@ function PromoNotification() {
     setIsEditMode(false);
   }
   function handleSubmit(info) {
-    dispatch(setUser(info));
+    dispatch(
+      setUser({
+        currentLevel:
+          info.level !== 'Сложность' ? info.level : user.currentLevel,
+        currentProfession:
+          info.profession !== 'Профессия'
+            ? info.profession
+            : user.currentProfession,
+      }),
+    );
     setIsEditMode(false);
   }
   const title = isEditMode

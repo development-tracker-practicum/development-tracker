@@ -4,33 +4,19 @@ import { DropDownMenuProfession } from '../DropDownMenuProfession/DropDownMenuPr
 import { DropDownMenuDifficult } from '../DropDownMenuDifficult/DropDownMenuDifficult';
 import { Button } from '../Button/Button';
 import './NotificationForm.sass';
+import { setUser } from '../../store/userSlice';
+import useFilter from '../../hooks/useFilter';
 
 function NotificationForm({ onCancel, onSubmit }) {
-  const { values, openedMenus } = useSelector((state) => state.changeTarget);
   const dispatch = useDispatch();
-
+  const user = useSelector((state) => state.user);
+  const { values, openedMenus, changeValue, openTargetMenu } = useFilter({
+    profession: user.currentProfession,
+    level: user.currentLevel,
+  });
   function handleSubmit() {
     onSubmit(values);
   }
-
-  function handleClick() {
-    // console.log(values);
-  }
-
-  function handleMenu(event) {
-    const id = event.currentTarget.id;
-    dispatch(openTargetMenu(id));
-  }
-
-  function handleReset() {
-    dispatch(resetFilters());
-  }
-
-  function handleChangeValue(event) {
-    const { id, type } = event.currentTarget;
-    dispatch(changeValue({ id, type }));
-  }
-
   return (
     <form className="notification-form" action="#">
       <h3 className="">Выбор профессиональной цели</h3>
@@ -39,18 +25,18 @@ function NotificationForm({ onCancel, onSubmit }) {
           Выбор профессии
           <DropDownMenuProfession
             place="notification"
-            onMenu={handleMenu}
-            onClick={handleChangeValue}
+            onMenu={openTargetMenu}
+            onClick={changeValue}
             isOpen={openedMenus.profession}
-            currentItem={values.profession}
+            currentItem={user.currentProfession}
           />
         </div>
         <div className="notification-form__label">
           Выбор грейда/квалификацию
           <DropDownMenuDifficult
             place="notification"
-            onMenu={handleMenu}
-            onClick={handleChangeValue}
+            onMenu={openTargetMenu}
+            onClick={changeValue}
             isOpen={openedMenus.level}
             currentItem={values.level}
           />

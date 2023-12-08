@@ -5,6 +5,7 @@ import './CurrentStatus.sass';
 
 function CurrentStatus() {
   const navigate = useNavigate();
+
   const user = useSelector((state) => state.user);
   function handleButton() {
     navigate('/track/recommendations');

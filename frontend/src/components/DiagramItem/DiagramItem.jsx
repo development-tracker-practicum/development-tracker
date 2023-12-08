@@ -1,12 +1,6 @@
 import './DiagramItem.sass';
 
-function DiagramItem({
-  color,
-  title,
-  value,
-  isActive = false,
-  description = null,
-}) {
+function DiagramItem({ color, title, value, children }) {
   return (
     <li className="diagram-item">
       <div className="diagram-item__title-zone">
@@ -18,12 +12,7 @@ function DiagramItem({
           <span className="diagram-item__value">{value}</span>
         </h3>
       </div>
-      {isActive && (
-        <p className="diagram-item__description">
-          {description ||
-            'Изучена предметная область. Проведен разносторонний анализ, представлены выводы. Аргументация полная и понятнаяИзучена предметная область. Проведен разносторонний анализ, представлены выводы. Аргументация полная и понятнаяИзучена предметная область. Проведен разносторонний анализ, представлены выводы. Аргументация полная и понятнаяИзучена предметная область. Проведен разносторонний анализ, представлены выводы. Аргументация полная и понятнаяИзучена предметная область. Проведен разносторонний анализ, представлены выводы. Аргументация полная и понятная'}
-        </p>
-      )}
+      {children}
     </li>
   );
 }

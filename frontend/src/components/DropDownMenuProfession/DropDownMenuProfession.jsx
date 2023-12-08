@@ -34,13 +34,13 @@ function DropDownMenuProfession({
       <DropMenuItem
         place={place}
         type="profession"
-        text="Frontend"
+        text="UI/UX Дизайнер"
         onClick={handleItem}
       />
       <DropMenuItem
         place={place}
         type="profession"
-        text="Backend"
+        text="UI/UX Дизайнер"
         onClick={handleItem}
       />
     </DropDownMenu>

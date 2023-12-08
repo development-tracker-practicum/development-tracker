@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  changeFilter,
-  getLenghtFilters,
-  openMenu,
+  setFilter,
   resetFilters,
-} from '../../store/filterCoursesSlice';
+  setFilterCounter,
+} from '../../store/FilterSlice';
 import { DropDownMenuPrice } from '../DropDownMenuPrice/DropDownMenuPrice';
 import { DropDownMenuDifficult } from '../DropDownMenuDifficult/DropDownMenuDifficult';
 import { DropDownMenuDuration } from '../DropDownMenuDuration/DropDownMenuDuration';
@@ -13,30 +12,25 @@ import { Button } from '../Button/Button';
 import deleteIcon from '../../images/delete.svg';
 import closeIcon from '../../images/close_mini.svg';
 import './FilterCourses.sass';
-
+import useFilter from '../../hooks/useFilter';
+import { TYPE, LEVEL, DURATION, PRICE } from '../../constants/filterConstants';
 function FilterCourses({ onClose, isOpen = false }) {
-  const { filtredProps, openedMenus } = useSelector(
-    (state) => state.filterCourses,
-  );
+  const filter = useSelector((state) => state.filterCourses);
   const dispatch = useDispatch();
-
+  const { values, openedMenus, changeValue, openTargetMenu } = useFilter({
+    type: TYPE,
+    level: LEVEL,
+    duration: DURATION,
+    price: PRICE,
+  });
   function handleClick() {
-    dispatch(getLenghtFilters());
+    dispatch(setFilter(values));
+    dispatch(setFilterCounter());
     onClose();
   }
 
-  function handleMenu(event) {
-    const id = event.currentTarget.id;
-    dispatch(openMenu(id));
-  }
-
   function handleReset() {
-    dispatch(resetFilters());
-  }
-
-  function handleChangeFilter(event) {
-    const { id, type } = event.currentTarget;
-    dispatch(changeFilter({ id, type }));
+    console.log(filter);
   }
 
   return (
@@ -52,27 +46,27 @@ function FilterCourses({ onClose, isOpen = false }) {
       <ul className="filter-courses__form">
         <DropDownMenuDifficult
           isOpen={openedMenus.level}
-          onMenu={handleMenu}
-          onClick={handleChangeFilter}
-          currentItem={filtredProps.level}
+          onMenu={openTargetMenu}
+          onClick={changeValue}
+          currentItem={values.level}
         />
         <DropDownMenuDuration
           isOpen={openedMenus.duration}
-          onMenu={handleMenu}
-          onClick={handleChangeFilter}
-          currentItem={filtredProps.duration}
+          onMenu={openTargetMenu}
+          onClick={changeValue}
+          currentItem={values.duration}
         />
         <DropDownMenuPrice
           isOpen={openedMenus.price}
-          onMenu={handleMenu}
-          onClick={handleChangeFilter}
-          currentItem={filtredProps.price}
+          onMenu={openTargetMenu}
+          onClick={changeValue}
+          currentItem={values.price}
         />
         <DropDownMenuType
           isOpen={openedMenus.type}
-          onMenu={handleMenu}
-          onClick={handleChangeFilter}
-          currentItem={filtredProps.type}
+          onMenu={openTargetMenu}
+          onClick={changeValue}
+          currentItem={values.type}
         />
       </ul>
       <button

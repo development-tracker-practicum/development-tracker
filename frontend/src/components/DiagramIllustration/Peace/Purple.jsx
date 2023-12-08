@@ -30,7 +30,7 @@ function Purple({ radius, onClick, level = 'middle' }) {
           <path
             d="M26.1594 3.15938C23.0352 0.0351887 17.9279 0.0102081 15.1803 3.47024C7.04969 13.7091 1.94719 26.0276 0.456462 39.0168C-0.0473038 43.4063 3.58172 47 8 47L50.6863 47C57.8135 47 61.3829 38.3829 56.3431 33.3431L26.1594 3.15938Z"
             fill="#D8C2E5"
-            stroke="white"
+            stroke={strokeColor}
             strokeWidth="4"
             mask="url(#path-1-inside-1_730_12008)"
           />

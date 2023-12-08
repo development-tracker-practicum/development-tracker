@@ -19,8 +19,8 @@ function Authorization({ submitText }) {
     //   }),
     // );
     dispatch(loginUser());
-    navigate('/diary/desk');
     localStorage.setItem('isLogged', 'true');
+    navigate('/track');
   }
 
   return (
