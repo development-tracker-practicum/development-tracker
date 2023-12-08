@@ -1,10 +1,18 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { HeaderLink } from '../HeaderLink/HeaderLink';
 import './HeaderMenu.sass';
+import { useEffect } from 'react';
 
 function HeaderMenu() {
   const location = useLocation();
+
+  const navigate = useNavigate();
   const isItDiaryLocation = location.pathname.includes('diary');
+  useEffect(() => {
+    if (location.pathname === '/diary') {
+      navigate('desk');
+    }
+  }, [location.pathname]);
   return (
     <ul className="header__menu">
       {isItDiaryLocation && (

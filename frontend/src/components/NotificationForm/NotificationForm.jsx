@@ -1,30 +1,21 @@
-import React from 'react';
-import './NotificationForm.sass';
-import { DropDownMenuProfession } from '../DropDownMenuProfession/DropDownMenuProfession';
 import { useDispatch, useSelector } from 'react-redux';
-import { DropDownMenuDifficult } from '../DropDownMenuDifficult/DropDownMenuDifficult';
 import { openTargetMenu, changeValue } from '../../store/changeTargetSlice';
+import { DropDownMenuProfession } from '../DropDownMenuProfession/DropDownMenuProfession';
+import { DropDownMenuDifficult } from '../DropDownMenuDifficult/DropDownMenuDifficult';
 import { Button } from '../Button/Button';
+import './NotificationForm.sass';
+import { setUser } from '../../store/userSlice';
+import useFilter from '../../hooks/useFilter';
 
 function NotificationForm({ onCancel, onSubmit }) {
-  const { values, openedMenus } = useSelector(state => state.changeTarget);
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const { values, openedMenus, changeValue, openTargetMenu } = useFilter({
+    profession: user.currentProfession,
+    level: user.currentLevel,
+  });
   function handleSubmit() {
     onSubmit(values);
-  }
-  function handleClick() {
-    console.log(values);
-  }
-  function handleMenu(e) {
-    const id = e.currentTarget.id;
-    dispatch(openTargetMenu(id));
-  }
-  function handleReset() {
-    dispatch(resetFilters());
-  }
-  function handleChangeValue(e) {
-    const { id, type } = e.currentTarget;
-    dispatch(changeValue({ id, type }));
   }
   return (
     <form className="notification-form" action="#">
@@ -34,18 +25,18 @@ function NotificationForm({ onCancel, onSubmit }) {
           Выбор профессии
           <DropDownMenuProfession
             place="notification"
-            onMenu={handleMenu}
-            onClick={handleChangeValue}
+            onMenu={openTargetMenu}
+            onClick={changeValue}
             isOpen={openedMenus.profession}
-            currentItem={values.profession}
+            currentItem={user.currentProfession}
           />
         </div>
         <div className="notification-form__label">
           Выбор грейда/квалификацию
           <DropDownMenuDifficult
             place="notification"
-            onMenu={handleMenu}
-            onClick={handleChangeValue}
+            onMenu={openTargetMenu}
+            onClick={changeValue}
             isOpen={openedMenus.level}
             currentItem={values.level}
           />
@@ -63,4 +54,5 @@ function NotificationForm({ onCancel, onSubmit }) {
     </form>
   );
 }
-export default NotificationForm;
+
+export { NotificationForm };

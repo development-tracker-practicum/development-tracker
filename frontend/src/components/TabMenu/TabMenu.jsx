@@ -1,7 +1,7 @@
 import { TabMenuItem } from '../TabMenuItem/TabMenuItem';
 import './TabMenu.sass';
 
-function TabMenu(props) {
+function TabMenu() {
   return (
     <ul className="tab-menu">
       <TabMenuItem isActive={true} isDisabled={false} text="Курсы" />
@@ -16,4 +16,5 @@ function TabMenu(props) {
     </ul>
   );
 }
+
 export { TabMenu };

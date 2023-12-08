@@ -1,12 +1,13 @@
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Button } from '../Button/Button';
 import './CurrentStatus.sass';
-import { useSelector } from 'react-redux';
 
 function CurrentStatus() {
   const navigate = useNavigate();
-  const user = useSelector(state => state.user);
-  function handleButton(e) {
+
+  const user = useSelector((state) => state.user);
+  function handleButton() {
     navigate('/track/recommendations');
   }
   return (

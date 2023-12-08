@@ -14,7 +14,7 @@ const initialState = {
   name: '',
   isLogged: false,
   currentProfession: 'UI/UX дизайнер',
-  currentLevel: 'Junior',
+  currentLevel: 'Легкий',
   currentMatch: '92%',
 };
 
@@ -40,13 +40,15 @@ const userSlice = createSlice({
       state.isLogged = false;
     },
     setUser(state, action) {
+      console.log(action.payload);
       state.name = action.payload.name || state.name;
       state.currentProfession =
-        action.payload.profession || state.currentProfession;
+        action.payload.currentProfession || state.currentProfession;
       state.currentLevel = action.payload.currentLevel || state.currentLevel;
       state.currentMatch = action.payload.currentMatch || state.currentMatch;
     },
   },
 });
+
 export const { loginUser, logout, setUser } = userSlice.actions;
 export default userSlice.reducer;

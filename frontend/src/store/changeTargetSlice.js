@@ -1,44 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 const initialState = {
-  values: {
-    profession: 'Профессия',
-    level: 'Сложность',
-  },
-  openedMenus: {
-    profession: false,
-    level: false,
-  },
+  mode: 'pick',
+  currentProfession: 'UI/UX Дизайнер',
+  currentLevel: 'Junior',
 };
 
-const filterCoursesSlice = createSlice({
-  name: 'courses',
+const changeTarget = createSlice({
+  name: 'changeTarget',
   initialState,
-  reducers: {
-    openTargetMenu(state, action) {
-        console.log('open')
-      const id = action.payload;
-      const menusStateArray = Object.entries(state.openedMenus);
-      const menusStateArrayWithOpenedMenu = menusStateArray.map(
-        ([key, value]) => (key === id ? [key, !value] : [key, false]),
-      );
-      const newState = menusStateArrayWithOpenedMenu.reduce(
-        (acc, [key, value]) => {
-          acc[key] = value;
-          return acc;
-        },
-        {},
-      );
-      state.openedMenus = newState;
-    },
-    changeValue(state, action) {
-      const { type, id } = action.payload;
-      state.values[type] = id;
-      state.openedMenus = {
-        profession: false,
-        level: false,
-      };
-    },
+  reducers: (builder) => {
+    builder.addCase(pickTarget, (state, action) => {
+      const newTarget = action.payload;
+      state.currentProfession = newTarget.profession || state.currentProfession;
+      state.currentLevel = newTarget.level || state.currentLevel;
+      state.mode = 'change';
+    });
   },
 });
-export const { changeValue, openTargetMenu } = filterCoursesSlice.actions;
-export default filterCoursesSlice.reducer;
+
+export const { changeValue, openTargetMenu } = changeTarget.actions;
+export default changeTarget.reducer;

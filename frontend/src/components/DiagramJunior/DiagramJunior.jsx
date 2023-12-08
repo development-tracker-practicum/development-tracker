@@ -1,84 +1,115 @@
-import './DiagramJunior.sass';
+import { useContext, useEffect, useState } from 'react';
+import { activePeaceContext } from '../App/App';
 import { DiagramList } from '../DiagramList/DiagramList';
 import { DiagramItem } from '../DiagramItem/DiagramItem';
 import { Diagram } from '../Diagram/Diagram';
 import { DiagramIllustrationForJunior } from '../DiagramIllustration/DiagramIllustrationForJunior';
-import { useContext, useState } from 'react';
-import { activePeaceContext } from '../App/App';
-
+import './DiagramJunior.sass';
+import {
+  UXSEARCHING,
+  UIDESIGN,
+  TOOLS,
+  COMMUNICATION,
+  TOGROWINGUP,
+  PRODUCTORIENTATION,
+} from '../../constants/directionConstants';
+import DiagrammAboutCommunication from '../DiagrammAbout/DiagrammAboutCommunication/DiagrammAboutCommunication';
+import { DiagrammAboutUIDesigh } from '../DiagrammAbout/DiagrammAboutUIDesigh/DiagrammAboutUIDesigh';
+import { DiagrammAboutTools } from '../DiagrammAbout/DiagrammAboutTools/DiagrammAboutTools';
+import DiagrammAboutProductOrientation from '../DiagrammAbout/DiagrammAboutProductOrientation/DiagrammAboutProductOrientation';
+import DiagrammAboutToGrowingUp from '../DiagrammAbout/DiagrammAboutToGrowingUp/DiagrammAboutToGrowingUp';
+import DiagrammAboutUXSearching from '../DiagrammAbout/DiagrammAboutUXSearching/DiagrammAboutUXSearching';
+import {
+  BLUE,
+  GRAY,
+  GREEN,
+  LIGHTBLUE,
+  PINK,
+  PURPLE,
+  RED,
+  YELLOW,
+} from '../../constants/colorConstants';
 function DiagramJunior() {
   const { activePeace } = useContext(activePeaceContext);
   const [statistics, setStatistics] = useState({
     yellow: {
-      name: 'UX-исследования',
-      percent: '40%',
-    },
-    green: {
-      name: 'UI-дизайн',
-      percent: '70%',
-    },
-    red: {
-      name: 'Продукт',
-      percent: '20%',
-    },
-    gray: {
-      name: 'Коммуникация',
-      percent: '80%',
-    },
-    pink: {
-      name: 'Про активность',
+      name: UXSEARCHING,
       percent: '100%',
     },
-    purple: {
-      name: 'Пипл менеджмент',
+    green: {
+      name: UIDESIGN,
+      percent: '90%',
+    },
+    blue: {
+      name: TOOLS,
       percent: '60%',
     },
+    gray: {
+      name: COMMUNICATION,
+      percent: '80%',
+    },
+    lightblue: {
+      name: TOGROWINGUP,
+      percent: '100%',
+    },
+    red: {
+      name: PRODUCTORIENTATION,
+      percent: '100%',
+    },
   });
-  console.log(statistics);
+  useEffect(() => {
+    console.log(activePeace);
+  }, [activePeace]);
+
   return (
     <Diagram>
       <DiagramIllustrationForJunior statistics={statistics} />
       <DiagramList>
         {activePeace ? (
-          <>
-            <DiagramItem
-              value={'20%'}
-              title={statistics[activePeace].name}
-              color={activePeace}
-              isActive={true}
-            />
-          </>
+          <DiagramItem
+            value={statistics[activePeace].percent}
+            title={statistics[activePeace].name}
+            color={activePeace}
+            isActive={true}
+          >
+            {activePeace === YELLOW && <DiagrammAboutUXSearching />}
+            {activePeace === GREEN && <DiagrammAboutUIDesigh />}
+            {activePeace === BLUE && <DiagrammAboutTools />}
+            {activePeace === GRAY && <DiagrammAboutCommunication />}
+            {activePeace === LIGHTBLUE && <DiagrammAboutToGrowingUp />}
+            {activePeace === RED && <DiagrammAboutProductOrientation />}
+          </DiagramItem>
         ) : (
           <>
             <DiagramItem
               value={statistics.yellow.percent}
               title={statistics.yellow.name}
-              color="yellow"
+              color={YELLOW}
             />
             <DiagramItem
               value={statistics.green.percent}
               title={statistics.green.name}
-              color="green"
+              color={GREEN}
+            />
+            <DiagramItem
+              value={statistics.blue.percent}
+              title={statistics.blue.name}
+              color={BLUE}
             />
             <DiagramItem
               value={statistics.red.percent}
               title={statistics.red.name}
-              color="red"
+              color={RED}
             />
             <DiagramItem
               value={statistics.gray.percent}
               title={statistics.gray.name}
-              color="gray"
+              color={GRAY}
             />
             <DiagramItem
-              value={statistics.pink.percent}
-              title={statistics.pink.name}
-              color="pink"
-            />
-            <DiagramItem
-              value={statistics.purple.percent}
-              title={statistics.purple.name}
-              color="purple"
+              value={statistics.lightblue.percent}
+              title={statistics.lightblue.name}
+              color={LIGHTBLUE}
             />
           </>
         )}

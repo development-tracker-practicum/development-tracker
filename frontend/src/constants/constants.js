@@ -29,8 +29,8 @@ export const intialCards = [
     level: 'С нуля',
     title: 'A/B тестирование',
     image: testImage1,
-    price: '140000',
-    monthly_price: '1567',
+    price: 140000,
+    monthly_price: 1567,
   },
   {
     profession: 'Дизайн',
@@ -38,8 +38,8 @@ export const intialCards = [
     level: 'С нуля',
     title: 'Личность бренда',
     image: testImage1,
-    price: '140000',
-    monthly_price: '7201',
+    price: 140000,
+    monthly_price: 7201,
   },
   {
     profession: 'Дизайн',
@@ -48,7 +48,7 @@ export const intialCards = [
     title: 'Aдаптивность',
     image: testImage1,
     price: '140000',
-    monthly_price: '7201',
+    monthly_price: 7201,
   },
   {
     profession: 'Дизайн',
@@ -64,8 +64,8 @@ export const intialCards = [
     level: 'С нуля',
     title: 'A/B тестирование',
     image: testImage1,
-    price: '140000',
-    monthly_price: '1567',
+    price: 140000,
+    monthly_price: 1567,
   },
   {
     profession: 'Дизайн',
@@ -73,7 +73,7 @@ export const intialCards = [
     level: 'С нуля',
     title: 'Личность бренда',
     image: testImage1,
-    price: '140000',
-    monthly_price: '7201',
+    price: 140000,
+    monthly_price: 7201,
   },
 ];

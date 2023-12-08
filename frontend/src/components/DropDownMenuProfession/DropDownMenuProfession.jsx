@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { DropMenuItem } from '../DropMenuItem/DropMenuItem';
 import { DropDownMenu } from '../DropDownMenu/DropDownMenu';
 
@@ -9,13 +8,15 @@ function DropDownMenuProfession({
   isOpen,
   place = null,
 }) {
-  function handleMenu(e) {
-    console.log(e.target);
-    onMenu(e);
+  function handleMenu(event) {
+    // console.log(event.target);
+    onMenu(event);
   }
-  function handleItem(e) {
-    onClick(e);
+
+  function handleItem(event) {
+    onClick(event);
   }
+
   return (
     <DropDownMenu
       place={place}
@@ -33,16 +34,17 @@ function DropDownMenuProfession({
       <DropMenuItem
         place={place}
         type="profession"
-        text="Frontend"
+        text="UI/UX Дизайнер"
         onClick={handleItem}
       />
       <DropMenuItem
         place={place}
         type="profession"
-        text="Backend"
+        text="UI/UX Дизайнер"
         onClick={handleItem}
       />
     </DropDownMenu>
   );
 }
+
 export { DropDownMenuProfession };

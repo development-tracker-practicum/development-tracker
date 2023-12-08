@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Button } from '../Button/Button';
-import './PromoNotification.sass';
 import { useDispatch, useSelector } from 'react-redux';
-import NotificationForm from '../NotificationForm/NotificationForm';
 import { setUser } from '../../store/userSlice';
+import { Button } from '../Button/Button';
+import { NotificationForm } from '../NotificationForm/NotificationForm';
+import './PromoNotification.sass';
 
 function PromoNotification() {
   const location = useLocation();
@@ -13,7 +13,7 @@ function PromoNotification() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const isItProfileLocation = location.pathname.includes('/profile');
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
   function handleTargetButton() {
     setIsEditMode(true);
   }
@@ -21,7 +21,16 @@ function PromoNotification() {
     setIsEditMode(false);
   }
   function handleSubmit(info) {
-    dispatch(setUser(info));
+    dispatch(
+      setUser({
+        currentLevel:
+          info.level !== 'Сложность' ? info.level : user.currentLevel,
+        currentProfession:
+          info.profession !== 'Профессия'
+            ? info.profession
+            : user.currentProfession,
+      }),
+    );
     setIsEditMode(false);
   }
   const title = isEditMode
