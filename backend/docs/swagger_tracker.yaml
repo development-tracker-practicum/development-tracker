@@ -520,21 +520,9 @@ definitions:
         type: integer
         maximum: 100
         minimum: 0
-  LevelSkill:
-    required:
-    - level_id
-    - skill_id
-    type: object
-    properties:
-      level_id:
-        $ref: '#/definitions/Level'
-      skill_id:
-        type: array
-        items:
-          $ref: '#/definitions/Skill'
   UserLevel:
     required:
-    - level_skill_id
+    - level_id
     type: object
     properties:
       id:
@@ -543,8 +531,13 @@ definitions:
         readOnly: true
       user_id:
         $ref: '#/definitions/CustomUser'
-      level_skill_id:
-        $ref: '#/definitions/LevelSkill'
+      level_id:
+        $ref: '#/definitions/Level'
+      skill_id:
+        type: array
+        items:
+          $ref: '#/definitions/Skill'
+        readOnly: true
       goal:
         title: Цель
         type: boolean

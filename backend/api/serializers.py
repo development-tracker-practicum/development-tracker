@@ -2,8 +2,8 @@ from django.db.models import Avg
 from djoser.serializers import UserSerializer
 from rest_framework import serializers
 
-from course.models import (Course, Level, LevelSkill, Links, Modul, Pract,
-                           Skill, Theme, UserCourse, UserLevel)
+from course.models import (Course, Level, Links, Modul, Pract, Skill, Theme,
+                           UserCourse, UserLevel)
 from users.models import User
 
 
@@ -31,31 +31,34 @@ class LevelSerializer(serializers.ModelSerializer):
         fields = ('profession', 'level')
 
 
-class LevelSkillSerializer(serializers.ModelSerializer):
-    """Сериализатор навыка профессии в трекере."""
-
-    level_id = LevelSerializer()
-    skill_id = SkillSerializer(many=True)
-
-    class Meta:
-        model = LevelSkill
-        fields = ('level_id', 'skill_id')
-
-
 class UserLevelSerializer(serializers.ModelSerializer):
-    """Сериализатор направление пользователя в трекере."""
+    """Сериализатор направления пользователя в трекере."""
 
     user_id = CustomUserSerializer(read_only=True)
-    level_skill_id = LevelSkillSerializer()
+    level_id = LevelSerializer()
+    skill_id = SkillSerializer(read_only=True, many=True)
     value = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = UserLevel
-        fields = ('id', 'user_id', 'level_skill_id', 'goal', 'value')
+        fields = ('id', 'user_id', 'level_id', 'skill_id', 'goal', 'value')
 
     def get_value(self, obj):
         percent = Skill.objects.aggregate(Avg('skill_percent'))
         return format(percent['skill_percent__avg'], '.1f')
+
+    def update(self, instance, validated_data):
+        level_data = validated_data.pop('level_id', None)
+        instance.level_id.profession = level_data.get(
+            'profession',
+            instance.level_id.profession
+        )
+        instance.level_id.level = level_data.get(
+            'level',
+            instance.level_id.level
+        )
+        instance.level_id.save()
+        return instance
 
 
 class ThemeSerializer(serializers.ModelSerializer):

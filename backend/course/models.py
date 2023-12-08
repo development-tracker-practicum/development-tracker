@@ -92,7 +92,7 @@ class Level(models.Model):
 
     class Meta:
         ordering = ["profession"]
-        verbose_name = _("Уровень професии")
+        verbose_name = _("Уровень профессии")
         verbose_name_plural = _("Уровни профессии")
 
     def __str__(self):
@@ -206,11 +206,16 @@ class UserLevel(models.Model):
         related_name="user_level",
         verbose_name=_("Пользователь"),
     )
-    level_skill_id = models.ForeignKey(
-        LevelSkill,
+    level_id = models.ForeignKey(
+        Level,
         on_delete=models.CASCADE,
         related_name="user_level",
         verbose_name=_("Уровень профессии"),
+    )
+    skill_id = models.ManyToManyField(
+        Skill,
+        related_name="user_level",
+        verbose_name=_("Навык"),
     )
     goal = models.BooleanField(
         verbose_name=_("Цель"),
@@ -223,7 +228,7 @@ class UserLevel(models.Model):
         verbose_name_plural = _("Направления пользователя")
 
     def __str__(self):
-        return f"{self.user_id} {self.level_skill_id}"
+        return f"{self.user_id} {self.level_id}"
 
 
 class UserCourse(models.Model):
