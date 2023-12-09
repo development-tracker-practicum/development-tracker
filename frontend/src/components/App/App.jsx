@@ -16,18 +16,30 @@ import { loginUser, logout } from '../../store/userSlice';
 import { Desk } from '../../pages/Desk/Desk';
 import { Profile } from '../../pages/Profile/Profile';
 import { Recommendations } from '../../pages/Reccommendations/Recommendations';
+import Courses from '../../pages/Courses/Courses';
+import Practice from '../../pages/Practice/Practice';
+import Articles from '../../pages/Articles/Articles';
+import trackerApi from '../../services/TrackerApi';
+import userApi from '../../services/UserApi';
 
 export const activePeaceContext = createContext(undefined);
 
 function App() {
   const user = useSelector(state => state.user);
+  const diagramm = useSelector(state => state.diagramm);
   const [activePeace, setActivePeace] = useState('');
   function resetPeaces() {
     setActivePeace('');
   }
+  //   useEffect(() => {
+  //     userApi.getUser({
+  //       uid: '5',
+  //       token: 'a9a86d57c2b52082c5ad828505962043a7a1d895',
+  //     });
+  //   }, []);
   const navigate = useNavigate();
-  const location = useLocation();
   const dispatch = useDispatch();
+  const location = useLocation();
   function checkLogin() {
     const isLogged = localStorage.getItem('isLogged');
 
@@ -39,7 +51,9 @@ function App() {
       dispatch(logout());
     }
   }
-
+  useEffect(() => {
+    console.log(diagramm);
+  }, [diagramm]);
   useEffect(() => checkLogin(), []);
   function handlePeace(color) {
     setActivePeace(previous => (previous === color ? '' : color));
@@ -69,7 +83,15 @@ function App() {
           <Route path="/diary/desk" element={<Desk />} />
           <Route path="/track" element={<LearningTrack />} />
           <Route path="/track/profile" element={<Profile />} />
-          <Route path="/track/recommendations" element={<Recommendations />} />
+          <Route path="/track/recommendations/courses" element={<Courses />} />
+          <Route
+            path="/track/recommendations/articles"
+            element={<Articles />}
+          />
+          <Route
+            path="/track/recommendations/practice"
+            element={<Practice />}
+          />
           <Route path="/*" element={<Navigate to="/diary/desk" replace />} />
         </Routes>
       </div>

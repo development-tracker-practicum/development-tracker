@@ -1,14 +1,14 @@
-import { useContext } from 'react';
-import { activePeaceContext } from '../../App/App';
+import { useDispatch, useSelector } from 'react-redux';
+import { setActivePeace } from '../../../store/DiagrammDirectionSlice';
 
-function Red({ radius, onClick, level = 'middle' }) {
-  const { activePeace } = useContext(activePeaceContext);
-  const isActive = activePeace === 'red';
-  const strokeColor = isActive ? '#FF6442' : '#fff';
-
+function Red({ radius, level = 'middle' }) {
+  const { activePeaceDirection } = useSelector(state => state.diagramm);
+  const dispatch = useDispatch();
   function handleClick() {
-    onClick('red');
+    dispatch(setActivePeace('red'));
   }
+  const isActive = activePeaceDirection === 'red';
+  const strokeColor = isActive ? '#FF6442' : '#fff';
 
   return (
     <>

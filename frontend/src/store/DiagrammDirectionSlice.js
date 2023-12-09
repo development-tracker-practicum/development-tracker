@@ -7,10 +7,11 @@ const initialState = {
 const DiagrammDirectionSlice = createSlice({
   name: 'diagrammDirection',
   initialState,
-  reducers: (builder) => {
-    builder.addCase(setActivePeace, (state, action) => {
-      state.activePeaceDirection = action.payload || state.activePeaceDirection;
-    });
+  reducers: {
+    setActivePeace(state, action) {
+      state.activePeaceDirection =
+        action.payload === state.activePeaceDirection ? '' : action.payload;
+    },
   },
 });
 

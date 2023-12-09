@@ -1,23 +1,23 @@
-// import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-// const initialState = {
-//   mode: 'pick',
-//   currentProfession: 'UI/UX Дизайнер',
-//   currentLevel: 'Junior',
-// };
+const initialState = {
+  mode: 'pick',
+  currentProfession: 'UI/UX Дизайнер',
+  currentLevel: 'Junior',
+};
 
-// const changeTarget = createSlice({
-//   name: 'changeTarget',
-//   initialState,
-//   reducers: builder => {
-//     builder.addCase(pickTarget, (state, action) => {
-//       const newTarget = action.payload;
-//       state.currentProfession = newTarget.profession || state.currentProfession;
-//       state.currentLevel = newTarget.level || state.currentLevel;
-//       state.mode = 'change';
-//     });
-//   },
-// });
+const changeTarget = createSlice({
+  name: 'changeTarget',
+  initialState,
+  reducers: {
+    pickTarget(state, action) {
+      const { level, profession } = action.payload;
+      state.mode = 'changed';
+      state.currentLevel = level || state.currentLevel;
+      state.currentProfession = profession || state.currentLevel;
+    },
+  },
+});
 
-// export const { changeValue, openTargetMenu } = changeTarget.actions;
-// export default changeTarget.reducer;
+export const { pickTarget } = changeTarget.actions;
+export default changeTarget.reducer;
