@@ -7,6 +7,12 @@ class ApiUser extends API {
       headers: this._headers,
     });
   }
+  getUser() {
+    return this._request('/activate', {
+      method: 'GET',
+      headers: this._headers,
+    });
+  }
 }
 
 const userApi = new ApiUser({

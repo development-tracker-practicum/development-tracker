@@ -5,6 +5,7 @@ import { setUser } from '../../store/userSlice';
 import { Button } from '../Button/Button';
 import { NotificationForm } from '../NotificationForm/NotificationForm';
 import './PromoNotification.sass';
+import { pickTarget } from '../../store/changeTargetSlice';
 
 function PromoNotification() {
   const location = useLocation();
@@ -13,7 +14,7 @@ function PromoNotification() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const isItProfileLocation = location.pathname.includes('/profile');
-  const user = useSelector((state) => state.user);
+  const user = useSelector(state => state.user);
   function handleTargetButton() {
     setIsEditMode(true);
   }
@@ -21,16 +22,8 @@ function PromoNotification() {
     setIsEditMode(false);
   }
   function handleSubmit(info) {
-    dispatch(
-      setUser({
-        currentLevel:
-          info.level !== 'Сложность' ? info.level : user.currentLevel,
-        currentProfession:
-          info.profession !== 'Профессия'
-            ? info.profession
-            : user.currentProfession,
-      }),
-    );
+    dispatch(pickTarget(info));
+    dispatch(setUser(info));
     setIsEditMode(false);
   }
   const title = isEditMode

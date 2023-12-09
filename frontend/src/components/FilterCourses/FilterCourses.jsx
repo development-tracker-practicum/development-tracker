@@ -21,12 +21,13 @@ import {
 function FilterCourses({ onClose, isOpen = false }) {
   const filter = useSelector(state => state.filterCourses);
   const dispatch = useDispatch();
-  const { values, openedMenus, changeValue, openTargetMenu } = useFilter({
-    type: TYPE,
-    level: LEVEL,
-    duration: DURATION,
-    price: PRICE,
-  });
+  const { values, openedMenus, changeValue, openTargetMenu, resetValues } =
+    useFilter({
+      type: TYPE,
+      level: LEVEL,
+      duration: DURATION,
+      price: PRICE,
+    });
   function handleClick() {
     dispatch(setFilter(values));
     dispatch(setFilterCounter());
@@ -35,9 +36,9 @@ function FilterCourses({ onClose, isOpen = false }) {
   }
 
   function handleReset() {
-    console.log(filter);
+    dispatch(resetFilters());
+    resetValues();
   }
-
   return (
     <aside className={`filter-courses ${isOpen && 'filter-courses_open'}`}>
       <button

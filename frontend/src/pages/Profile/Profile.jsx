@@ -9,7 +9,7 @@ import { Header } from '../../components/Header/Header';
 import { SidePanel } from '../../components/SidePanel/SidePanel';
 
 function Profile() {
-  const user = useSelector((state) => state.user);
+  const user = useSelector(state => state.user);
   return (
     <>
       <Header />
@@ -18,8 +18,8 @@ function Profile() {
         <PromoNotification />
         <div className="profile__two-columns">
           <CurrentStatus />
-          {user.currentLevel === 'Средний' && <DiagramMiddle />}
-          {user.currentLevel === 'Легкий' && <DiagramJunior />}
+          {user.currentLevel === 'Middle' && <DiagramMiddle />}
+          {user.currentLevel === 'Junior' && <DiagramJunior />}
         </div>
       </main>
     </>

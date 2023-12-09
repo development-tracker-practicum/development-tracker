@@ -1,14 +1,15 @@
 import './TabMenuItem.sass';
-
-function TabMenuItem({ isActive, isDisabled, text }) {
+import { Link } from 'react-router-dom';
+function TabMenuItem({ isActive, isDisabled, text, path }) {
   return (
-    <li
+    <Link
+      to={path}
       className={`tab-menu__item ${isActive && 'tab-menu__item_active'} ${
         isDisabled && 'tab-menu__item_disabled'
       }`}
     >
       {text}
-    </li>
+    </Link>
   );
 }
 export { TabMenuItem };

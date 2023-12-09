@@ -1,0 +1,22 @@
+.btn {
+  border: none;
+  padding: 4px 8px;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: YS Text;
+  color: #1A1B22;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.viewed {
+  background-color: #DDE0E4;
+}
+
+.enter {
+  background-color: #CCC2ED;
+}
+
+.reserve {
+  background-color: #FFE1BD;
+}
