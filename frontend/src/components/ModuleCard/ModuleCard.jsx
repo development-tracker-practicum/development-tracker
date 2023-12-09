@@ -16,17 +16,17 @@ function ModuleCard({ data }) {
         alt={`Изображение к модулю «${data?.title}»`}
         className="module-card__image"
       />
-      {!data?.monthly_price && (
+      {!data?.monthlyPrice && (
         <p className="module-card__price module-card__price_type_no-monthly-price">
           {typeof data?.price === 'number' && data?.price !== 0
             ? `${data?.price.toLocaleString('ru-RU')} ₽`
             : 'Бесплатно'}
         </p>
       )}
-      {data?.monthly_price && (
+      {data?.monthlyPrice && (
         <div className="module-card__price-wrapper">
           <p className="module-card__price">
-            от {data?.monthly_price.toLocaleString('ru-RU')} ₽/месяц
+            от {data?.monthlyPrice.toLocaleString('ru-RU')} ₽/месяц
           </p>
           <p className="module-card__full-price">
             или сразу {data?.price.toLocaleString('ru-RU')}

@@ -13,14 +13,14 @@ class TrackerApi extends API {
       headers: this._headers,
     });
   }
-  getRecommendations(userID) {
+  getRecommendation(userID) {
     return this._request(`/${userID}/recommendations`, {
       method: 'GET',
       headers: this._headers,
     });
   }
 }
-const trackerApi = new ApiTracker({
-  baseUrl: 'https://localhost:8000/api/v1/tracker',
+const trackerApi = new TrackerApi({
+  baseUrl: 'http://localhost:8000/api/v1/tracker',
 });
 export default trackerApi;

@@ -9,8 +9,6 @@ function DropDownMenuDifficult({
   isOpen,
   place,
 }) {
-  const [isActiveMenu, setIsActiveMenu] = useState(false);
-
   function handleMenu(event) {
     onMenu(event);
   }
@@ -30,31 +28,19 @@ function DropDownMenuDifficult({
       <DropMenuItem
         place={place}
         type="level"
-        text="Легкий"
+        text="Junior"
         onClick={handleItem}
       />
       <DropMenuItem
         place={place}
         type="level"
-        text="Средний"
+        text="Middle"
         onClick={handleItem}
       />
       <DropMenuItem
         place={place}
         type="level"
-        text="Сложный"
-        onClick={handleItem}
-      />
-      <DropMenuItem
-        place={place}
-        type="level"
-        text="Сеньор"
-        onClick={handleItem}
-      />
-      <DropMenuItem
-        place={place}
-        type="level"
-        text="Тим-лид"
+        text="Senior"
         onClick={handleItem}
       />
     </DropDownMenu>

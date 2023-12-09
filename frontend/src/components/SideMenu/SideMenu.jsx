@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../store/userSlice';
 import { SideMenuLink } from '../SideMenuLink/SideMenuLink';
@@ -12,18 +12,21 @@ import lentaIcon from '../../images/lenta-icon.svg';
 import infoIcon from '../../images/info-icon.svg';
 import exitIcon from '../../images/exit-icon.svg';
 import './SideMenu.sass';
+import { useEffect } from 'react';
 
 function SideMenu() {
   const dispatch = useDispatch();
   const location = useLocation();
+  const navigate = useNavigate();
   const isDiaryLocation = location.pathname.includes('/diary');
   const isTrackLocation = location.pathname.includes('/track');
 
   function handleLogout() {
     dispatch(logout());
+    navigate('/signin', { replace: true });
     localStorage.removeItem('isLogged');
   }
-
+  useEffect(() => {});
   return (
     <nav className="side-menu">
       <ul className="side-menu__list">

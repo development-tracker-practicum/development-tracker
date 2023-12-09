@@ -1,27 +1,56 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser, logout } from '../../store/userSlice';
 import { AuthForm } from '../../components/AuthForm/AuthForm';
 import backgroundImage from '../../images/authorizationBackground.jpg';
 import './Authorization.sass';
-import { signup } from '../../store/userSlice';
-
+import { signup, signin, checkToken, resetStatus } from '../../store/userSlice';
+import { useEffect } from 'react';
+import useFormAndValidation from '../../hooks/useFormAndValidation';
 function Authorization({ submitText }) {
+  const { values, handleChangeInput, isValid, errorMessages, resetForm } =
+    useFormAndValidation({
+      password: '',
+      email: '',
+    });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-  function handleSubmit() {
-    // dispatch(
-    //   signup({
-    //     email: 'looneyxx2@yandex.ru',
-    //     password: 'Crosshair',
-    //     username: 'Sergey',
-    //   }),
-    // );
-    dispatch(loginUser());
-    localStorage.setItem('isLogged', 'true');
-    navigate('/track');
+  const location = useLocation();
+  const user = useSelector(state => state.user);
+  const handleSubmit =
+    location.pathname === '/signin' ? handleLogin : handleRegistration;
+  function handleLogin() {
+    dispatch(
+      signin({
+        email: values.email,
+        password: values.password,
+      }),
+    );
   }
+  async function handleRegistration() {
+    dispatch(
+      signup({
+        email: values.email,
+        password: values.password,
+        username: 'Сергей',
+      }),
+    );
+  }
+  useEffect(() => {
+    console.log(user);
+    if (user.status === 'fulfilled' && user.fetch === 'signin') {
+      console.log('fulfilled');
+      localStorage.setItem('isLogged', 'true');
+      navigate('/diary', { replace: true });
+      resetForm();
+      dispatch(resetStatus());
+    }
+    if (user.status === 'fulfilled' && user.fetch === 'signup') {
+      navigate('/signin', { replace: true });
+      resetForm();
+      dispatch(resetStatus());
+    }
+  }, [user]);
 
   return (
     <main className="content content_authorization">
@@ -32,7 +61,13 @@ function Authorization({ submitText }) {
           }}
           className="backgroundBlock"
         />
-        <AuthForm submitText={submitText} onSubmit={handleSubmit} />
+        <AuthForm
+          isValid={isValid}
+          values={values}
+          onChange={handleChangeInput}
+          submitText={submitText}
+          onSubmit={handleSubmit}
+        />
         {submitText === 'Регистрация' ? (
           <p className="authorization__footer">
             Уже зарегистрированы?
