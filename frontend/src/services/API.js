@@ -8,13 +8,9 @@ export default class API {
     };
   }
   async _request(path = '', options) {
-    try {
-      const result = await fetch(`${this._baseUrl}${path}`, options);
-      const data = await this._getResult(result);
-      return data;
-    } catch (error) {
-      throw error;
-    }
+    const result = await fetch(`${this._baseUrl}${path}`, options);
+    const data = await this._getResult(result);
+    return data;
   }
   async _getResult(result) {
     if (result.ok) {

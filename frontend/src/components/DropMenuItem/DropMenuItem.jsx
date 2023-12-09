@@ -1,8 +1,9 @@
-function DropMenuItem({ onClick, text = 'Тип', type, place = null }) {
+function DropMenuItem({ onClick, text = 'Тип', type, place = null, name }) {
   return (
     <li
       type={type}
       id={text}
+      name={name}
       onClick={onClick}
       className={`dropdown__item dropdown__item_place_${place}`}
     >

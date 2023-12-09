@@ -16,10 +16,19 @@ class AuthApi extends API {
     return this._request('/auth/token/login', {
       method: 'POST',
       headers: this._headers,
-      credentials: 'include',
       body: JSON.stringify({
         password,
         email,
+      }),
+    });
+  }
+  checkToken({ uid, token }) {
+    return this._request('/users/activation/', {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        uid,
+        token,
       }),
     });
   }

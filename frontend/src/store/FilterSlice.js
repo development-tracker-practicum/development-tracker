@@ -28,7 +28,7 @@ const filterSlice = createSlice({
       const defaultKeys = Object.values(initialState.secondaryFilter);
       const currentFilters = Object.values(state.secondaryFilter);
       const countFilter = currentFilters.filter(
-        (key) => !defaultKeys.includes(key),
+        key => !defaultKeys.includes(key),
       );
       state.countFilter = countFilter.length;
     },

@@ -14,8 +14,12 @@ import closeIcon from '../../images/close_mini.svg';
 import './FilterCourses.sass';
 import useFilter from '../../hooks/useFilter';
 import { TYPE, LEVEL, DURATION, PRICE } from '../../constants/filterConstants';
+import {
+  setFiltredListPrice,
+  setFiltredListDuration,
+} from '../../store/recommendationListSlice';
 function FilterCourses({ onClose, isOpen = false }) {
-  const filter = useSelector((state) => state.filterCourses);
+  const filter = useSelector(state => state.filterCourses);
   const dispatch = useDispatch();
   const { values, openedMenus, changeValue, openTargetMenu } = useFilter({
     type: TYPE,
@@ -26,6 +30,7 @@ function FilterCourses({ onClose, isOpen = false }) {
   function handleClick() {
     dispatch(setFilter(values));
     dispatch(setFilterCounter());
+    dispatch(setFiltredListDuration(values.duration));
     onClose();
   }
 

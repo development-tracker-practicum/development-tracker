@@ -7,14 +7,12 @@ import {
   useNavigate,
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { ProtectedRoute } from '../../services/PotectedRouter';
 import { Authorization } from '../../pages/Authorization/Authorization';
 import { Diary } from '../../pages/Diary/Diary';
-import { Metrika } from '../../pages/Metrika/Metrika';
 import { LearningTrack } from '../../pages/LearningTrack/LearningTrack';
 import './App.css';
 import { useDispatch } from 'react-redux';
-import { loginUser, logout, setUser } from '../../store/userSlice';
+import { loginUser, logout } from '../../store/userSlice';
 import { Desk } from '../../pages/Desk/Desk';
 import { Profile } from '../../pages/Profile/Profile';
 import { Recommendations } from '../../pages/Reccommendations/Recommendations';
@@ -22,7 +20,7 @@ import { Recommendations } from '../../pages/Reccommendations/Recommendations';
 export const activePeaceContext = createContext(undefined);
 
 function App() {
-  const user = useSelector((state) => state.user);
+  const user = useSelector(state => state.user);
   const [activePeace, setActivePeace] = useState('');
   function resetPeaces() {
     setActivePeace('');
@@ -36,17 +34,15 @@ function App() {
     if (isLogged === 'true') {
       console.log('working');
       dispatch(loginUser());
-      navigate(location.pathname, { replace: true });
+      //   navigate(location.pathname, { replace: true });
     } else {
       dispatch(logout());
     }
   }
-  useEffect(() => {
-    console.log(user.isLogged);
-  }, [user.isLogged]);
+
   useEffect(() => checkLogin(), []);
   function handlePeace(color) {
-    setActivePeace((previous) => (previous === color ? '' : color));
+    setActivePeace(previous => (previous === color ? '' : color));
   }
 
   return (
@@ -58,31 +54,23 @@ function App() {
           <Route
             path="/signup"
             element={
-              <ProtectedRoute
-                isLogged={!user.isLogged}
-                submitText="Регистрация"
-                path="/signup"
-                element={Authorization}
-              />
+              !user.isLogged ? (
+                <Authorization submitText="Регистрация" path="/signup" />
+              ) : (
+                <Navigate to="/diary/desk" />
+              )
             }
           />
           <Route
             path="/signin"
-            element={
-              <ProtectedRoute
-                isLogged={!user.isLogged}
-                path="/signin"
-                submitText="Войти"
-                element={Authorization}
-              />
-            }
+            element={<Authorization path="/signin" submitText="Войти" />}
           />
           <Route path="/diary" element={<Diary />} />
           <Route path="/diary/desk" element={<Desk />} />
           <Route path="/track" element={<LearningTrack />} />
           <Route path="/track/profile" element={<Profile />} />
           <Route path="/track/recommendations" element={<Recommendations />} />
-          <Route path="*" element={<Navigate to="/diary" replace />} />
+          <Route path="/*" element={<Navigate to="/diary/desk" replace />} />
         </Routes>
       </div>
     </activePeaceContext.Provider>

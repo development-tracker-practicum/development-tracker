@@ -27,8 +27,9 @@ function useFilter(initialValues) {
     setOpenedMenus(initialStateOpenedMenus);
   }
   function changeValue(e) {
-    const { type, id } = e.currentTarget;
-    setValues((prev) => ({ ...prev, [type]: id }));
+    const { type, id, name } = e.currentTarget;
+    console.log(name);
+    setValues(prev => ({ ...prev, [type]: id }));
     closeAllMenus();
   }
   return { values, openedMenus, changeValue, openTargetMenu, closeAllMenus };

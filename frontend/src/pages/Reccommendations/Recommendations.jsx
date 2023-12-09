@@ -7,10 +7,11 @@ import { Button } from '../../components/Button/Button';
 import { CoursesList } from '../../components/CoursesList/CoursesList';
 import { Header } from '../../components/Header/Header';
 import { SidePanel } from '../../components/SidePanel/SidePanel';
+import { recommendationList } from '../../constants/recomendationsConstants';
 import './Recommendations.sass';
 function Recommendations(props) {
-  const initialCards = useSelector((state) => state.courses.coursesList);
-  const filterCount = useSelector((state) => state.filterCourses.countFilter);
+  const initialCards = useSelector(state => state.courses.coursesList);
+  const filterCount = useSelector(state => state.filterCourses.countFilter);
   const [recommendFilter, setReccomendFilter] = useState({
     direction: 'Направление',
   });
@@ -27,7 +28,7 @@ function Recommendations(props) {
   }
 
   function handleFilter(event) {
-    setReccomendFilter((previous) => ({
+    setReccomendFilter(previous => ({
       ...previous,
       [event.currentTarget.type]: event.currentTarget.id,
     }));
@@ -70,7 +71,7 @@ function Recommendations(props) {
             </Button>
           </div>
 
-          <CoursesList coursesList={initialCards} />
+          <CoursesList coursesList={recommendationList} />
         </section>
         <div className="filter-wrapper">
           <FilterCourses onClose={handleClose} isOpen={isOpenFilter} />
