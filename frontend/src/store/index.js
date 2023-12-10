@@ -3,7 +3,7 @@ import filterCoursesSlice from './FilterSlice';
 // import coursesSlice from './coursesSlice';
 import userSlice from './userSlice';
 // import changeTargetSlice from './changeTargetSlice';
-import TrackerSlice from './TrackerSlice';
+import TrackerSlice from './trackerSlice';
 import recommendationListSlice from './recommendationListSlice';
 const store = configureStore({
   reducer: {

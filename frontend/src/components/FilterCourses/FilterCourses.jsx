@@ -9,8 +9,8 @@ import { DropDownMenuDifficult } from '../DropDownMenuDifficult/DropDownMenuDiff
 import { DropDownMenuDuration } from '../DropDownMenuDuration/DropDownMenuDuration';
 import { DropDownMenuType } from '../DropDownMenuType/DropDownMenuType';
 import { Button } from '../Button/Button';
-import deleteIcon from '../../images/delete.svg';
-import closeIcon from '../../images/close_mini.svg';
+import deleteIcon from '../../Images/delete.svg';
+import closeIcon from '../../Images/close_mini.svg';
 import './FilterCourses.sass';
 import useFilter from '../../hooks/useFilter';
 import { TYPE, LEVEL, DURATION, PRICE } from '../../constants/filterConstants';
