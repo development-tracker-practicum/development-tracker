@@ -7,12 +7,15 @@ function Button({
   onClick,
   modification = undefined,
   children,
+  isDisabled,
 }) {
   return (
     <button
       // eslint-disable-next-line react/button-has-type
       type={type}
-      className={`button button_place_${place} button_${modification}`}
+      className={`button button_place_${place} button_${modification} ${
+        isDisabled && 'button_disabled'
+      }`}
       onClick={onClick}
     >
       {textButton}

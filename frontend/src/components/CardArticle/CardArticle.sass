@@ -1,0 +1,56 @@
+.card-article
+    width: 286px
+    padding: 16px 16px 24px 16px
+    background-color: #fff
+    border-radius: 16px
+    box-shadow: 0px 0px 20px -2px rgba(56, 59, 128, 0.25)
+    font-family: YS Text
+    color: #1a1b22
+    box-sizing: border-box
+    &__container
+        display: flex
+        align-items: center
+        justify-content: center
+        position: relative
+        margin: 0 0 16px
+    &__btn
+        position: absolute
+        top: 0
+        right: 0
+    &__title
+        font-size: 14px
+        font-weight: 500
+        line-height: 20px
+        margin: 0 0 4px 0
+
+    &__description
+        font-size: 13px
+        line-height: 16px
+        margin: 0 0 16px 0
+        min-height: 32px
+
+    &__footer
+        display: flex
+        align-items: center
+        justify-content: space-between
+
+    &__name
+        color: #797981
+        font-size: 14px
+        line-height: 20px
+        position: relative
+        padding: 0 0 0 28px
+
+    &__name::before
+        content: ''
+        background: url(../../img/user.svg) no-repeat center
+        position: absolute
+        top: 0
+        left: 0
+        width: 20px
+        height: 20px
+
+    &__timer
+        font-size: 14px
+        line-height: 20px
+        color: #797981

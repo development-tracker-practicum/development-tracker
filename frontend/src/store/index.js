@@ -1,18 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit';
-import filterCoursesSlice from './FilterSlice';
-// import coursesSlice from './coursesSlice';
+import filterCoursesSlice from './filterSlice';
+import coursesSlice from './coursesSlice';
 import userSlice from './userSlice';
 // import changeTargetSlice from './changeTargetSlice';
 import TrackerSlice from './trackerSlice';
 import recommendationListSlice from './recommendationListSlice';
+import statisticsSlice from './statisticsSlice';
+import diagrammDirectionSlice from './diagrammDirectionSlice';
 const store = configureStore({
   reducer: {
     filterCourses: filterCoursesSlice,
-    // courses: coursesSlice,
+    courses: coursesSlice,
     user: userSlice,
-    // changeTarget: changeTargetSlice,
-    tracker: TrackerSlice,
     recommendations: recommendationListSlice,
+    statistics: statisticsSlice,
+    diagramm: diagrammDirectionSlice,
   },
 });
 

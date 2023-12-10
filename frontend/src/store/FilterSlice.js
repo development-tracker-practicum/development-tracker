@@ -34,8 +34,8 @@ const filterSlice = createSlice({
     },
     resetFilters(state) {
       state.openedMenus = initialState.openedMenus;
-      state.filtredProps.secondaryFilter =
-        initialState.secondaryFilter.filtredProps;
+      state.secondaryFilter = initialState.secondaryFilter;
+      state.countFilter = 0;
     },
     setFilter(state, action) {
       const newFilter = action.payload;

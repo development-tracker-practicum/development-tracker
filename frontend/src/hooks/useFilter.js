@@ -23,6 +23,9 @@ function useFilter(initialValues) {
     );
     setOpenedMenus(newState);
   }
+  function resetValues() {
+    setValues(initialValues);
+  }
   function closeAllMenus() {
     setOpenedMenus(initialStateOpenedMenus);
   }
@@ -32,7 +35,14 @@ function useFilter(initialValues) {
     setValues(prev => ({ ...prev, [type]: id }));
     closeAllMenus();
   }
-  return { values, openedMenus, changeValue, openTargetMenu, closeAllMenus };
+  return {
+    values,
+    openedMenus,
+    changeValue,
+    openTargetMenu,
+    closeAllMenus,
+    resetValues,
+  };
 }
 
 export default useFilter;

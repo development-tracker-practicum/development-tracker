@@ -1,16 +1,13 @@
-import { useContext } from 'react';
-import { activePeaceContext } from '../../App/App';
-
-function Purple({ radius, onClick, level = 'middle' }) {
-  const { activePeace } = useContext(activePeaceContext);
-  const isActive = activePeace === 'purple';
-  const strokeColor = isActive ? '#AC40D2' : '#fff';
-
-  function handleClick(event) {
-    event.stopPropagation();
-    // console.log(event.target);
-    onClick('purple');
+import { setActivePeace } from '../../../store/diagrammDirectionSlice';
+import { useDispatch, useSelector } from 'react-redux';
+function Purple({ radius, level = 'middle' }) {
+  const { activePeaceDirection } = useSelector(state => state.diagramm);
+  const dispatch = useDispatch();
+  function handleClick() {
+    dispatch(setActivePeace('purple'));
   }
+  const isActive = activePeaceDirection === 'purple';
+  const strokeColor = isActive ? '#AC40D2' : '#fff';
 
   return (
     <>

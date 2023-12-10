@@ -5,6 +5,9 @@ class TrackerApi extends API {
     return this._request('/', {
       method: 'GET',
       headers: this._headers,
+      body: JSON.stringify({
+        token: '',
+      }),
     });
   }
   editProfessionAndLevel(userID) {

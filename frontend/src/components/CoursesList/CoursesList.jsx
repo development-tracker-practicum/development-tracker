@@ -1,5 +1,5 @@
 import './CoursesList.sass';
-import { ModuleCard } from '../ModuleCard/ModuleCard';
+import { ModuleCard } from '../CourseCard/CourseCard';
 function CoursesList({ coursesList }) {
   return (
     <ul className="courses-list">

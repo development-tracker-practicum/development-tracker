@@ -10,116 +10,54 @@ import './Peace/Peace.sass';
 import { LightBlue } from './Peace/LightBlue';
 
 function DiagramIllustrationForJunior({ statistics }) {
-  const { handlePeace, activePeace, resetPeaces } =
-    useContext(activePeaceContext);
-  const bluePercent = parseInt(statistics.blue.percent);
-  const lightbluePercent = parseInt(statistics.lightblue.percent);
-  const grayPercent = parseInt(statistics.gray.percent);
-  const yellowPercent = parseInt(statistics.yellow.percent);
-  const greenPercent = parseInt(statistics.green.percent);
-  const redPercent = parseInt(statistics.red.percent);
-  useEffect(() => {
-    resetPeaces();
-  }, []);
+  const bluePercent = parseInt(statistics?.blue?.percent);
+  const lightbluePercent = parseInt(statistics?.lightblue?.percent);
+  const grayPercent = parseInt(statistics?.gray?.percent);
+  const yellowPercent = parseInt(statistics?.yellow?.percent);
+  const greenPercent = parseInt(statistics?.green?.percent);
+  const redPercent = parseInt(statistics?.red?.percent);
+
   return (
     <Circle radius="first">
-      {bluePercent === 100 && (
-        <Blue onClick={handlePeace} radius="first" level="junior" />
-      )}
-      {grayPercent === 100 && (
-        <Gray onClick={handlePeace} radius="first" level="junior" />
-      )}
-      {redPercent === 100 && (
-        <Red onClick={handlePeace} radius="first" level="junior" />
-      )}
-      {yellowPercent === 100 && (
-        <Yellow onClick={handlePeace} radius="first" level="junior" />
-      )}
-      {greenPercent === 100 && (
-        <Green onClick={handlePeace} radius="first" level="junior" />
-      )}
-      {lightbluePercent === 100 && (
-        <LightBlue onClick={handlePeace} radius="first" level="junior" />
-      )}
+      {bluePercent === 100 && <Blue radius="first" level="junior" />}
+      {grayPercent === 100 && <Gray radius="first" level="junior" />}
+      {redPercent === 100 && <Red radius="first" level="junior" />}
+      {yellowPercent === 100 && <Yellow radius="first" level="junior" />}
+      {greenPercent === 100 && <Green radius="first" level="junior" />}
+      {lightbluePercent === 100 && <LightBlue radius="first" level="junior" />}
       <Circle radius="second">
-        {bluePercent >= 80 && (
-          <Blue onClick={handlePeace} radius="second" level="junior" />
-        )}
-        {grayPercent >= 80 && (
-          <Gray onClick={handlePeace} radius="second" level="junior" />
-        )}
-        {redPercent >= 80 && (
-          <Red onClick={handlePeace} radius="second" level="junior" />
-        )}
-        {yellowPercent >= 80 && (
-          <Yellow onClick={handlePeace} radius="second" level="junior" />
-        )}
-        {greenPercent >= 80 && (
-          <Green onClick={handlePeace} radius="second" level="junior" />
-        )}
-        {lightbluePercent >= 80 && (
-          <LightBlue onClick={handlePeace} radius="second" level="junior" />
-        )}
+        {bluePercent >= 80 && <Blue radius="second" level="junior" />}
+        {grayPercent >= 80 && <Gray radius="second" level="junior" />}
+        {redPercent >= 80 && <Red radius="second" level="junior" />}
+        {yellowPercent >= 80 && <Yellow radius="second" level="junior" />}
+        {greenPercent >= 80 && <Green radius="second" level="junior" />}
+        {lightbluePercent >= 80 && <LightBlue radius="second" level="junior" />}
         <Circle radius="third">
-          {bluePercent >= 60 && (
-            <Blue onClick={handlePeace} radius="third" level="junior" />
-          )}
-          {grayPercent >= 60 && (
-            <Gray onClick={handlePeace} radius="third" level="junior" />
-          )}
-          {redPercent >= 60 && (
-            <Red onClick={handlePeace} radius="third" level="junior" />
-          )}
-          {yellowPercent >= 60 && (
-            <Yellow onClick={handlePeace} radius="third" level="junior" />
-          )}
-          {greenPercent >= 60 && (
-            <Green onClick={handlePeace} radius="third" level="junior" />
-          )}
+          {bluePercent >= 60 && <Blue radius="third" level="junior" />}
+          {grayPercent >= 60 && <Gray radius="third" level="junior" />}
+          {redPercent >= 60 && <Red radius="third" level="junior" />}
+          {yellowPercent >= 60 && <Yellow radius="third" level="junior" />}
+          {greenPercent >= 60 && <Green radius="third" level="junior" />}
           {lightbluePercent >= 60 && (
-            <LightBlue onClick={handlePeace} radius="third" level="junior" />
+            <LightBlue radius="third" level="junior" />
           )}
           <Circle radius="fourth">
-            {bluePercent >= 40 && (
-              <Blue onClick={handlePeace} radius="fourth" level="junior" />
-            )}
-            {grayPercent >= 40 && (
-              <Gray onClick={handlePeace} radius="fourth" level="junior" />
-            )}
-            {redPercent >= 40 && (
-              <Red onClick={handlePeace} radius="fourth" level="junior" />
-            )}
-            {yellowPercent >= 40 && (
-              <Yellow onClick={handlePeace} radius="fourth" level="junior" />
-            )}
-            {greenPercent >= 40 && (
-              <Green onClick={handlePeace} radius="fourth" level="junior" />
-            )}
+            {bluePercent >= 40 && <Blue radius="fourth" level="junior" />}
+            {grayPercent >= 40 && <Gray radius="fourth" level="junior" />}
+            {redPercent >= 40 && <Red radius="fourth" level="junior" />}
+            {yellowPercent >= 40 && <Yellow radius="fourth" level="junior" />}
+            {greenPercent >= 40 && <Green radius="fourth" level="junior" />}
             {lightbluePercent >= 40 && (
-              <LightBlue onClick={handlePeace} radius="fourth" level="junior" />
+              <LightBlue radius="fourth" level="junior" />
             )}
-            <Circle onClick={handlePeace} radius="fifth">
-              {bluePercent >= 20 && (
-                <Blue onClick={handlePeace} radius="fifth" level="junior" />
-              )}
-              {grayPercent >= 20 && (
-                <Gray onClick={handlePeace} radius="fifth" level="junior" />
-              )}
-              {redPercent >= 20 && (
-                <Red onClick={handlePeace} radius="fifth" level="junior" />
-              )}
-              {yellowPercent >= 20 && (
-                <Yellow onClick={handlePeace} radius="fifth" level="junior" />
-              )}
-              {greenPercent >= 20 && (
-                <Green onClick={handlePeace} radius="fifth" level="junior" />
-              )}
+            <Circle radius="fifth">
+              {bluePercent >= 20 && <Blue radius="fifth" level="junior" />}
+              {grayPercent >= 20 && <Gray radius="fifth" level="junior" />}
+              {redPercent >= 20 && <Red radius="fifth" level="junior" />}
+              {yellowPercent >= 20 && <Yellow radius="fifth" level="junior" />}
+              {greenPercent >= 20 && <Green radius="fifth" level="junior" />}
               {lightbluePercent >= 20 && (
-                <LightBlue
-                  onClick={handlePeace}
-                  radius="fifth"
-                  level="junior"
-                />
+                <LightBlue radius="fifth" level="junior" />
               )}
             </Circle>
           </Circle>

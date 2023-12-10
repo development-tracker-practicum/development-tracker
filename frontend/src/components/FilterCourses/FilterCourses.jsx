@@ -1,9 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   setFilter,
   resetFilters,
   setFilterCounter,
-} from '../../store/FilterSlice';
+} from '../../store/filterSlice';
 import { DropDownMenuPrice } from '../DropDownMenuPrice/DropDownMenuPrice';
 import { DropDownMenuDifficult } from '../DropDownMenuDifficult/DropDownMenuDifficult';
 import { DropDownMenuDuration } from '../DropDownMenuDuration/DropDownMenuDuration';
@@ -14,30 +14,25 @@ import closeIcon from '../../Images/close_mini.svg';
 import './FilterCourses.sass';
 import useFilter from '../../hooks/useFilter';
 import { TYPE, LEVEL, DURATION, PRICE } from '../../constants/filterConstants';
-import {
-  setFiltredListPrice,
-  setFiltredListDuration,
-} from '../../store/recommendationListSlice';
 function FilterCourses({ onClose, isOpen = false }) {
-  const filter = useSelector(state => state.filterCourses);
   const dispatch = useDispatch();
-  const { values, openedMenus, changeValue, openTargetMenu } = useFilter({
-    type: TYPE,
-    level: LEVEL,
-    duration: DURATION,
-    price: PRICE,
-  });
+  const { values, openedMenus, changeValue, openTargetMenu, resetValues } =
+    useFilter({
+      type: TYPE,
+      level: LEVEL,
+      duration: DURATION,
+      price: PRICE,
+    });
   function handleClick() {
     dispatch(setFilter(values));
     dispatch(setFilterCounter());
-    dispatch(setFiltredListDuration(values.duration));
     onClose();
   }
 
   function handleReset() {
-    console.log(filter);
+    dispatch(resetFilters());
+    resetValues();
   }
-
   return (
     <aside className={`filter-courses ${isOpen && 'filter-courses_open'}`}>
       <button

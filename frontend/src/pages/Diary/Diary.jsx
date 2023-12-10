@@ -1,8 +1,14 @@
-import { Navigate, useLocation, useNavigate } from 'react-router';
+import { Header } from '../../components/Header/Header';
+import { SidePanel } from '../../components/SidePanel/SidePanel';
 
-
-function Diary() {
-  return <Navigate to="/diary/desk" replace />;
+function Diary({ children }) {
+  return (
+    <>
+      <Header />
+      <SidePanel />
+      {children}
+    </>
+  );
 }
 
 export { Diary };

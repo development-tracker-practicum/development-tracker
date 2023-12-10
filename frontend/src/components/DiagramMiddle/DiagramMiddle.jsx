@@ -1,19 +1,7 @@
-import { useContext, useEffect, useState } from 'react';
-import { activePeaceContext } from '../App/App';
 import { DiagramList } from '../DiagramList/DiagramList';
 import { DiagramItem } from '../DiagramItem/DiagramItem';
 import { Diagram } from '../Diagram/Diagram';
 import { DiagramIllustration } from '../DiagramIllustration/DiagramIllustration';
-import {
-  UXSEARCHING,
-  UIDESIGN,
-  TOOLS,
-  COMMUNICATION,
-  TOGROWINGUP,
-  PRODUCTORIENTATION,
-  PROACTION,
-  PEOPLEMANAGEMENT,
-} from '../../constants/directionConstants';
 import {
   BLUE,
   GRAY,
@@ -32,105 +20,74 @@ import DiagrammAboutPeopleManagement from '../DiagrammAbout/DiagrammAboutPeopleM
 import DiagrammAboutProAction from '../DiagrammAbout/DiagrammAboutProAction/DiagrammAboutProAction';
 import DiagrammAboutProductOrientation from '../DiagrammAbout/DiagrammAboutProductOrientation/DiagrammAboutProductOrientation';
 import DiagrammAboutToGrowingUp from '../DiagrammAbout/DiagrammAboutToGrowingUp/DiagrammAboutToGrowingUp';
+import { useSelector } from 'react-redux';
 function DiagramMiddle() {
-  const { activePeace } = useContext(activePeaceContext);
-  const [statistics, setStatistics] = useState({
-    yellow: {
-      name: UXSEARCHING,
-      percent: '80%',
-    },
-    green: {
-      name: UIDESIGN,
-      percent: '47%',
-    },
-    blue: {
-      name: TOOLS,
-      percent: '60%',
-    },
-    gray: {
-      name: COMMUNICATION,
-      percent: '42%',
-    },
-    lightblue: {
-      name: TOGROWINGUP,
-      percent: '61%',
-    },
-    red: {
-      name: PRODUCTORIENTATION,
-      percent: '80%',
-    },
-    purple: {
-      name: PROACTION,
-      percent: '86%',
-    },
-    pink: {
-      name: PEOPLEMANAGEMENT,
-      percent: '20%',
-    },
-  });
-  useEffect(() => {
-    console.log(activePeace);
-  }, [activePeace]);
+  const { middleStatistics } = useSelector(state => state.statistics);
+  const { activePeaceDirection } = useSelector(state => state.diagramm);
   return (
     <Diagram>
-      <DiagramIllustration statistics={statistics} />
+      <DiagramIllustration statistics={middleStatistics} />
       <DiagramList>
-        {activePeace ? (
+        {activePeaceDirection ? (
           <DiagramItem
-            value={statistics[activePeace]?.percent}
-            title={statistics[activePeace]?.name}
-            color={activePeace}
+            value={middleStatistics?.[activePeaceDirection]?.percent}
+            title={middleStatistics?.[activePeaceDirection]?.name}
+            color={activePeaceDirection}
             isActive={true}
           >
-            {activePeace === YELLOW && <DiagrammAboutUXSearching />}
-            {activePeace === GREEN && <DiagrammAboutUIDesigh />}
-            {activePeace === BLUE && <DiagrammAboutTools />}
-            {activePeace === GRAY && <DiagrammAboutCommunication />}
-            {activePeace === LIGHTBLUE && <DiagrammAboutToGrowingUp />}
-            {activePeace === RED && <DiagrammAboutProductOrientation />}
-            {activePeace === PURPLE && <DiagrammAboutPeopleManagement />}
-            {activePeace === PINK && <DiagrammAboutProAction />}
+            {activePeaceDirection === YELLOW && <DiagrammAboutUXSearching />}
+            {activePeaceDirection === GREEN && <DiagrammAboutUIDesigh />}
+            {activePeaceDirection === BLUE && <DiagrammAboutTools />}
+            {activePeaceDirection === GRAY && <DiagrammAboutCommunication />}
+            {activePeaceDirection === LIGHTBLUE && <DiagrammAboutToGrowingUp />}
+            {activePeaceDirection === RED && (
+              <DiagrammAboutProductOrientation />
+            )}
+            {activePeaceDirection === PURPLE && (
+              <DiagrammAboutPeopleManagement />
+            )}
+            {activePeaceDirection === PINK && <DiagrammAboutProAction />}
           </DiagramItem>
         ) : (
           <>
             <DiagramItem
-              value={statistics.yellow.percent}
-              title={UXSEARCHING}
+              value={middleStatistics?.yellow?.percent}
+              title={middleStatistics?.yellow?.name}
               color={YELLOW}
             />
             <DiagramItem
-              value={statistics.green.percent}
-              title={UIDESIGN}
+              value={middleStatistics?.green?.percent}
+              title={middleStatistics?.green?.name}
               color={GREEN}
             />
             <DiagramItem
-              value={statistics.blue.percent}
-              title={TOOLS}
+              value={middleStatistics?.blue?.percent}
+              title={middleStatistics?.blue?.name}
               color={BLUE}
             />
             <DiagramItem
-              value={statistics.red.percent}
-              title={PRODUCTORIENTATION}
+              value={middleStatistics?.red?.percent}
+              title={middleStatistics?.red?.name}
               color={RED}
             />
             <DiagramItem
-              value={statistics.gray.percent}
-              title={COMMUNICATION}
+              value={middleStatistics?.gray?.percent}
+              title={middleStatistics?.gray?.name}
               color={GRAY}
             />
             <DiagramItem
-              value={statistics.lightblue.percent}
-              title={TOGROWINGUP}
+              value={middleStatistics?.lightblue?.percent}
+              title={middleStatistics?.lightblue?.name}
               color={LIGHTBLUE}
             />
             <DiagramItem
-              value={statistics.pink.percent}
-              title={PROACTION}
+              value={middleStatistics?.pink?.percent}
+              title={middleStatistics?.pink?.name}
               color={PINK}
             />
             <DiagramItem
-              value={statistics.purple.percent}
-              title={PEOPLEMANAGEMENT}
+              value={middleStatistics?.purple?.percent}
+              title={middleStatistics?.purple?.name}
               color={PURPLE}
             />
           </>

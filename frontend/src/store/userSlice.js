@@ -3,7 +3,6 @@ import apiAuth from '../services/AuthApi';
 export const signup = createAsyncThunk(
   'user/signup',
   async ({ email, password, username }) => {
-    console.log(email, password, username);
     const response = await apiAuth.registration({ email, password, username });
     return response;
   },
@@ -29,8 +28,8 @@ const initialState = {
   name: 'Эльвира',
   isLogged: false,
   currentProfession: 'UI/UX дизайнер',
-  currentLevel: 'Легкий',
-  currentMatch: '92%',
+  currentLevel: 'Junior',
+  currentMatch: '95%',
   authToken: null,
   status: null,
   error: null,
@@ -41,6 +40,9 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   extraReducers: {
+    pickTarget: (state, action) => {
+      console.log(action.payload);
+    },
     [signin.pending]: (state, action) => {
       state.status = 'pending';
       state.fetch = 'signin';
@@ -75,6 +77,7 @@ const userSlice = createSlice({
       state.status = '';
     },
   },
+
   reducers: {
     resetStatus(state, action) {
       state.status = '';
@@ -87,12 +90,11 @@ const userSlice = createSlice({
       state.isLogged = false;
     },
     setUser(state, action) {
-      console.log(action.payload);
-      state.name = action.payload.name || state.name;
-      state.currentProfession =
-        action.payload.currentProfession || state.currentProfession;
-      state.currentLevel = action.payload.currentLevel || state.currentLevel;
-      state.currentMatch = action.payload.currentMatch || state.currentMatch;
+      const { level, profession, name, match } = action.payload;
+      state.name = name || state.name;
+      state.currentProfession = profession || state.currentProfession;
+      state.currentLevel = level || state.currentLevel;
+      state.currentMatch = match || state.currentMatch;
     },
   },
 });

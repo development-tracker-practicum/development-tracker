@@ -1,17 +1,14 @@
 import { PromoNotification } from '../../components/PromoNotification/PromoNotification';
 import { Board } from '../../components/Board/Board';
-import { Header } from '../../components/Header/Header';
-import { SidePanel } from '../../components/SidePanel/SidePanel';
+import { Diary } from '../Diary/Diary';
 function Desk() {
   return (
-    <>
-      <Header />
-      <SidePanel />
+    <Diary>
       <main className="content content_desk">
         <PromoNotification />
         <Board />
       </main>
-    </>
+    </Diary>
   );
 }
 export { Desk };
