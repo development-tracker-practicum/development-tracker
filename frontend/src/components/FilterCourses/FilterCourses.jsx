@@ -3,7 +3,7 @@ import {
   setFilter,
   resetFilters,
   setFilterCounter,
-} from '../../store/filterSlice';
+} from '../../store/FilterSlice';
 import { DropDownMenuPrice } from '../DropDownMenuPrice/DropDownMenuPrice';
 import { DropDownMenuDifficult } from '../DropDownMenuDifficult/DropDownMenuDifficult';
 import { DropDownMenuDuration } from '../DropDownMenuDuration/DropDownMenuDuration';

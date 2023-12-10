@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import filterCoursesSlice from './filterSlice';
+import filterCoursesSlice from './FilterSlice';
 import coursesSlice from './coursesSlice';
 import userSlice from './userSlice';
 import recommendationListSlice from './recommendationListSlice';
 import statisticsSlice from './statisticsSlice';
-import diagrammDirectionSlice from './diagrammDirectionSlice';
+import diagrammDirectionSlice from './DiagrammDirectionSlice';
 const store = configureStore({
   reducer: {
     filterCourses: filterCoursesSlice,
