@@ -4,7 +4,7 @@ import { articleList } from '../../constants/articleListConstants';
 import { Recommendations } from '../Reccommendations/Recommendations';
 import './Articles.sass';
 
-function Articles(props) {
+function Articles() {
   return (
     <Recommendations>
       <CardList>

@@ -1,14 +1,13 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser, logout } from '../../store/userSlice';
 import { AuthForm } from '../../components/AuthForm/AuthForm';
-import backgroundImage from '../../images/authorizationBackground.jpg';
+import backgroundImage from '../../Images/authorizationBackground.jpg';
 import './Authorization.sass';
-import { signup, signin, checkToken, resetStatus } from '../../store/userSlice';
+import { signup, signin, resetStatus } from '../../store/userSlice';
 import { useEffect } from 'react';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
 function Authorization({ submitText }) {
-  const { values, handleChangeInput, isValid, errorMessages, resetForm } =
+  const { values, handleChangeInput, isValid, resetForm } =
     useFormAndValidation({
       password: '',
       email: '',
@@ -32,14 +31,12 @@ function Authorization({ submitText }) {
       signup({
         email: values.email,
         password: values.password,
-        username: 'Сергей',
+        username: values.email,
       }),
     );
   }
   useEffect(() => {
-    console.log(user);
     if (user.status === 'fulfilled' && user.fetch === 'signin') {
-      console.log('fulfilled');
       localStorage.setItem('isLogged', 'true');
       navigate('/diary', { replace: true });
       resetForm();

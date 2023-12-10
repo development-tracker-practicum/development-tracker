@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { DropDownMenuProfession } from '../DropDownMenuProfession/DropDownMenuProfession';
 import { DropDownMenuDifficult } from '../DropDownMenuDifficult/DropDownMenuDifficult';
 import { Button } from '../Button/Button';
@@ -6,7 +6,6 @@ import './NotificationForm.sass';
 import useFilter from '../../hooks/useFilter';
 
 function NotificationForm({ onCancel, onSubmit }) {
-  const dispatch = useDispatch();
   const user = useSelector(state => state.user);
   const { values, openedMenus, changeValue, openTargetMenu } = useFilter({
     profession: user.currentProfession,

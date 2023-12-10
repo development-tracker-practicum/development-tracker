@@ -1,4 +1,4 @@
-import arrowImg from '../../images/arrow_down.svg';
+import arrowImg from '../../Images/arrow_down.svg';
 import './DropDownMenu.sass';
 
 function DropDownMenu({

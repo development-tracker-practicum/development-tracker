@@ -1,9 +1,14 @@
+import { Header } from '../../components/Header/Header';
+import { SidePanel } from '../../components/SidePanel/SidePanel';
 
-import { Navigate } from 'react-router-dom';
-
-
-function LearningTrack() {
-  return <Navigate to="profile" replace />;
+function LearningTrack({ children }) {
+  return (
+    <>
+      <Header />
+      <SidePanel />
+      {children}
+    </>
+  );
 }
 
 export { LearningTrack };
