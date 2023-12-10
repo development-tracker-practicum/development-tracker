@@ -2,8 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import filterCoursesSlice from './filterSlice';
 import coursesSlice from './coursesSlice';
 import userSlice from './userSlice';
-// import changeTargetSlice from './changeTargetSlice';
-import TrackerSlice from './trackerSlice';
 import recommendationListSlice from './recommendationListSlice';
 import statisticsSlice from './statisticsSlice';
 import diagrammDirectionSlice from './diagrammDirectionSlice';
