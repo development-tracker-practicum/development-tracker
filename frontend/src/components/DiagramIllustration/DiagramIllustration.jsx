@@ -12,8 +12,6 @@ import { Purple } from './Peace/Purple';
 import './Peace/Peace.sass';
 
 function DiagramIllustration({ statistics }) {
-  console.log(statistics);
-  const { handlePeace } = useContext(activePeaceContext);
   const bluePercent = parseInt(statistics?.blue?.percent);
   const lightbluePercent = parseInt(statistics?.lightblue?.percent);
   const grayPercent = parseInt(statistics?.gray?.percent);

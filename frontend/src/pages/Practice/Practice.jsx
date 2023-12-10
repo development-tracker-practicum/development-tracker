@@ -1,14 +1,13 @@
 import CardList from '../../components/CardList/CardList';
 import CardPractice from '../../components/CardPractice/CardPractice';
-import { Header } from '../../components/Header/Header';
-import { SidePanel } from '../../components/SidePanel/SidePanel';
+import FilterPractice from '../../components/FilterPractice/FilterPractice';
 import { practiceList } from '../../constants/practiseListConstants';
 import { Recommendations } from '../Reccommendations/Recommendations';
-import './Practice.sass';
 
-function Practice(props) {
+function Practice() {
   return (
     <Recommendations>
+      <FilterPractice />
       <CardList>
         {practiceList.map((card, index) => (
           <CardPractice key={index} practice={card} />

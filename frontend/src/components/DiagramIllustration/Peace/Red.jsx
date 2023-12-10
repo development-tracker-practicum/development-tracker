@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setActivePeace } from '../../../store/DiagrammDirectionSlice';
+import { setActivePeace } from '../../../store/diagrammDirectionSlice';
 
 function Red({ radius, level = 'middle' }) {
   const { activePeaceDirection } = useSelector(state => state.diagramm);

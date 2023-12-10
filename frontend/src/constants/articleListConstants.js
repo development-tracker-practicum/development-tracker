@@ -1,13 +1,9 @@
 import aaImage from '../Images/articlesImages/Aa.svg';
 import basicUXImage from '../Images/articlesImages/BasicUX.svg';
-import circleImage from '../Images/articlesImages/Circle.svg';
 import cjmImage from '../Images/articlesImages/CJM.svg';
-import compositionImage from '../Images/articlesImages/Composition.svg';
 import eyeImage from '../Images/articlesImages/eye.svg';
 import hexRGBImage from '../Images/articlesImages/HexRGB.svg';
 import phoneImage from '../Images/articlesImages/Phone.svg';
-import starsImage from '../Images/articlesImages/Stars.svg';
-import startImage from '../Images/articlesImages/Start.svg';
 import uxImage from '../Images/articlesImages/UX.svg';
 import textImage from '../Images/articlesImages/Text.svg';
 

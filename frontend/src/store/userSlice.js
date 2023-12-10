@@ -1,10 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import apiAuth from '../services/AuthApi';
-import { pickTarget } from './changeTargetSlice';
 export const signup = createAsyncThunk(
   'user/signup',
   async ({ email, password, username }) => {
-    console.log(email, password, username);
     const response = await apiAuth.registration({ email, password, username });
     return response;
   },

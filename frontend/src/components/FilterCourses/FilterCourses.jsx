@@ -1,25 +1,20 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   setFilter,
   resetFilters,
   setFilterCounter,
-} from '../../store/FilterSlice';
+} from '../../store/filterSlice';
 import { DropDownMenuPrice } from '../DropDownMenuPrice/DropDownMenuPrice';
 import { DropDownMenuDifficult } from '../DropDownMenuDifficult/DropDownMenuDifficult';
 import { DropDownMenuDuration } from '../DropDownMenuDuration/DropDownMenuDuration';
 import { DropDownMenuType } from '../DropDownMenuType/DropDownMenuType';
 import { Button } from '../Button/Button';
-import deleteIcon from '../../images/delete.svg';
-import closeIcon from '../../images/close_mini.svg';
+import deleteIcon from '../../Images/delete.svg';
+import closeIcon from '../../Images/close_mini.svg';
 import './FilterCourses.sass';
 import useFilter from '../../hooks/useFilter';
 import { TYPE, LEVEL, DURATION, PRICE } from '../../constants/filterConstants';
-import {
-  setFiltredListPrice,
-  setFiltredListDuration,
-} from '../../store/recommendationListSlice';
 function FilterCourses({ onClose, isOpen = false }) {
-  const filter = useSelector(state => state.filterCourses);
   const dispatch = useDispatch();
   const { values, openedMenus, changeValue, openTargetMenu, resetValues } =
     useFilter({
@@ -31,7 +26,6 @@ function FilterCourses({ onClose, isOpen = false }) {
   function handleClick() {
     dispatch(setFilter(values));
     dispatch(setFilterCounter());
-    dispatch(setFiltredListDuration(values.duration));
     onClose();
   }
 

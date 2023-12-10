@@ -10,17 +10,13 @@ import './Peace/Peace.sass';
 import { LightBlue } from './Peace/LightBlue';
 
 function DiagramIllustrationForJunior({ statistics }) {
-  const { handlePeace, activePeace, resetPeaces } =
-    useContext(activePeaceContext);
   const bluePercent = parseInt(statistics?.blue?.percent);
   const lightbluePercent = parseInt(statistics?.lightblue?.percent);
   const grayPercent = parseInt(statistics?.gray?.percent);
   const yellowPercent = parseInt(statistics?.yellow?.percent);
   const greenPercent = parseInt(statistics?.green?.percent);
   const redPercent = parseInt(statistics?.red?.percent);
-  useEffect(() => {
-    resetPeaces();
-  }, []);
+
   return (
     <Circle radius="first">
       {bluePercent === 100 && <Blue radius="first" level="junior" />}

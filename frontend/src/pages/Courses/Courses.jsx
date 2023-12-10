@@ -1,25 +1,23 @@
 import React from 'react';
 import './Courses.sass';
 import { FilterCourses } from '../../components/FilterCourses/FilterCourses';
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { TabMenu } from '../../components/TabMenu/TabMenu';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import { DropDownMenuDirection } from '../../components/DropDownMenuDirection/DropDownMenuDirection';
 import { Button } from '../../components/Button/Button';
 import { recommendationList } from '../../constants/recomendationsConstants';
 import { Recommendations } from '../Reccommendations/Recommendations';
 import CardList from '../../components/CardList/CardList';
 import { CourseCard } from '../../components/CourseCard/CourseCard';
-function Courses(props) {
-  const initialCards = useSelector(state => state.courses.coursesList);
+function Courses() {
   const filterCount = useSelector(state => state.filterCourses.countFilter);
   const { activePeaceDirection } = useSelector(state => state.diagramm);
   const { middleStatistics } = useSelector(state => state.statistics);
   const [recommendFilter, setReccomendFilter] = useState({
     direction: middleStatistics?.[activePeaceDirection]?.name || 'Направление',
   });
-  const dispatch = useDispatch();
-  useEffect(() => console.log(middleStatistics?.[activePeaceDirection]), []);
+
   const [isOpenFilter, setIsOpenFilter] = useState(false);
 
   function handleOpenFilter() {

@@ -1,16 +1,11 @@
-import { Navigate } from 'react-router-dom';
-import { Header } from '../../components/Header/Header';
-import { SidePanel } from '../../components/SidePanel/SidePanel';
-
+import { LearningTrack } from '../LearningTrack/LearningTrack';
 import './Recommendations.sass';
 import { TabMenu } from '../../components/TabMenu/TabMenu';
 import { useSelector } from 'react-redux';
 function Recommendations({ children }) {
   const user = useSelector(state => state.user);
   return (
-    <>
-      <Header />
-      <SidePanel />
+    <LearningTrack>
       <main className="content content_recommendations">
         <section className="recommendations">
           <div className="recommendations__title-zone">
@@ -28,7 +23,7 @@ function Recommendations({ children }) {
           {children}
         </section>
       </main>
-    </>
+    </LearningTrack>
   );
 }
 

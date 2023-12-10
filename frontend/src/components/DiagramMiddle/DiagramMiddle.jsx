@@ -1,5 +1,3 @@
-import { useContext, useEffect, useState } from 'react';
-import { activePeaceContext } from '../App/App';
 import { DiagramList } from '../DiagramList/DiagramList';
 import { DiagramItem } from '../DiagramItem/DiagramItem';
 import { Diagram } from '../Diagram/Diagram';
@@ -24,27 +22,31 @@ import DiagrammAboutProductOrientation from '../DiagrammAbout/DiagrammAboutProdu
 import DiagrammAboutToGrowingUp from '../DiagrammAbout/DiagrammAboutToGrowingUp/DiagrammAboutToGrowingUp';
 import { useSelector } from 'react-redux';
 function DiagramMiddle() {
-  const { activePeace } = useContext(activePeaceContext);
   const { middleStatistics } = useSelector(state => state.statistics);
+  const { activePeaceDirection } = useSelector(state => state.diagramm);
   return (
     <Diagram>
       <DiagramIllustration statistics={middleStatistics} />
       <DiagramList>
-        {activePeace ? (
+        {activePeaceDirection ? (
           <DiagramItem
-            value={middleStatistics?.[activePeace]?.percent}
-            title={middleStatistics?.[activePeace]?.name}
-            color={activePeace}
+            value={middleStatistics?.[activePeaceDirection]?.percent}
+            title={middleStatistics?.[activePeaceDirection]?.name}
+            color={activePeaceDirection}
             isActive={true}
           >
-            {activePeace === YELLOW && <DiagrammAboutUXSearching />}
-            {activePeace === GREEN && <DiagrammAboutUIDesigh />}
-            {activePeace === BLUE && <DiagrammAboutTools />}
-            {activePeace === GRAY && <DiagrammAboutCommunication />}
-            {activePeace === LIGHTBLUE && <DiagrammAboutToGrowingUp />}
-            {activePeace === RED && <DiagrammAboutProductOrientation />}
-            {activePeace === PURPLE && <DiagrammAboutPeopleManagement />}
-            {activePeace === PINK && <DiagrammAboutProAction />}
+            {activePeaceDirection === YELLOW && <DiagrammAboutUXSearching />}
+            {activePeaceDirection === GREEN && <DiagrammAboutUIDesigh />}
+            {activePeaceDirection === BLUE && <DiagrammAboutTools />}
+            {activePeaceDirection === GRAY && <DiagrammAboutCommunication />}
+            {activePeaceDirection === LIGHTBLUE && <DiagrammAboutToGrowingUp />}
+            {activePeaceDirection === RED && (
+              <DiagrammAboutProductOrientation />
+            )}
+            {activePeaceDirection === PURPLE && (
+              <DiagrammAboutPeopleManagement />
+            )}
+            {activePeaceDirection === PINK && <DiagrammAboutProAction />}
           </DiagramItem>
         ) : (
           <>

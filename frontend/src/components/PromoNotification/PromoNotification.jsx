@@ -5,7 +5,6 @@ import { setUser } from '../../store/userSlice';
 import { Button } from '../Button/Button';
 import { NotificationForm } from '../NotificationForm/NotificationForm';
 import './PromoNotification.sass';
-import { pickTarget } from '../../store/changeTargetSlice';
 
 function PromoNotification() {
   const location = useLocation();
@@ -22,7 +21,6 @@ function PromoNotification() {
     setIsEditMode(false);
   }
   function handleSubmit(info) {
-    dispatch(pickTarget(info));
     dispatch(setUser(info));
     setIsEditMode(false);
   }

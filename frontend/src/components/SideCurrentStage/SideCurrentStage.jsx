@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import arrowDown from '../../images/arrow_right.svg';
+import arrowDown from '../../Images/arrow_right.svg';
 import './SideCurrentStage.sass';
 
 function SideCurrentStage({ currentUser }) {

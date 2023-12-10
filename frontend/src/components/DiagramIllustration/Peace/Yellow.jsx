@@ -1,4 +1,4 @@
-import { setActivePeace } from '../../../store/DiagrammDirectionSlice';
+import { setActivePeace } from '../../../store/diagrammDirectionSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 function Yellow({ radius, level = 'middle' }) {
