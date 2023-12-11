@@ -37,7 +37,7 @@ docker compose exec backend python manage.py createsuperuser
 6. Соберите статику backend:
 ```
 docker compose exec backend python manage.py collectstatic
-sudo docker compose exec backend cp -r /app/static/. /static/
+docker compose exec backend cp -r /app/static/. /static/
 ```
 7. Перейдите на сайт:
 ```
