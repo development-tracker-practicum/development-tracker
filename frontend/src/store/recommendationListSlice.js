@@ -8,6 +8,9 @@ const initialState = {
     coursesList,
     practiceList,
     articleList,
+    coursesListForJunior: coursesList.filter(
+      card => card.price === 'Бесплатно',
+    ),
   },
   status: '',
   mode: 'initial',
