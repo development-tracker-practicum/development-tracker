@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import apiAuth from '../services/AuthApi';
+import userApi from '../services/UserApi';
 export const signup = createAsyncThunk(
   'user/signup',
   async ({ email, password, username }) => {
-    const response = await apiAuth.registration({ email, password, username });
+    const response = await userApi.registration({ email, password, username });
     return response;
   },
 );
@@ -18,14 +19,15 @@ export const signin = createAsyncThunk(
 export const checkToken = createAsyncThunk(
   'user/checkToken',
   async ({ uid, token }) => {
-    const response = await apiAuth.checkToken({ uid, token });
+    const response = await userApi.checkToken({ uid, token });
     return response;
   },
 );
 
 const initialState = {
   id: null,
-  name: 'Эльвира',
+  username: 'Эльвира',
+  email: '',
   isLogged: false,
   currentProfession: 'UI/UX дизайнер',
   currentLevel: 'Junior',
@@ -40,16 +42,12 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   extraReducers: {
-    pickTarget: (state, action) => {
-      console.log(action.payload);
-    },
     [signin.pending]: (state, action) => {
       state.status = 'pending';
       state.fetch = 'signin';
       state.error = '';
     },
     [signin.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.status = 'fulfilled';
       state.isLogged = true;
       state.authToken = action.payload.auth_token;
@@ -67,9 +65,10 @@ const userSlice = createSlice({
     },
     [signup.fulfilled]: (state, action) => {
       state.status = 'fulfilled';
-      setTimeout(() => {
-        state.status = '';
-      }, 500);
+      const { id, username, email } = action.payload;
+      state.id = id || state.id;
+      state.username = username || state.username;
+      state.email = email || state.email;
     },
     [signup.rejected]: (state, action) => {
       state.status = 'rejected';
@@ -90,7 +89,7 @@ const userSlice = createSlice({
       state.isLogged = false;
     },
     setUser(state, action) {
-      const { level, profession, name, match } = action.payload;
+      const { level, profession, name, match, id } = action.payload;
       state.name = name || state.name;
       state.currentProfession = profession || state.currentProfession;
       state.currentLevel = level || state.currentLevel;

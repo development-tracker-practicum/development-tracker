@@ -12,7 +12,7 @@ function SideCurrentStage({ currentUser }) {
           }}
           className="side-current-stage__avatar"
         />
-        <p className="side-current-stage__name">{currentUser.name}</p>
+        <p className="side-current-stage__name">{currentUser.username}</p>
       </div>
       <div className="side-current-stage__bottom-zone">
         <div className="side-current-stage__column">

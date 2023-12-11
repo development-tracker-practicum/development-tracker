@@ -3,10 +3,8 @@ import './Courses.sass';
 import { FilterCourses } from '../../components/FilterCourses/FilterCourses';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-
 import { DropDownMenuDirection } from '../../components/DropDownMenuDirection/DropDownMenuDirection';
 import { Button } from '../../components/Button/Button';
-import { recommendationList } from '../../constants/recomendationsConstants';
 import { Recommendations } from '../Reccommendations/Recommendations';
 import CardList from '../../components/CardList/CardList';
 import { CourseCard } from '../../components/CourseCard/CourseCard';
@@ -17,7 +15,7 @@ function Courses() {
   const [recommendFilter, setReccomendFilter] = useState({
     direction: middleStatistics?.[activePeaceDirection]?.name || 'Направление',
   });
-
+  const recommendations = useSelector(state => state.recommendations);
   const [isOpenFilter, setIsOpenFilter] = useState(false);
 
   function handleOpenFilter() {
@@ -54,7 +52,7 @@ function Courses() {
       </div>
       {/* <CoursesList coursesList={recommendationList} /> */}
       <CardList>
-        {recommendationList.map((card, index) => (
+        {recommendations.list.coursesList.map((card, index) => (
           <CourseCard key={index} course={card} />
         ))}
       </CardList>

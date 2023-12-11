@@ -5,15 +5,18 @@ import { setUser } from '../../store/userSlice';
 import { Button } from '../Button/Button';
 import { NotificationForm } from '../NotificationForm/NotificationForm';
 import './PromoNotification.sass';
-
+import closeIcon from '../../Images/closePromo.svg';
+import { changeTarget } from '../../store/targetSlice';
 function PromoNotification() {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isExpanded, setIsExpanded] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
+  const [isTargetChanged, setIsTargetChanged] = useState(false);
   const isItProfileLocation = location.pathname.includes('/profile');
   const user = useSelector(state => state.user);
+  const target = useSelector(state => state.target);
   function handleTargetButton() {
     setIsEditMode(true);
   }
@@ -21,24 +24,34 @@ function PromoNotification() {
     setIsEditMode(false);
   }
   function handleSubmit(info) {
+    dispatch(changeTarget(info.profession));
     dispatch(setUser(info));
     setIsEditMode(false);
+    setIsTargetChanged(true);
   }
-  const title = isEditMode
-    ? `Текущая профессия - ${user.currentProfession}`
-    : isItProfileLocation
-      ? 'Выбор карьерного трека'
-      : '      Мы добавили новую возможность - Трек развития';
+  const title = target.isTargetChanged
+    ? `Поставлена цель - ${user.currentProfession}`
+    : isEditMode
+      ? `Текущая профессия - ${user.currentProfession}`
+      : isItProfileLocation
+        ? 'Выбор карьерного трека'
+        : '      Мы добавили новую возможность - Трек развития';
   const startButton = !isItProfileLocation ? (
     <Button
       place="notification"
       textButton="Начать"
       onClick={() => navigate('/track/profile')}
     />
-  ) : (
+  ) : !target.isTargetChanged ? (
     <Button
       place="notification"
       textButton="Выбрать цель"
+      onClick={handleTargetButton}
+    />
+  ) : (
+    <Button
+      place="notification"
+      textButton="Изменить цель"
       onClick={handleTargetButton}
     />
   );
@@ -54,6 +67,16 @@ function PromoNotification() {
           <div className="promo-notification__lightning-icon" />
           <h2 className="promo-notification__header">{title}</h2>
           {isEditMode && (
+            <button
+              onClick={handleCancel}
+              type="button"
+              className="promo-notification__close"
+              style={{
+                backgroundImage: `url(${closeIcon})`,
+              }}
+            ></button>
+          )}
+          {(isEditMode || target.isTargetChanged) && (
             <>
               <p className="promo-notification__level">
                 Уровень -
@@ -73,20 +96,21 @@ function PromoNotification() {
         {isEditMode ? (
           <NotificationForm onCancel={handleCancel} onSubmit={handleSubmit} />
         ) : (
-          <>
-            {' '}
-            <p
-              className={`promo-notification__description${
-                isExpanded ? ' promo-notification__description_opened' : ''
-              }`}
-            >
-              Попробуй сейчас и получи индивидуальные рекомендации по развитию
-              карьеры
-              {isExpanded &&
-                ' Достаточно заполнить анкету, выбрать цель и начать прокачивать свои скиллы'}
-            </p>
-            {isExpanded && startButton}
-          </>
+          !target.isTargetChanged && (
+            <>
+              <p
+                className={`promo-notification__description${
+                  isExpanded ? ' promo-notification__description_opened' : ''
+                }`}
+              >
+                Попробуй сейчас и получи индивидуальные рекомендации по развитию
+                карьеры
+                {isExpanded &&
+                  ' Достаточно заполнить анкету, выбрать цель и начать прокачивать свои скиллы'}
+              </p>
+              {isExpanded && startButton}
+            </>
+          )
         )}
       </div>
       {!isEditMode && (

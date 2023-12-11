@@ -5,6 +5,7 @@ import userSlice from './userSlice';
 import recommendationListSlice from './recommendationListSlice';
 import statisticsSlice from './statisticsSlice';
 import diagrammDirectionSlice from './diagrammDirectionSlice';
+import targetSlice from './targetSlice';
 const store = configureStore({
   reducer: {
     filterCourses: filterCoursesSlice,
@@ -13,6 +14,7 @@ const store = configureStore({
     recommendations: recommendationListSlice,
     statistics: statisticsSlice,
     diagramm: diagrammDirectionSlice,
+    target: targetSlice,
   },
 });
 

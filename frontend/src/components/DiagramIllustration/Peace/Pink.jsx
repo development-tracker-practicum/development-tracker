@@ -8,7 +8,7 @@ function Pink({ radius, level = 'middle' }) {
   }
 
   const isActive = activePeaceDirection === 'pink';
-  const strokeColor = isActive ? '#FF40F8' : '#fff';
+  const strokeColor = isActive ? '#FF3EA6' : '#fff';
 
   return (
     <>
