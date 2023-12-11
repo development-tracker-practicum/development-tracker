@@ -12,8 +12,12 @@ const DiagrammDirectionSlice = createSlice({
       state.activePeaceDirection =
         action.payload === state.activePeaceDirection ? '' : action.payload;
     },
+    resetActivePeace(state) {
+      state.activePeaceDirection = '';
+    },
   },
 });
 
-export const { setActivePeace } = DiagrammDirectionSlice.actions;
+export const { setActivePeace, resetActivePeace } =
+  DiagrammDirectionSlice.actions;
 export default DiagrammDirectionSlice.reducer;

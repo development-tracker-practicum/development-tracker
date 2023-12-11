@@ -6,7 +6,7 @@ import plusImage from './../Images/coursesImages/svgReccom/Type=Plus, Hover=Fals
 import scopeImage from './../Images/coursesImages/svgReccom/Type=Scope, Hover=False.svg';
 import searchImage from './../Images/coursesImages/svgReccom/Type=Search, Hover=False.svg';
 import userImage from './../Images/coursesImages/svgReccom/Type=User, Hover=False.svg';
-export const recommendationList = [
+export const coursesList = [
   {
     profession: 'Дизайн',
     type: 'Модуль',

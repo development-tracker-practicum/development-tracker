@@ -1,6 +1,17 @@
 import API from './API';
 
 class ApiUser extends API {
+  registration({ password, email, username }) {
+    return this._request('/', {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        password,
+        email,
+        username,
+      }),
+    });
+  }
   validation() {
     return this._request('/activation/', {
       method: 'POST',
@@ -11,6 +22,16 @@ class ApiUser extends API {
     return this._request('/activate', {
       method: 'GET',
       headers: this._headers,
+    });
+  }
+  checkToken({ uid, token }) {
+    return this._request('/activation/', {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        uid,
+        token,
+      }),
     });
   }
 }

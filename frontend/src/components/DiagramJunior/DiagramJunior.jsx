@@ -17,10 +17,19 @@ import {
   RED,
   YELLOW,
 } from '../../constants/colorConstants';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { resetActivePeace } from '../../store/diagrammDirectionSlice';
+import { useDispatch, useSelector } from 'react-redux';
 function DiagramJunior() {
   const { juniorStatistics } = useSelector(state => state.statistics);
   const { activePeaceDirection } = useSelector(state => state.diagramm);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (activePeaceDirection) {
+      dispatch(resetActivePeace());
+    }
+  }, []);
   return (
     <Diagram>
       <DiagramIllustrationForJunior statistics={juniorStatistics} />

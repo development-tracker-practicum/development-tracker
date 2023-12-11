@@ -6,7 +6,7 @@
     padding: 16px
     border-radius: 12px
     background-color: #F5F5F5
-
+    position: relative
     &_style_background
         background-image: url('../../Images/promo-notification-background.svg')
         background-repeat: no-repeat
@@ -21,7 +21,17 @@
     &__header-wrapper
         display: flex
         align-items: center
-
+    &__close
+        all: unset
+        width: 13px
+        cursor: pointer
+        height: 13px
+        background-size: cover
+        background-position: center
+        background-repeat: no-repeat
+        position: absolute
+        top: 20px
+        right: 18px
     &__lightning-icon
         width: 24px
         height: 24px

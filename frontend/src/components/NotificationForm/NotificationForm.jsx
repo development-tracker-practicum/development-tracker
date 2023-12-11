@@ -25,7 +25,7 @@ function NotificationForm({ onCancel, onSubmit }) {
             onMenu={openTargetMenu}
             onClick={changeValue}
             isOpen={openedMenus.profession}
-            currentItem={user.currentProfession}
+            currentItem={values.profession}
           />
         </div>
         <div className="notification-form__label">

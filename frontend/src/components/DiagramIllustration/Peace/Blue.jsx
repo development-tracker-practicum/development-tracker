@@ -7,7 +7,7 @@ function Blue({ radius, level = 'middle' }) {
     dispatch(setActivePeace('blue'));
   }
   const isActive = activePeaceDirection === 'blue';
-  const strokeColor = isActive ? '#1E75FF' : '#fff';
+  const strokeColor = isActive ? '#2D77F5' : '#fff';
 
   return (
     <>

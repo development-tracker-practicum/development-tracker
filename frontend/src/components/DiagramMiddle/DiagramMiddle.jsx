@@ -20,10 +20,18 @@ import DiagrammAboutPeopleManagement from '../DiagrammAbout/DiagrammAboutPeopleM
 import DiagrammAboutProAction from '../DiagrammAbout/DiagrammAboutProAction/DiagrammAboutProAction';
 import DiagrammAboutProductOrientation from '../DiagrammAbout/DiagrammAboutProductOrientation/DiagrammAboutProductOrientation';
 import DiagrammAboutToGrowingUp from '../DiagrammAbout/DiagrammAboutToGrowingUp/DiagrammAboutToGrowingUp';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { resetActivePeace } from '../../store/diagrammDirectionSlice';
 function DiagramMiddle() {
   const { middleStatistics } = useSelector(state => state.statistics);
   const { activePeaceDirection } = useSelector(state => state.diagramm);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (activePeaceDirection) {
+      dispatch(resetActivePeace());
+    }
+  }, []);
   return (
     <Diagram>
       <DiagramIllustration statistics={middleStatistics} />

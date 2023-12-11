@@ -1,19 +1,9 @@
 import API from './API';
 
 class AuthApi extends API {
-  registration({ password, email, username }) {
-    return this._request('/users/', {
-      method: 'POST',
-      headers: this._headers,
-      body: JSON.stringify({
-        password,
-        email,
-        username,
-      }),
-    });
-  }
+
   authorization({ password, email }) {
-    return this._request('/auth/token/login', {
+    return this._request('/token/login', {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
@@ -22,19 +12,12 @@ class AuthApi extends API {
       }),
     });
   }
-  checkToken({ uid, token }) {
-    return this._request('/users/activation/', {
-      method: 'POST',
-      headers: this._headers,
-      body: JSON.stringify({
-        uid,
-        token,
-      }),
-    });
+  logout() {
+    return this._request('/token/logout');
   }
 }
 
 const apiAuth = new AuthApi({
-  baseUrl: 'http://localhost:8000/api/v1',
+  baseUrl: 'http://localhost:8000/api/v1/auth',
 });
 export default apiAuth;
