@@ -4,7 +4,7 @@ import coursesSlice from './coursesSlice';
 import userSlice from './userSlice';
 import recommendationListSlice from './recommendationListSlice';
 import statisticsSlice from './statisticsSlice';
-import diagrammDirectionSlice from './diagrammDirectionSlice';
+import diagrammDirectionSlice from './DiagrammDirectionSlice';
 import targetSlice from './targetSlice';
 const store = configureStore({
   reducer: {

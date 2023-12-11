@@ -18,7 +18,7 @@ import {
   YELLOW,
 } from '../../constants/colorConstants';
 import { useEffect } from 'react';
-import { resetActivePeace } from '../../store/diagrammDirectionSlice';
+import { resetActivePeace } from '../../store/DiagrammDirectionSlice';
 import { useDispatch, useSelector } from 'react-redux';
 function DiagramJunior() {
   const { juniorStatistics } = useSelector(state => state.statistics);

@@ -22,7 +22,7 @@ import DiagrammAboutProductOrientation from '../DiagrammAbout/DiagrammAboutProdu
 import DiagrammAboutToGrowingUp from '../DiagrammAbout/DiagrammAboutToGrowingUp/DiagrammAboutToGrowingUp';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { resetActivePeace } from '../../store/diagrammDirectionSlice';
+import { resetActivePeace } from '../../store/DiagrammDirectionSlice';
 function DiagramMiddle() {
   const { middleStatistics } = useSelector(state => state.statistics);
   const { activePeaceDirection } = useSelector(state => state.diagramm);
