@@ -12,7 +12,7 @@ function CurrentStatus() {
   const juniorPercent = Object.entries(statistics?.juniorStatistics);
   const [match, setMatch] = useState(0);
   useEffect(() => {
-    if (user?.currentLevel === 'Junior')
+    if (user.currentLevel === 'Junior')
       setMatch(
         parseInt(
           juniorPercent.reduce((acc, [color, { percent }]) => {
@@ -20,7 +20,7 @@ function CurrentStatus() {
           }, 0) / 6,
         ),
       );
-    else
+    if (user.currentlevel === 'Middle') {
       setMatch(
         parseInt(
           middlePercent.reduce((acc, [color, { percent }]) => {
@@ -28,7 +28,8 @@ function CurrentStatus() {
           }, 0) / 8,
         ),
       );
-  }, [statistics]);
+    }
+  }, [statistics, user.currentLevel]);
   function handleButton() {
     navigate('/track/recommendations/courses');
   }
@@ -48,7 +49,9 @@ function CurrentStatus() {
         </li>
         <li className="current-status__item">
           <p className="current-status__item-subtitle">Соответствие</p>
-          <h3 className="current-status__item-title">{match}%</h3>
+          <h3 className="current-status__item-title">
+            {user.currentLevel === 'Middle' ? '34%' : '95%'}
+          </h3>
         </li>
       </ul>
       <Button onClick={handleButton} place="content" textButton="Прокачаться" />

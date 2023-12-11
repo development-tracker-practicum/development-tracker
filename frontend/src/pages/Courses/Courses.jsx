@@ -15,6 +15,7 @@ function Courses() {
   const [recommendFilter, setReccomendFilter] = useState({
     direction: middleStatistics?.[activePeaceDirection]?.name || 'Направление',
   });
+  const user = useSelector(state => state.user);
   const recommendations = useSelector(state => state.recommendations);
   const [isOpenFilter, setIsOpenFilter] = useState(false);
 
@@ -50,11 +51,14 @@ function Courses() {
           )}
         </Button>
       </div>
-      {/* <CoursesList coursesList={recommendationList} /> */}
       <CardList>
-        {recommendations.list.coursesList.map((card, index) => (
-          <CourseCard key={index} course={card} />
-        ))}
+        {user.currentLevel === 'Junior'
+          ? recommendations.list.coursesListForJunior.map((card, index) => (
+              <CourseCard key={index} course={card} />
+            ))
+          : recommendations.list.coursesList.map((card, index) => (
+              <CourseCard key={index} course={card} />
+            ))}
       </CardList>
       <div className="filter-wrapper">
         <FilterCourses onClose={handleClose} isOpen={isOpenFilter} />
