@@ -12,6 +12,9 @@ function CurrentStatus() {
   const juniorPercent = Object.entries(statistics?.juniorStatistics);
   const [match, setMatch] = useState(0);
   useEffect(() => {
+    console.log(match);
+  }, []);
+  useEffect(() => {
     if (user.currentLevel === 'Junior')
       setMatch(
         parseInt(
