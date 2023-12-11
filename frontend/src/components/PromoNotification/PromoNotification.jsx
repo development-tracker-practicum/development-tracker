@@ -74,7 +74,6 @@ function PromoNotification() {
           <NotificationForm onCancel={handleCancel} onSubmit={handleSubmit} />
         ) : (
           <>
-            {' '}
             <p
               className={`promo-notification__description${
                 isExpanded ? ' promo-notification__description_opened' : ''
