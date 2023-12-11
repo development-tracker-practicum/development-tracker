@@ -87,7 +87,7 @@ function PromoNotification() {
               <p className="promo-notification__match">
                 Соответствие -
                 <span className="promo-notification__match-value">
-                  {` ${user.currentLevel === 'Middle' ? '34%' :}`}
+                  {` ${user.currentLevel === 'Middle' ? '34%' :'95'}`}
                 </span>
               </p>
             </>

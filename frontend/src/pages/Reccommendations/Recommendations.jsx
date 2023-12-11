@@ -16,7 +16,7 @@ function Recommendations({ children }) {
               {user.currentProfession}
             </h2>
             <h2 className="recommendations__title recommendations__title_percent">
-              {user.currentMatch}
+            {` ${user.currentLevel === 'Middle' ? '34%' :'95'}`}
             </h2>
           </div>
           <TabMenu />
