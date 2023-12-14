@@ -5,6 +5,9 @@
     display: flex
     justify-content: center
     align-items: center
+    animation: fade .3s forwards
+    visibility: hidden
+    opacity: 0
     &_radius
         &_first
             //z-index: 1
@@ -28,3 +31,7 @@
             z-index: 5
             width: 140px
             height: 140px
+@keyframes fade
+    100%
+        opacity: 1
+        visibility: visible

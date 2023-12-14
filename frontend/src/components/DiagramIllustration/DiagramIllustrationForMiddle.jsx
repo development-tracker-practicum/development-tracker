@@ -9,7 +9,7 @@ import { Blue } from './Peace/Blue';
 import { Purple } from './Peace/Purple';
 import './Peace/Peace.sass';
 
-function DiagramIllustration({ statistics }) {
+function DiagramIllustrationForMiddle({ statistics }) {
   const bluePercent = parseInt(statistics?.blue?.percent);
   const lightbluePercent = parseInt(statistics?.lightblue?.percent);
   const grayPercent = parseInt(statistics?.gray?.percent);
@@ -72,4 +72,4 @@ function DiagramIllustration({ statistics }) {
   );
 }
 
-export { DiagramIllustration };
+export { DiagramIllustrationForMiddle };
