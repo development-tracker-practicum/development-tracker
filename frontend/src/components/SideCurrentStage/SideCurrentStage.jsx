@@ -1,18 +1,20 @@
 import { Link } from 'react-router-dom';
 import arrowDown from '../../Images/arrow_right.svg';
 import './SideCurrentStage.sass';
+import { useSelector } from 'react-redux';
 
-function SideCurrentStage({ currentUser }) {
+function SideCurrentStage() {
+  const user = useSelector(state => state.user);
   return (
     <div className="side-current-stage">
       <div className="side-current-stage__top-zone">
         <div
           style={{
-            backgroundImage: `url(${currentUser.avatar})`,
+            backgroundImage: `url(${user.avatar})`,
           }}
           className="side-current-stage__avatar"
         />
-        <p className="side-current-stage__name">{currentUser.username}</p>
+        <p className="side-current-stage__name">{user.username}</p>
       </div>
       <div className="side-current-stage__bottom-zone">
         <div className="side-current-stage__column">
@@ -21,7 +23,7 @@ function SideCurrentStage({ currentUser }) {
             to="/track/recommendations"
             className="side-current-stage__link"
           >
-            {currentUser.stage}
+            Акселерация
           </Link>
         </div>
         <button

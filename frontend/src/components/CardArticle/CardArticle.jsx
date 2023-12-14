@@ -1,6 +1,6 @@
 import CardBtn from '../CardBtn/CardBtn';
 import './CardArticle.sass';
-
+import iconPerson from '../../Images/personIcon.svg';
 function CardArticle({ article }) {
   return (
     <article className="card-article">
@@ -19,7 +19,15 @@ function CardArticle({ article }) {
           : article.description}
       </p>
       <div className="card-article__footer">
-        <p className="card-article__name">{article.name}</p>
+        <p className="card-article__name">
+          <span
+            style={{
+              backgroundImage: `url(${iconPerson})`,
+            }}
+            className="card-article__icon"
+          />
+          {article.name}
+        </p>
         <p className="card-article__timer">{article.time}</p>
       </div>
     </article>

@@ -1,6 +1,5 @@
 import { createContext, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-
 import { Authorization } from '../../pages/Authorization/Authorization';
 
 import './App.css';
@@ -12,13 +11,12 @@ import { Profile } from '../../pages/Profile/Profile';
 import Courses from '../../pages/Courses/Courses';
 import Practice from '../../pages/Practice/Practice';
 import Articles from '../../pages/Articles/Articles';
-import trackerApi from '../../services/TrackerApi';
+import { fetchSkills } from '../../store/trackerSlice';
 
 export const activePeaceContext = createContext(undefined);
 
 function App() {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user);
   function checkLogin() {
     const isLogged = localStorage.getItem('isLogged');
     if (isLogged === 'true') {
@@ -27,6 +25,10 @@ function App() {
       dispatch(logout());
     }
   }
+
+  useEffect(() => {
+    dispatch(fetchSkills());
+  }, []);
   useEffect(() => checkLogin(), []);
   return (
     <div className="app">

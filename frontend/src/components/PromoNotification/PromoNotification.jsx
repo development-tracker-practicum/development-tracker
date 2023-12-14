@@ -1,22 +1,22 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '../../store/userSlice';
 import { Button } from '../Button/Button';
 import { NotificationForm } from '../NotificationForm/NotificationForm';
 import './PromoNotification.sass';
 import closeIcon from '../../Images/closePromo.svg';
-import { changeTarget } from '../../store/targetSlice';
+import { editStatus } from '../../store/currentStatusSlice';
+import { totalMatchJunior, totalMatchMiddle } from '../../store/trackerSlice';
 function PromoNotification() {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const matchJunior = useSelector(totalMatchJunior);
+  const matchMiddle = useSelector(totalMatchMiddle);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
-  const [isTargetChanged, setIsTargetChanged] = useState(false);
   const isItProfileLocation = location.pathname.includes('/profile');
-  const user = useSelector(state => state.user);
-  const target = useSelector(state => state.target);
+  const status = useSelector(state => state.status);
   function handleTargetButton() {
     setIsEditMode(true);
   }
@@ -24,15 +24,13 @@ function PromoNotification() {
     setIsEditMode(false);
   }
   function handleSubmit(info) {
-    dispatch(changeTarget(info.profession));
-    dispatch(setUser(info));
+    dispatch(editStatus({ data: { level_id: info.level }, id: '1' }));
     setIsEditMode(false);
-    setIsTargetChanged(true);
   }
-  const title = target.isTargetChanged
-    ? `Поставлена цель - ${user.currentProfession}`
+  const title = status.isChanged
+    ? `Поставлена цель - ${status.profession}`
     : isEditMode
-      ? `Текущая профессия - ${user.currentProfession}`
+      ? `Текущая профессия - ${status.profession}`
       : isItProfileLocation
         ? 'Выбор карьерного трека'
         : '      Мы добавили новую возможность - Трек развития';
@@ -42,7 +40,7 @@ function PromoNotification() {
       textButton="Начать"
       onClick={() => navigate('/track/profile')}
     />
-  ) : !target.isTargetChanged ? (
+  ) : !status.isChanged ? (
     <Button
       place="notification"
       textButton="Выбрать цель"
@@ -76,18 +74,20 @@ function PromoNotification() {
               }}
             ></button>
           )}
-          {(isEditMode || target.isTargetChanged) && (
+          {(isEditMode || status.isChanged) && (
             <>
               <p className="promo-notification__level">
                 Уровень -
                 <span className="promo-notification__level-value">
-                  {` ${user.currentLevel}`}
+                  {` ${status.level}`}
                 </span>
               </p>
               <p className="promo-notification__match">
                 Соответствие -
                 <span className="promo-notification__match-value">
-                  {` ${user.currentLevel === 'Middle' ? '34%' :'95'}`}
+                  {` ${
+                    status.level === 'Middle' ? matchMiddle : matchJunior
+                  } %`}
                 </span>
               </p>
             </>
@@ -96,7 +96,7 @@ function PromoNotification() {
         {isEditMode ? (
           <NotificationForm onCancel={handleCancel} onSubmit={handleSubmit} />
         ) : (
-          !target.isTargetChanged && (
+          !status.isChanged && (
             <>
               <p
                 className={`promo-notification__description${

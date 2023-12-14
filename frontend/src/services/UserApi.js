@@ -1,5 +1,4 @@
 import API from './API';
-
 class ApiUser extends API {
   registration({ password, email, username }) {
     return this._request('/', {
