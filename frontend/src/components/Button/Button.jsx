@@ -7,7 +7,10 @@ function Button({
   onClick,
   modification = undefined,
   children,
+<<<<<<< HEAD
   isDisabled,
+=======
+>>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
 }) {
   return (
     <button

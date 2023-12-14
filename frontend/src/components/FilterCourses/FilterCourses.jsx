@@ -1,6 +1,12 @@
 import { useDispatch } from 'react-redux';
 import {
+<<<<<<< HEAD
   setFilter,
+=======
+  changeFilter,
+  getLenghtFilters,
+  openMenu,
+>>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
   resetFilters,
   setFilterCounter,
 } from '../../store/FilterSlice';
@@ -24,9 +30,19 @@ function FilterCourses({ onClose, isOpen = false }) {
       price: PRICE,
     });
   function handleClick() {
+<<<<<<< HEAD
     dispatch(setFilter(values));
     dispatch(setFilterCounter());
     onClose();
+=======
+    dispatch(getLenghtFilters());
+    onClose();
+  }
+
+  function handleMenu(event) {
+    const id = event.currentTarget.id;
+    dispatch(openMenu(id));
+>>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
   }
 
   function handleReset() {
@@ -46,9 +62,15 @@ function FilterCourses({ onClose, isOpen = false }) {
       <ul className="filter-courses__form">
         <DropDownMenuDifficult
           isOpen={openedMenus.level}
+<<<<<<< HEAD
           onMenu={openTargetMenu}
           onClick={changeValue}
           currentItem={values.level}
+=======
+          onMenu={handleMenu}
+          onClick={handleChangeFilter}
+          currentItem={filtredProps.level}
+>>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
         />
         <DropDownMenuDuration
           isOpen={openedMenus.duration}

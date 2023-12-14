@@ -1,31 +1,37 @@
-import { createContext, useEffect } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
-
+import { createContext, useEffect, useState } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { ProtectedRoute } from '../../services/PotectedRouter';
 import { Authorization } from '../../pages/Authorization/Authorization';
-
+import { Diary } from '../../pages/Diary/Diary';
+import { Metrika } from '../../pages/Metrika/Metrika';
+import { LearningTrack } from '../../pages/LearningTrack/LearningTrack';
 import './App.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { loginUser, logout } from '../../store/userSlice';
-import { Desk } from '../../pages/Desk/Desk';
-import { Profile } from '../../pages/Profile/Profile';
-
-import Courses from '../../pages/Courses/Courses';
-import Practice from '../../pages/Practice/Practice';
-import Articles from '../../pages/Articles/Articles';
-import trackerApi from '../../services/TrackerApi';
+import { useDispatch } from 'react-redux';
+import { loginUser, logout, setUser } from '../../store/userSlice';
 
 export const activePeaceContext = createContext(undefined);
 
 function App() {
-  const dispatch = useDispatch();
   const user = useSelector(state => state.user);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [activePeace, setActivePeace] = useState('');
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   function checkLogin() {
     const isLogged = localStorage.getItem('isLogged');
-    if (isLogged === 'true') {
+    if (isLogged) {
       dispatch(loginUser());
+      navigate('/track/profile', { replace: true });
     } else {
       dispatch(logout());
+      navigate('/signin');
     }
+  }
+
+  useEffect(() => checkLogin(), []);
+  function handlePeace(color) {
+    setActivePeace(previous => (previous === color ? '' : color));
   }
   useEffect(() => checkLogin(), []);
   return (

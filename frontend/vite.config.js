@@ -4,7 +4,11 @@ import react from '@vitejs/plugin-react';
 export default {
   plugins: [react()],
   server: {
+<<<<<<< HEAD
     port: 5173,
+=======
+    port: 4000,
+>>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
     open: true,
   },
 };

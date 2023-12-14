@@ -32,8 +32,8 @@ function NotificationForm({ onCancel, onSubmit }) {
           Выбор грейда/квалификацию
           <DropDownMenuDifficult
             place="notification"
-            onMenu={openTargetMenu}
-            onClick={changeValue}
+            onMenu={handleMenu}
+            onClick={handleChangeValue}
             isOpen={openedMenus.level}
             currentItem={values.level}
           />

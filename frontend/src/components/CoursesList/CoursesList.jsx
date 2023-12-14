@@ -1,11 +1,11 @@
 import './CoursesList.sass';
-import { CourseCard } from '../CourseCard/CourseCard';
+import { ModuleCard } from '../ModuleCard/ModuleCard';
 function CoursesList({ coursesList }) {
   return (
     <ul className="courses-list">
       {coursesList.map((card, index) => (
         <li key={index} className="courses-list__item">
-          <CourseCard data={card} />
+          <ModuleCard data={card} />
         </li>
       ))}
     </ul>

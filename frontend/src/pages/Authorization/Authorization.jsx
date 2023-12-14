@@ -3,9 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AuthForm } from '../../components/AuthForm/AuthForm';
 import backgroundImage from '../../Images/authorizationBackground.jpg';
 import './Authorization.sass';
+<<<<<<< HEAD
 import { signup, signin, resetStatus, setUser } from '../../store/userSlice';
 import { useEffect } from 'react';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
+=======
+import { signup } from '../../store/userSlice';
+
+>>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
 function Authorization({ submitText }) {
   const { values, handleChangeInput, isValid, resetForm, errorMessages } =
     useFormAndValidation({
@@ -15,17 +20,18 @@ function Authorization({ submitText }) {
     });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const location = useLocation();
-  const isItSiginRoute = location.pathname === '/signin';
-  const user = useSelector(state => state.user);
-  const handleSubmit = isItSiginRoute ? handleLogin : handleRegistration;
-  function handleLogin() {
-    dispatch(
-      signin({
-        email: values.email,
-        password: values.password,
-      }),
-    );
+  const user = useSelector((state) => state.user);
+  function handleSubmit() {
+    // dispatch(
+    //   signup({
+    //     email: 'looneyxx2@yandex.ru',
+    //     password: 'Crosshair',
+    //     username: 'Sergey',
+    //   }),
+    // );
+    dispatch(loginUser());
+    navigate('/diary/desk');
+    localStorage.setItem('isLogged', 'true');
   }
   async function handleRegistration() {
     dispatch(
