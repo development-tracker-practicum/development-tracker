@@ -7,12 +7,11 @@ import {
   getRecommendations,
   setNewCourses,
 } from '../../store/recommendationsSlice';
-// import { totalMatchJunior, totalMatchMiddle } from '../../store/trackerSlice';
+import { totalMatchJunior, totalMatchMiddle } from '../../store/trackerSlice';
 function Recommendations({ children }) {
   const tracker = useSelector(state => state.tracker);
-  const recommendations = useSelector(state => state.recommendations.list);
-  //   const middleMatch = useSelector(totalMatchMiddle);
-  //   const juniorMatch = useSelector(totalMatchJunior);
+  const middleMatch = useSelector(totalMatchMiddle);
+  const juniorMatch = useSelector(totalMatchJunior);
   const dispatch = useDispatch();
   useEffect(() => {
     const localCards = localStorage.getItem('list');
@@ -34,7 +33,7 @@ function Recommendations({ children }) {
               {tracker.profession}
             </h2>
             <h2 className="recommendations__title recommendations__title_percent">
-              {/* {` ${tracker.level === 'Middle' ? middleMatch : juniorMatch} %`} */}
+              {` ${tracker.level === 'Middle' ? middleMatch : juniorMatch} %`}
             </h2>
           </div>
           <TabMenu />

@@ -12,15 +12,11 @@ import Courses from '../../pages/Courses/Courses';
 import Practice from '../../pages/Practice/Practice';
 import Articles from '../../pages/Articles/Articles';
 import { fetchSkills } from '../../store/trackerSlice';
-import useStatistics from '../../hooks/useStatistics';
 
 export const activePeaceContext = createContext(undefined);
 
 function App() {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user);
-
-  const tracker = useSelector(state => state.tracker);
   function checkLogin() {
     const isLogged = localStorage.getItem('isLogged');
     if (isLogged === 'true') {

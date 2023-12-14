@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import trackerApi from '../services/TrackerApi';
-import { info } from 'sass';
 
 export const editStatus = createAsyncThunk(
   'currentStatus/edit',
@@ -31,7 +30,7 @@ const currentStatusSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [editStatus.pending]: (state, action) => {
+    [editStatus.pending]: state => {
       state.loading = true;
       state.isError = false;
     },
@@ -42,7 +41,7 @@ const currentStatusSlice = createSlice({
       state.level = level || state.level;
       state.loading = false;
     },
-    [editStatus.rejected]: (state, action) => {
+    [editStatus.rejected]: state => {
       state.loading = false;
       state.isError = true;
     },

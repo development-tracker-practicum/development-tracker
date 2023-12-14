@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AuthForm } from '../../components/AuthForm/AuthForm';
 import backgroundImage from '../../Images/authorizationBackground.jpg';
 import './Authorization.sass';
-import { signup, signin, resetStatus, setUser } from '../../store/userSlice';
+import { signup, signin, resetStatus } from '../../store/userSlice';
 import { useEffect } from 'react';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
 function Authorization({ submitText }) {

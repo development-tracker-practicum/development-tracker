@@ -1,19 +1,18 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '../../store/userSlice';
 import { Button } from '../Button/Button';
 import { NotificationForm } from '../NotificationForm/NotificationForm';
 import './PromoNotification.sass';
 import closeIcon from '../../Images/closePromo.svg';
-import { editStatus, setStatus } from '../../store/currentStatusSlice';
-// import { totalMatchJunior, totalMatchMiddle } from '../../store/statusSlice';
+import { editStatus } from '../../store/currentStatusSlice';
+import { totalMatchJunior, totalMatchMiddle } from '../../store/statusSlice';
 function PromoNotification() {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  //   const matchJunior = useSelector(totalMatchJunior);
-  //   const matchMiddle = useSelector(totalMatchMiddle);
+  const matchJunior = useSelector(totalMatchJunior);
+  const matchMiddle = useSelector(totalMatchMiddle);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const isItProfileLocation = location.pathname.includes('/profile');
@@ -86,9 +85,9 @@ function PromoNotification() {
               <p className="promo-notification__match">
                 Соответствие -
                 <span className="promo-notification__match-value">
-                  {/* {` ${
+                  {` ${
                     status.level === 'Middle' ? matchMiddle : matchJunior
-                  } %`} */}
+                  } %`}
                 </span>
               </p>
             </>

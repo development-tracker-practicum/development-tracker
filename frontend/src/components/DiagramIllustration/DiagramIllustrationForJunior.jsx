@@ -1,5 +1,3 @@
-import { useContext, useEffect } from 'react';
-import { activePeaceContext } from '../App/App';
 import { Circle } from './Circle/Circle';
 import { Gray } from './Peace/Gray';
 import { Red } from './Peace/Red';
