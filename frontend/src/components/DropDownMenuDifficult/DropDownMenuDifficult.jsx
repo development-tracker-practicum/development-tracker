@@ -29,8 +29,11 @@ function DropDownMenuDifficult({
         place={place}
         type="level"
 <<<<<<< HEAD
+<<<<<<< HEAD
         text="Junior"
 =======
+=======
+>>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
         text="Легкий"
 >>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
         onClick={handleItem}
@@ -39,8 +42,11 @@ function DropDownMenuDifficult({
         place={place}
         type="level"
 <<<<<<< HEAD
+<<<<<<< HEAD
         text="Middle"
 =======
+=======
+>>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
         text="Средний"
 >>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
         onClick={handleItem}
@@ -49,8 +55,11 @@ function DropDownMenuDifficult({
         place={place}
         type="level"
 <<<<<<< HEAD
+<<<<<<< HEAD
         text="Senior"
 =======
+=======
+>>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
         text="Сложный"
 >>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
         onClick={handleItem}

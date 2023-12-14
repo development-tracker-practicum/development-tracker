@@ -1,6 +1,10 @@
 import ReactDOM from 'react-dom/client';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { BrowserRouter } from 'react-router-dom';
+=======
+import { HashRouter } from 'react-router-dom';
+>>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
 =======
 import { HashRouter } from 'react-router-dom';
 >>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f

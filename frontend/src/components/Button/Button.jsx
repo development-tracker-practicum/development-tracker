@@ -8,7 +8,10 @@ function Button({
   modification = undefined,
   children,
 <<<<<<< HEAD
+<<<<<<< HEAD
   isDisabled,
+=======
+>>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
 =======
 >>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
 }) {

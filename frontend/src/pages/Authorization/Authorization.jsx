@@ -4,10 +4,13 @@ import { AuthForm } from '../../components/AuthForm/AuthForm';
 import backgroundImage from '../../Images/authorizationBackground.jpg';
 import './Authorization.sass';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { signup, signin, resetStatus, setUser } from '../../store/userSlice';
 import { useEffect } from 'react';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
 =======
+=======
+>>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
 import { signup } from '../../store/userSlice';
 
 >>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f

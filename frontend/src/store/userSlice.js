@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import apiAuth from '../services/AuthApi';
+<<<<<<< HEAD
 import userApi from '../services/UserApi';
 export const signup = createAsyncThunk(
   'user/signup',
@@ -20,6 +21,14 @@ export const checkToken = createAsyncThunk(
   'user/checkToken',
   async ({ uid, token }) => {
     const response = await userApi.checkToken({ uid, token });
+=======
+
+export const signup = createAsyncThunk(
+  'user/signup',
+  async ({ email, password, username }) => {
+    console.log(email, password, username);
+    const response = await apiAuth.registration({ email, password, username });
+>>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
     return response;
   },
 );

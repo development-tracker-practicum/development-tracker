@@ -9,10 +9,13 @@ export default class API {
   }
   async _request(path = '', options) {
 <<<<<<< HEAD
+<<<<<<< HEAD
     const result = await fetch(`${this._baseUrl}${path}`, options);
     const data = await this._getResult(result);
     return data;
 =======
+=======
+>>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
     try {
       const result = await fetch(`${this._baseUrl}${path}`, options);
       const data = await this._getResult(result);
@@ -20,6 +23,9 @@ export default class API {
     } catch (error) {
       throw error;
     }
+<<<<<<< HEAD
+>>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
+=======
 >>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
   }
   async _getResult(result) {

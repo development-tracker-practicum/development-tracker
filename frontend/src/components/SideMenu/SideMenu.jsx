@@ -24,7 +24,10 @@ function SideMenu() {
   function handleLogout() {
     dispatch(logout());
 <<<<<<< HEAD
+<<<<<<< HEAD
     navigate('/signin', { replace: true });
+=======
+>>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
 =======
 >>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
     localStorage.removeItem('isLogged');

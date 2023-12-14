@@ -31,10 +31,13 @@ function FilterCourses({ onClose, isOpen = false }) {
     });
   function handleClick() {
 <<<<<<< HEAD
+<<<<<<< HEAD
     dispatch(setFilter(values));
     dispatch(setFilterCounter());
     onClose();
 =======
+=======
+>>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
     dispatch(getLenghtFilters());
     onClose();
   }
@@ -63,9 +66,15 @@ function FilterCourses({ onClose, isOpen = false }) {
         <DropDownMenuDifficult
           isOpen={openedMenus.level}
 <<<<<<< HEAD
+<<<<<<< HEAD
           onMenu={openTargetMenu}
           onClick={changeValue}
           currentItem={values.level}
+=======
+          onMenu={handleMenu}
+          onClick={handleChangeFilter}
+          currentItem={filtredProps.level}
+>>>>>>> 40e0f267ee6070dd0ceaab74fd0ed72a7373b13f
 =======
           onMenu={handleMenu}
           onClick={handleChangeFilter}
