@@ -9,7 +9,7 @@ function DiagramItem({ color, title, value, children }) {
         />
         <h3 className="diagram-item__title">
           {title}
-          <span className="diagram-item__value">{value}</span>
+          <span className="diagram-item__value">{value} %</span>
         </h3>
       </div>
       {children}

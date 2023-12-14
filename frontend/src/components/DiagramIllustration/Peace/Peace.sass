@@ -1,6 +1,10 @@
 .peace
     position: absolute
-    cursor: pointer
+    animation: fade .3s forwards
+    visibility: hidden
+    opacity: 0
+    & path
+        cursor: pointer
     &_radius
         &_first
             z-index: 1
@@ -207,3 +211,8 @@
                 &_fifth
 
                     bottom: 23px
+
+@keyframes fade
+    100%
+        opacity: 1
+        visibility: visible

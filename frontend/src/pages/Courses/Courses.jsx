@@ -8,17 +8,18 @@ import { Button } from '../../components/Button/Button';
 import { Recommendations } from '../Reccommendations/Recommendations';
 import CardList from '../../components/CardList/CardList';
 import { CourseCard } from '../../components/CourseCard/CourseCard';
+import { freeCourses } from '../../store/coursesSlice';
 function Courses() {
   const filterCount = useSelector(state => state.filterCourses.countFilter);
   const { activePeaceDirection } = useSelector(state => state.diagramm);
-  const { middleStatistics } = useSelector(state => state.statistics);
+  const { middleStatistics } = useSelector(state => state.tracker);
   const [recommendFilter, setReccomendFilter] = useState({
     direction: middleStatistics?.[activePeaceDirection]?.name || 'Направление',
   });
-  const user = useSelector(state => state.user);
   const recommendations = useSelector(state => state.recommendations);
+  const status = useSelector(state => state.status);
   const [isOpenFilter, setIsOpenFilter] = useState(false);
-
+  const listForJunior = useSelector(freeCourses);
   function handleOpenFilter() {
     setIsOpenFilter(true);
   }
@@ -52,8 +53,8 @@ function Courses() {
         </Button>
       </div>
       <CardList>
-        {user.currentLevel === 'Junior'
-          ? recommendations.list.coursesListForJunior.map((card, index) => (
+        {status.level === 'Junior'
+          ? listForJunior.map((card, index) => (
               <CourseCard key={index} course={card} />
             ))
           : recommendations.list.coursesList.map((card, index) => (

@@ -6,10 +6,10 @@ import './NotificationForm.sass';
 import useFilter from '../../hooks/useFilter';
 
 function NotificationForm({ onCancel, onSubmit }) {
-  const user = useSelector(state => state.user);
+  const status = useSelector(state => state.status);
   const { values, openedMenus, changeValue, openTargetMenu } = useFilter({
-    profession: user.currentProfession,
-    level: user.currentLevel,
+    profession: status.profession,
+    level: status.level,
   });
   function handleSubmit() {
     onSubmit(values);

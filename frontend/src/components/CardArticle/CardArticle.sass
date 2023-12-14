@@ -7,6 +7,10 @@
     font-family: YS Text
     color: #1a1b22
     box-sizing: border-box
+    transition: box-shadow .2s linear
+    cursor: pointer
+    &:hover
+        box-shadow: 0 0 20px -2px rgba(22, 26, 83, 0.422)
     &__container
         display: flex
         align-items: center
@@ -35,18 +39,18 @@
         justify-content: space-between
 
     &__name
+        margin: 0
+        display: flex
+        gap: 8px
         color: #797981
         font-size: 14px
         line-height: 20px
         position: relative
-        padding: 0 0 0 28px
+        padding: 0
 
-    &__name::before
-        content: ''
-        background: url(../../img/user.svg) no-repeat center
-        position: absolute
-        top: 0
-        left: 0
+    &__icon
+        background-size: cover
+        background-position: center
         width: 20px
         height: 20px
 

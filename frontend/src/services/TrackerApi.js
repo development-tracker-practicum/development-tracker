@@ -7,22 +7,18 @@ class TrackerApi extends API {
       headers: this._headers,
     });
   }
-  editProfessionAndLevel(data) {
-    return this._request(`/${data.directionID}`, {
+
+  editProfessionAndLevel(id, data) {
+    return this._request(`/${id}/`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        user_id: {
-          email: data.email,
-          username: data.username,
-        },
         level_id: data.level_id,
         profession: data.profession,
-        level: data.level,
       }),
     });
   }
-  getRecommendation(userID) {
+  getRecommendations(userID) {
     return this._request(`/${userID}/recommendations`, {
       method: 'GET',
       headers: this._headers,

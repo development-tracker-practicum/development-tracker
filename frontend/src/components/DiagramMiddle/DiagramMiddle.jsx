@@ -1,7 +1,7 @@
 import { DiagramList } from '../DiagramList/DiagramList';
 import { DiagramItem } from '../DiagramItem/DiagramItem';
 import { Diagram } from '../Diagram/Diagram';
-import { DiagramIllustration } from '../DiagramIllustration/DiagramIllustration';
+import { DiagramIllustrationForMiddle } from '../DiagramIllustration/DiagramIllustrationForMiddle';
 import {
   BLUE,
   GRAY,
@@ -20,26 +20,17 @@ import DiagrammAboutPeopleManagement from '../DiagrammAbout/DiagrammAboutPeopleM
 import DiagrammAboutProAction from '../DiagrammAbout/DiagrammAboutProAction/DiagrammAboutProAction';
 import DiagrammAboutProductOrientation from '../DiagrammAbout/DiagrammAboutProductOrientation/DiagrammAboutProductOrientation';
 import DiagrammAboutToGrowingUp from '../DiagrammAbout/DiagrammAboutToGrowingUp/DiagrammAboutToGrowingUp';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { resetActivePeace } from '../../store/diagrammDirectionSlice';
-function DiagramMiddle() {
-  const { middleStatistics } = useSelector(state => state.statistics);
+import { useSelector } from 'react-redux';
+function DiagramMiddle({ statistics }) {
   const { activePeaceDirection } = useSelector(state => state.diagramm);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (activePeaceDirection) {
-      dispatch(resetActivePeace());
-    }
-  }, []);
   return (
     <Diagram>
-      <DiagramIllustration statistics={middleStatistics} />
+      <DiagramIllustrationForMiddle statistics={statistics} />
       <DiagramList>
         {activePeaceDirection ? (
           <DiagramItem
-            value={middleStatistics?.[activePeaceDirection]?.percent}
-            title={middleStatistics?.[activePeaceDirection]?.name}
+            value={statistics?.[activePeaceDirection]?.percent}
+            title={statistics?.[activePeaceDirection]?.name}
             color={activePeaceDirection}
             isActive={true}
           >
@@ -59,43 +50,43 @@ function DiagramMiddle() {
         ) : (
           <>
             <DiagramItem
-              value={middleStatistics?.yellow?.percent}
-              title={middleStatistics?.yellow?.name}
+              value={statistics?.yellow?.percent}
+              title={statistics?.yellow?.name}
               color={YELLOW}
             />
             <DiagramItem
-              value={middleStatistics?.green?.percent}
-              title={middleStatistics?.green?.name}
+              value={statistics?.green?.percent}
+              title={statistics?.green?.name}
               color={GREEN}
             />
             <DiagramItem
-              value={middleStatistics?.blue?.percent}
-              title={middleStatistics?.blue?.name}
+              value={statistics?.blue?.percent}
+              title={statistics?.blue?.name}
               color={BLUE}
             />
             <DiagramItem
-              value={middleStatistics?.red?.percent}
-              title={middleStatistics?.red?.name}
+              value={statistics?.red?.percent}
+              title={statistics?.red?.name}
               color={RED}
             />
             <DiagramItem
-              value={middleStatistics?.gray?.percent}
-              title={middleStatistics?.gray?.name}
+              value={statistics?.gray?.percent}
+              title={statistics?.gray?.name}
               color={GRAY}
             />
             <DiagramItem
-              value={middleStatistics?.lightblue?.percent}
-              title={middleStatistics?.lightblue?.name}
+              value={statistics?.lightblue?.percent}
+              title={statistics?.lightblue?.name}
               color={LIGHTBLUE}
             />
             <DiagramItem
-              value={middleStatistics?.pink?.percent}
-              title={middleStatistics?.pink?.name}
+              value={statistics?.pink?.percent}
+              title={statistics?.pink?.name}
               color={PINK}
             />
             <DiagramItem
-              value={middleStatistics?.purple?.percent}
-              title={middleStatistics?.purple?.name}
+              value={statistics?.purple?.percent}
+              title={statistics?.purple?.name}
               color={PURPLE}
             />
           </>

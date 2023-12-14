@@ -16,23 +16,9 @@ function CourseCard({ course }) {
         alt={`Изображение к модулю «${course?.title}»`}
         className="course-card__image"
       />
-      {!course?.monthlyPrice && (
-        <p className="course-card__price course-card__price_type_no-monthly-price">
-          {typeof course?.price === 'number' && course?.price !== 0
-            ? `${course?.price.toLocaleString('ru-RU')} ₽`
-            : 'Бесплатно'}
-        </p>
-      )}
-      {course?.monthlyPrice && (
-        <div className="course-card__price-wrapper">
-          <p className="course-card__price">
-            от {course?.monthlyPrice.toLocaleString('ru-RU')} ₽/месяц
-          </p>
-          <p className="course-card__full-price">
-            или сразу {course?.price.toLocaleString('ru-RU')}
-          </p>
-        </div>
-      )}
+      <p className="course-card__price">
+        {course.price !== 0 ? `${course.price} ₽` : 'Бесплатно'}
+      </p>
     </article>
   );
 }
