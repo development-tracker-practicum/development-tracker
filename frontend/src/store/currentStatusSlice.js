@@ -19,7 +19,7 @@ export const editStatus = createAsyncThunk(
 );
 const initialState = {
   profession: 'UI/UX дизайнер',
-  level: 'Middle',
+  level: 'Junior',
   isChanged: false,
   isLoading: false,
   isError: false,

@@ -9,7 +9,7 @@ import {
 } from '../../store/recommendationsSlice';
 import { totalMatchJunior, totalMatchMiddle } from '../../store/trackerSlice';
 function Recommendations({ children }) {
-  const tracker = useSelector(state => state.tracker);
+  const status = useSelector(state => state.status);
   const middleMatch = useSelector(totalMatchMiddle);
   const juniorMatch = useSelector(totalMatchJunior);
   const dispatch = useDispatch();
@@ -27,13 +27,13 @@ function Recommendations({ children }) {
         <section className="recommendations">
           <div className="recommendations__title-zone">
             <h2 className="recommendations__title recommendations__title_level">
-              {tracker.level}
+              {status.level}
             </h2>
             <h2 className="recommendations__title recommendations__title_profession">
-              {tracker.profession}
+              {status.profession}
             </h2>
             <h2 className="recommendations__title recommendations__title_percent">
-              {` ${tracker.level === 'Middle' ? middleMatch : juniorMatch} %`}
+              {` ${status.level === 'Middle' ? middleMatch : juniorMatch} %`}
             </h2>
           </div>
           <TabMenu />

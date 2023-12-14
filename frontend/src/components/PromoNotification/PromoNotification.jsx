@@ -6,7 +6,7 @@ import { NotificationForm } from '../NotificationForm/NotificationForm';
 import './PromoNotification.sass';
 import closeIcon from '../../Images/closePromo.svg';
 import { editStatus } from '../../store/currentStatusSlice';
-import { totalMatchJunior, totalMatchMiddle } from '../../store/statusSlice';
+import { totalMatchJunior, totalMatchMiddle } from '../../store/trackerSlice';
 function PromoNotification() {
   const location = useLocation();
   const navigate = useNavigate();

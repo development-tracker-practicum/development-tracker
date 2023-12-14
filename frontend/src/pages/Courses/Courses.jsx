@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Courses.sass';
 import { FilterCourses } from '../../components/FilterCourses/FilterCourses';
 import { useState } from 'react';
@@ -12,9 +12,12 @@ import { freeCourses } from '../../store/coursesSlice';
 function Courses() {
   const filterCount = useSelector(state => state.filterCourses.countFilter);
   const { activePeaceDirection } = useSelector(state => state.diagramm);
-  const { middleStatistics } = useSelector(state => state.tracker);
+  const { currentStatistics } = useSelector(state => state.tracker);
+  useEffect(() => {
+    console.log(currentStatistics);
+  }, [currentStatistics]);
   const [recommendFilter, setReccomendFilter] = useState({
-    direction: middleStatistics?.[activePeaceDirection]?.name || 'Направление',
+    direction: currentStatistics?.[activePeaceDirection]?.name || 'Направление',
   });
   const recommendations = useSelector(state => state.recommendations);
   const status = useSelector(state => state.status);

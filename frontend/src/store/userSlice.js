@@ -56,7 +56,7 @@ const userSlice = createSlice({
       state.isLogged = true;
       state.authToken = action.payload.auth_token;
     }),
-      builder.addCase(signin.pending, (state, action) => {
+      builder.addCase(signin.pending, state => {
         state.status = 'pending';
         state.fetch = 'signin';
         state.error = '';
@@ -74,7 +74,7 @@ const userSlice = createSlice({
         state.username = username || state.username;
         state.email = email || state.email;
       }),
-      builder.addCase(signup.pending, (state, action) => {
+      builder.addCase(signup.pending, state => {
         state.status = 'pending';
         state.fetch = 'signup';
         state.error = '';

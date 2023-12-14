@@ -23,15 +23,17 @@ function Profile() {
   useEffect(() => {
     if (level === 'Middle') {
       setNewStatistics(middleStatistics);
-      dispatch(setCurrentStatistics(middleStatistics));
+
       return;
     }
     if (level === 'Junior') {
       setNewStatistics(juniorStatistics);
-      dispatch(setCurrentStatistics(juniorStatistics));
       return;
     }
   }, [level, middleStatistics, juniorStatistics]);
+  useEffect(() => {
+    dispatch(setCurrentStatistics(statistics));
+  }, [statistics]);
   useEffect(() => {
     dispatch(fetchSkills());
     if (activePeaceDirection) {
