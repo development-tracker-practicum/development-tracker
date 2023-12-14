@@ -1,84 +1,53 @@
-import { createContext, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { Context } from '../../context/context';
-import { ProtectedRoute } from '../../services/PotectedRouter';
+import { createContext, useEffect } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+
 import { Authorization } from '../../pages/Authorization/Authorization';
-import { Diary } from '../../pages/Diary/Diary';
-import { Metrika } from '../../pages/Metrika/Metrika';
-import { LearningTrack } from '../../pages/LearningTrack/LearningTrack';
-import { Recommendation } from '../../pages/Recommendation/Recommendation';
+
 import './App.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser, logout } from '../../store/userSlice';
+import { Desk } from '../../pages/Desk/Desk';
+import { Profile } from '../../pages/Profile/Profile';
+
+import Courses from '../../pages/Courses/Courses';
+import Practice from '../../pages/Practice/Practice';
+import Articles from '../../pages/Articles/Articles';
+import trackerApi from '../../services/TrackerApi';
 
 export const activePeaceContext = createContext(undefined);
 
 function App() {
-  const user = useSelector((state) => state.user);
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
-  const [activePeace, setActivePeace] = useState('');
-
-  function handlePeace(color) {
-    setActivePeace((previous) => (previous === color ? '' : color));
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
+  function checkLogin() {
+    const isLogged = localStorage.getItem('isLogged');
+    if (isLogged === 'true') {
+      dispatch(loginUser());
+    } else {
+      dispatch(logout());
+    }
   }
-
+  useEffect(() => checkLogin(), []);
   return (
     <div className="app">
-      <activePeaceContext.Provider value={{ activePeace, handlePeace }}>
-        <Routes>
-          <Route
-            path="/signup"
-            element={
-              <ProtectedRoute
-                isLogged={!user.isLogged}
-                submitText="Регистрация"
-                path="/signup"
-                element={Authorization}
-              />
-            }
-          />
-          <Route
-            path="/signin"
-            element={
-              <ProtectedRoute
-                isLogged={!user.isLogged}
-                path="/signin"
-                submitText="Войти"
-                element={Authorization}
-              />
-            }
-          />
-          <Route
-            path="/diary/desk"
-            element={
-              <ProtectedRoute isLogged={user.isLogged} element={Diary} />
-            }
-          />
-          <Route
-            path="/diary/metrika"
-            element={
-              <ProtectedRoute isLogged={user.isLogged} element={Metrika} />
-            }
-          />
-          <Route
-            path="/track/profile"
-            element={
-              <ProtectedRoute
-                isLogged={user.isLogged}
-                element={LearningTrack}
-              />
-            }
-          />
-          <Route
-            path="/track/recommendations"
-            element={
-              <ProtectedRoute
-                isLogged={user.isLogged}
-                element={LearningTrack}
-              />
-            }
-          />
-        </Routes>
-      </activePeaceContext.Provider>
+      <Routes>
+        <Route
+          path="/signup"
+          element={<Authorization submitText="Регистрация" path="/signup" />}
+        />
+        <Route
+          path="/signin"
+          element={<Authorization path="/signin" submitText="Войти" />}
+        />
+        <Route path="/diary" element={<Navigate to="/diary/desk" />} />
+        <Route path="/diary/desk" element={<Desk />} />
+        <Route path="/track" element={<Navigate to="/track/profile" />} />
+        <Route path="/track/profile" element={<Profile />} />
+        <Route path="/track/recommendations/courses" element={<Courses />} />
+        <Route path="/track/recommendations/articles" element={<Articles />} />
+        <Route path="/track/recommendations/practice" element={<Practice />} />
+        <Route path="/*" element={<Navigate to="/diary/desk" replace />} />
+      </Routes>
     </div>
   );
 }

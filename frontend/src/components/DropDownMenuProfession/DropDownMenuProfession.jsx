@@ -9,7 +9,6 @@ function DropDownMenuProfession({
   place = null,
 }) {
   function handleMenu(event) {
-    // console.log(event.target);
     onMenu(event);
   }
 
@@ -28,19 +27,7 @@ function DropDownMenuProfession({
       <DropMenuItem
         place={place}
         type="profession"
-        text="UI/UX Дизайнер"
-        onClick={handleItem}
-      />
-      <DropMenuItem
-        place={place}
-        type="profession"
-        text="Frontend"
-        onClick={handleItem}
-      />
-      <DropMenuItem
-        place={place}
-        type="profession"
-        text="Backend"
+        text="UI/UX дизайнер"
         onClick={handleItem}
       />
     </DropDownMenu>

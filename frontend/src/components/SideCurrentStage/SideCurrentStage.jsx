@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import arrowDown from '../../images/arrow_right.svg';
+import arrowDown from '../../Images/arrow_right.svg';
 import './SideCurrentStage.sass';
 
 function SideCurrentStage({ currentUser }) {
@@ -12,7 +12,7 @@ function SideCurrentStage({ currentUser }) {
           }}
           className="side-current-stage__avatar"
         />
-        <p className="side-current-stage__name">{currentUser.name}</p>
+        <p className="side-current-stage__name">{currentUser.username}</p>
       </div>
       <div className="side-current-stage__bottom-zone">
         <div className="side-current-stage__column">

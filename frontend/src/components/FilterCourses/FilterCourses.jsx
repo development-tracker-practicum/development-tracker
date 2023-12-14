@@ -1,42 +1,38 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
-  changeFilter,
-  openMenu,
+  setFilter,
   resetFilters,
-} from '../../store/filterCoursesSlice';
+  setFilterCounter,
+} from '../../store/FilterSlice';
 import { DropDownMenuPrice } from '../DropDownMenuPrice/DropDownMenuPrice';
 import { DropDownMenuDifficult } from '../DropDownMenuDifficult/DropDownMenuDifficult';
 import { DropDownMenuDuration } from '../DropDownMenuDuration/DropDownMenuDuration';
 import { DropDownMenuType } from '../DropDownMenuType/DropDownMenuType';
 import { Button } from '../Button/Button';
-import deleteIcon from '../../images/delete.svg';
-import closeIcon from '../../images/close_mini.svg';
+import deleteIcon from '../../Images/delete.svg';
+import closeIcon from '../../Images/close_mini.svg';
 import './FilterCourses.sass';
-
+import useFilter from '../../hooks/useFilter';
+import { TYPE, LEVEL, DURATION, PRICE } from '../../constants/filterConstants';
 function FilterCourses({ onClose, isOpen = false }) {
-  const { filtredProps, openedMenus } = useSelector(
-    (state) => state.filterCourses,
-  );
   const dispatch = useDispatch();
-
+  const { values, openedMenus, changeValue, openTargetMenu, resetValues } =
+    useFilter({
+      type: TYPE,
+      level: LEVEL,
+      duration: DURATION,
+      price: PRICE,
+    });
   function handleClick() {
-    // console.log(filtredProps);
-  }
-
-  function handleMenu(event) {
-    const id = event.currentTarget.id;
-    dispatch(openMenu(id));
+    dispatch(setFilter(values));
+    dispatch(setFilterCounter());
+    onClose();
   }
 
   function handleReset() {
     dispatch(resetFilters());
+    resetValues();
   }
-
-  function handleChangeFilter(event) {
-    const { id, type } = event.currentTarget;
-    dispatch(changeFilter({ id, type }));
-  }
-
   return (
     <aside className={`filter-courses ${isOpen && 'filter-courses_open'}`}>
       <button
@@ -49,28 +45,28 @@ function FilterCourses({ onClose, isOpen = false }) {
       <h3 className="filter-courses__title">Фильтры</h3>
       <ul className="filter-courses__form">
         <DropDownMenuDifficult
-          isOpen={openedMenus.difficult}
-          onMenu={handleMenu}
-          onClick={handleChangeFilter}
-          currentItem={filtredProps.difficult}
+          isOpen={openedMenus.level}
+          onMenu={openTargetMenu}
+          onClick={changeValue}
+          currentItem={values.level}
         />
         <DropDownMenuDuration
           isOpen={openedMenus.duration}
-          onMenu={handleMenu}
-          onClick={handleChangeFilter}
-          currentItem={filtredProps.duration}
+          onMenu={openTargetMenu}
+          onClick={changeValue}
+          currentItem={values.duration}
         />
         <DropDownMenuPrice
           isOpen={openedMenus.price}
-          onMenu={handleMenu}
-          onClick={handleChangeFilter}
-          currentItem={filtredProps.price}
+          onMenu={openTargetMenu}
+          onClick={changeValue}
+          currentItem={values.price}
         />
         <DropDownMenuType
           isOpen={openedMenus.type}
-          onMenu={handleMenu}
-          onClick={handleChangeFilter}
-          currentItem={filtredProps.type}
+          onMenu={openTargetMenu}
+          onClick={changeValue}
+          currentItem={values.type}
         />
       </ul>
       <button
